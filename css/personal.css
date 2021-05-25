@@ -16,3 +16,8 @@
 img.imagen-personalizacion{
     width: 75%;
 }
+
+.btn-continuar{
+    width: 300px;
+    align-content: center;
+}
