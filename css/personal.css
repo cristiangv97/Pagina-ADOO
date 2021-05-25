@@ -13,6 +13,10 @@
     color: #0c63e4;
 }
 
+.card{
+    height: 95%;
+}
+
 img.imagen-personalizacion{
     width: 75%;
 }
@@ -20,4 +24,23 @@ img.imagen-personalizacion{
 .btn-continuar{
     width: 70%;
     align-content: center;
+}
+
+.card-img-top{
+    position: relative;
+    /* max-height: 80%; */
+    max-width: 90%;
+    width: auto;
+    height: auto;
+    left: 5%;
+}
+
+.imgCatalogo{
+    background: rgb(59, 59, 59);
+    height: 60%;
+    position: relative;
+}
+
+.card-body{
+    position: relative;
 }
