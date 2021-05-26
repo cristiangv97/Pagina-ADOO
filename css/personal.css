@@ -13,6 +13,10 @@
     color: #0c63e4;
 }
 
+a.texto-blanco{
+    color: #ffffff;
+}
+
 .card{
     height: 95%;
 }
@@ -39,6 +43,7 @@ img.imagen-personalizacion{
     background: rgb(59, 59, 59);
     height: 60%;
     position: relative;
+    align-items: center;
 }
 
 .card-body{
