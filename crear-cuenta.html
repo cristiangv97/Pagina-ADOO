@@ -12,8 +12,10 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/cambiar-form.js"></script>
 </head>
-<body style="background-color: #c8c7c7">
+<body style="background-color: #c8c7c7" onload="formularioCliente()">
 <!-- NAVBAR -->
 <div class="container-fluid">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
@@ -46,26 +48,16 @@
 
 <div class="container">
   <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
-    <form class="form-control form-control-lg">
-      <div class="mb-3">
-        <label for="entrada-nombre" class="form-label">Nombre/s</label>
-        <input type="text" class="form-control" id="entrada-nombre" placeholder="Julian">
-      </div>
-      <div class="mb-3">
-        <label for="entrada-apellidos" class="form-label">Apellidos</label>
-        <input type="text" class="form-control" id="entrada-apellidos" placeholder="Alvarez">
-      </div>
-      <div class="mb-3">
-        <label for="entrada-correo" class="form-label">Correo electronico</label>
-        <input type="email" class="form-control" id="entrada-correo" aria-describedby="emailHelp" placeholder="j.alvarez@mail.com">
-      </div>
-      <div class="mb-3">
-        <label for="entrada-contrasena" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="entrada-contrasena">
-      </div>
-      <a href="index.html" class="btn btn-primary col-12" role="button">Registrarse</a>
+    <select class="form-control form-control-lg my-3" id="tipo-usuario" onchange="checarUsuario()">
+      <option value="Cliente">Cliente</option>
+      <option value="Proveedor">Proveedor</option>
+    </select>
+      <p id="cliente"></p>
+    <form class="form-control form-control-lg" id="formulario-registro">
     </form>
   </div>
 </div>
+
+
 </body>
 </html>
