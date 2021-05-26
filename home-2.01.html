@@ -15,7 +15,8 @@
 </head>
 <body style="background-color: #c8c7c7">
   <!-- NAVBAR -->
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+  <div class="container-fluid">
+  <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
         Isurus Ictu
@@ -35,15 +36,16 @@
           <li class="nav-item"><a class="nav-link" href="#">Catálogo completo</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Más vendidos</a></li>
           <li class="nav-item"><a class="nav-link" href="#">Más recientes</a></li>
-          <li class="nav-item"><a class="nav-link bg-secondary btn" href="#">Iniciar Sesion</a></li>
-          <li class="nav-item"><a class="nav-link bg-primary btn" href="crear-cuenta.html">Registrarse</a></li>
+          <li class="nav-item"><a class="nav-link bg-secondary btn active" href="iniciar-sesion.html">Iniciar Sesion</a></li>
+          <li class="nav-item"><a class="nav-link bg-primary btn active" href="crear-cuenta.html">Registrarse</a></li>
         </ul>
       </div>
     </div>
   </nav>
+  </div>
 
   <div class="container">
-    <div class="input-group m-3">
+    <div class="input-group p-2">
       <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Buscar"
       aria-describedby="search-addon" />
       <button type="button" class="btn btn-primary">Buscar</button>
