@@ -13,6 +13,11 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
 </head>
+
+
+
+
+
 <body style="background-color: #c8c7c7">
 <!-- NAVBAR -->
 <div class="container-fluid">
@@ -33,11 +38,11 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mt-1 text-center">
-          <li class="nav-item"><a class="nav-link" href="#">Catálogo completo</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Más vendidos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Más recientes</a></li>
-          <li class="nav-item"><a class="nav-link bg-secondary btn active" href="iniciar-sesion.html">Iniciar Sesion</a></li>
-          <li class="nav-item"><a class="nav-link bg-primary btn active" href="crear-cuenta.html">Registrarse</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+          <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+          <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+          <li class="nav-item"><a class="nav-link bg-secondary btn active btn-nav" href="iniciar-sesion.html">Iniciar Sesion</a></li>
+          <li class="nav-item"><a class="nav-link bg-primary btn active btn-nav" href="crear-cuenta.html">Registrarse</a></li>
         </ul>
       </div>
     </div>
@@ -46,16 +51,17 @@
 
 <div class="container">
   <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
-    <form class="form-control form-control-lg">
+    <form class="form-control form-control-lg" >
       <div class="mb-3">
         <label for="entrada-correo" class="form-label">Correo electronico</label>
-        <input type="email" class="form-control" id="entrada-correo" aria-describedby="emailHelp" placeholder="j.alvarez@mail.com">
+        <input type="email" class="form-control" id="entrada-correo" aria-describedby="emailHelp" placeholder="j.alvarez@mail.com" required>
+        <div class="invalid-feedback">Favor de ingresar un usuario.</div>
       </div>
       <div class="mb-3">
         <label for="entrada-contrasena" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="entrada-contrasena">
+        <input type="password" class="form-control" id="entrada-contrasena" required>
       </div>
-      <a href="index.html" class="btn btn-primary col-12" role="button">Registrarse</a>
+      <a href="index.html" class="btn btn-primary col-12" role="button">Iniciar sesión</a>
     </form>
   </div>
 </div>

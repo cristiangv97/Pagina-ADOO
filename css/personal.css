@@ -49,3 +49,8 @@ img.imagen-personalizacion{
 .card-body{
     position: relative;
 }
+
+.btn-nav{
+    margin-right: 5px;
+    margin-left: 5px;
+}

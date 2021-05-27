@@ -1,8 +1,7 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Menú de personalización del vehículo</title>
+    <title>Método de pago</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -12,9 +11,11 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-
-    <script src="js/personalizacion-vehiculo.js"></script>
 </head>
+
+
+
+
 
 <body style="background-color: #c8c7c7">
 <!-- NAVBAR -->
@@ -48,53 +49,43 @@
 </div>
 
 <div class="container">
-    <div class="input-group p-2">
-        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Buscar"
-               aria-describedby="search-addon" />
-        <button type="button" class="btn btn-primary">Buscar</button>
+
+    <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
+        <h3 class="p-2 text-center">Modificar métodos de pago</h3>
+        <form class="form-control form-control-lg" id="formulario-registro">
+            <h2 class="p-2 text-center">MÉTODO 1</h2>
+
+            <div class='mb-3'>
+                <label for='numero-tarjeta' class='form-label'>Número de tarjeta</label>
+                <input type='text' class='form-control' id='numero-tarjeta' placeholder='5565 1265 7891 65489'>
+            </div>
+            <div class='mb-3'>
+                <label for='codigo-seguridad' class='form-label'>Código de seguridad</label>
+                <input type='text' class='form-control' id='codigo-seguridad' placeholder='5565 1265 7891 65489'>
+            </div>
+            <div class='mb-3'>
+                <label for='fecha-vencimiento' class='form-label'>Fecha de vencimiento</label>
+                <input type='date' class='form-control' id='fecha-vencimiento' placeholder='Alvarez'>
+            </div>
+            <h4 class="p-2 text-center">Datos del propietario</h4>
+
+            <div class='mb-3'>
+                <label for='nombre-propietario' class='form-label'>Nombre completo</label>
+                <input type='text' class='form-control' id='nombre-propietario' placeholder="Juanito Pérez">
+            </div>
+            <div class='mb-3'>
+                <label for='telefono-propietario' class='form-label'>Teléfono</label>
+                <input type='password' class='form-control' id='telefono-propietario' placeholder="5604688947">
+            </div>
+            <a href='index.html' class='btn btn-primary col-12' role='button'>Registrarse</a>
+        </form>
     </div>
+</div>
 
 
 
-        <!--    INICIO MENU DE PERSONALIZACION  -->
 
-        <div class="row">
-            <h1  class="text-center display-3"> Personalización </h1>
-        </div>
-        <div class="row m-3">
-            <div class="col-lg-7">
-                <div class="text-center">
-                    <img class="rounded" src="imgs/carro-6.png" id="vehiculo-personalizacion" style="max-width: 100%; height: auto">
-                </div>
-                <h2>Modelo A</h2>
-            </div>
-            <div class="col-lg-5">
-                <h3 class="m-3">Color</h3>
-                <select class="form-select form-control-lg" id="color-vehiculo-usuario" onchange="cambiarColor()">
-                    <option value="blanco">Blanco</option>
-                    <option value="rojo">Rojo</option>
-                    <option value="verde">Verde</option>
-                </select>
-                <h3 class="m-3">Tipo de rines</h3>
-                <select class="form-select form-control-lg" id="rines-vehiculo-usuario" onchange="cambiarRines()">
-                    <option value="normales">Rines normales</option>
-                    <option value="progresivos">Rines progresivos</option>
-                    <option value="concavos">Rines concavos</option>
-                </select>
-                <h3 class="m-3">Asientos</h3>
-                <select class="form-select form-control-lg">
-                    <option>Vinilos</option>
-                </select>
-            </div>
-        </div>
-        <div class="row text-center">
-            <h1 class="text-center display-5" id="precio-personalizacion">Precio final: $180, 000.00</h1>
-        </div>
-        <div class="row text-center">
-            <div class="col-md-12 pb-4">
-                <a class=" btn btn-primary btn-continuar" href="confirmar-compra.html" role="button"><h3>Continuar</h3></a>
-            </div>
-        </div>
-    </div>
+
+</div>
 </body>
 </html>

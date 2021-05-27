@@ -13,8 +13,13 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
 
-  <script src="js/cambiar-form.js"></script>
+  <script src="js/form-registro.js"></script>
 </head>
+
+
+
+
+
 <body style="background-color: #c8c7c7" onload="formularioCliente()">
 <!-- NAVBAR -->
 <div class="container-fluid">
@@ -35,11 +40,11 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mt-1 text-center">
-          <li class="nav-item"><a class="nav-link" href="#">Catálogo completo</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Más vendidos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Más recientes</a></li>
-          <li class="nav-item"><a class="nav-link bg-secondary btn active" href="iniciar-sesion.html">Iniciar Sesion</a></li>
-          <li class="nav-item"><a class="nav-link bg-primary btn active" href="crear-cuenta.html">Registrarse</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+          <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+          <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+          <li class="nav-item"><a class="nav-link bg-secondary btn active btn-nav" href="iniciar-sesion.html">Iniciar Sesion</a></li>
+          <li class="nav-item"><a class="nav-link bg-primary btn active btn-nav" href="crear-cuenta.html">Registrarse</a></li>
         </ul>
       </div>
     </div>
@@ -48,16 +53,41 @@
 
 <div class="container">
   <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
-      <h3 class="p-2 text-center">Registrarse como</h3>
+    <h3 class="p-2 text-center">Registrarse como</h3>
     <select class="form-select form-control-lg my-3" id="tipo-usuario" onchange="checarUsuario()">
       <option value="Cliente">Cliente</option>
       <option value="Proveedor">Proveedor</option>
     </select>
-      <p id="cliente"></p>
-    <form class="form-control form-control-lg" id="formulario-registro"></form>
+    <form class="form-control form-control-lg needs-validation" id="formulario-registro" novalidate action="index.html">
+
+  </form>
   </div>
+
+
+
+
+
+  <script>
+    // Example starter JavaScript for disabling form submissions if there are invalid fields
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+              event.preventDefault();
+              event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+
+    })();
+  </script>
 </div>
-
-
 </body>
 </html>

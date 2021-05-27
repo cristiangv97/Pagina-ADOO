@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Página de inicio</title>
+  <title>Más recientes</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -14,8 +14,8 @@
   <script src="js/bootstrap.bundle.min.js"></script>
 </head>
 <body style="background-color: #c8c7c7">
-  <!-- NAVBAR -->
-  <div class="container-fluid">
+<!-- NAVBAR -->
+<div class="container-fluid">
   <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
@@ -33,60 +33,72 @@
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav ms-auto mt-1 text-center">
-          <li class="nav-item"><a class="nav-link" href="#">Catálogo completo</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Más vendidos</a></li>
-          <li class="nav-item"><a class="nav-link" href="#">Más recientes</a></li>
-          <li class="nav-item"><a class="nav-link bg-secondary btn active" href="iniciar-sesion.html">Iniciar Sesion</a></li>
-          <li class="nav-item"><a class="nav-link bg-primary btn active" href="crear-cuenta.html">Registrarse</a></li>
+          <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+          <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+          <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+          <li class="nav-item"><a class="nav-link bg-secondary btn active btn-nav" href="iniciar-sesion.html">Iniciar Sesion</a></li>
+          <li class="nav-item"><a class="nav-link bg-primary btn active btn-nav" href="crear-cuenta.html">Registrarse</a></li>
         </ul>
       </div>
     </div>
   </nav>
+</div>
+
+<div class="container">
+  <div class="input-group p-2">
+    <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Buscar"
+           aria-describedby="search-addon" />
+    <button type="button" class="btn btn-primary">Buscar</button>
   </div>
 
-  <div class="container">
-    <div class="input-group p-2">
-      <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Buscar"
-      aria-describedby="search-addon" />
-      <button type="button" class="btn btn-primary">Buscar</button>
-    </div>
-
   <!-- TITULO DE CATALOGOS COMPLETO-->
-    <div class="row mt-3">
-      <div class="col">
-        <h1>Catálogo completo</h1>
-      </div>
+  <div class="row mt-3">
+    <div class="col">
+      <h1>Más recientes</h1>
     </div>
+  </div>
 
   <!--  Tarjetas de vehiculos-->
   <div id="vehiculos">
     <div class="container-md mt-5">
       <div class="row">
-        <div class="col-sm">
+        <div class="col-sm-12 col-md-6 col-lg-4">
           <div class="card w-100 card mb-5 card-border text-white bg-dark">
             <div class="imgCatalogo d-flex justify-content-center">
-              <img class="card-img-top" src="imgs/carro-1.png" alt="Card image cap">
+              <img class="card-img-top" src="imgs/carro-8.png" alt="Card image cap">
             </div>
             <div class="card-body text-center">
-              <h5 class="card-title">Modelo A</h5>
-              <p class="card-text">Desde 15 000 pesos</p>
+              <h5 class="card-title">Modelo X</h5>
+              <p class="card-text">Desde 18 000 000 pesos</p>
               <a href="descripcion.html" class="btn btn-primary col-12">Comprar</a>
             </div>
           </div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm-12 col-md-6 col-lg-4">
           <div class="card w-100 card mb-5 card-border text-white bg-dark">
             <div class="imgCatalogo d-flex justify-content-center">
-              <img class="card-img-top" src="imgs/carro-2.png" alt="Card image cap">
+              <img class="card-img-top" src="imgs/carro-9.png" alt="Card image cap">
             </div>
             <div class="card-body text-center">
-              <h5 class="card-title">Modelo B</h5>
-              <p class="card-text">Desde 15 000 pesos</p>
+              <h5 class="card-title">Modelo §</h5>
+              <p class="card-text">Desde 21 000 000 pesos</p>
               <a href="descripcion.html" class="btn btn-primary col-12">Comprar</a>
             </div>
           </div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm-12 col-md-6 col-lg-4">
+          <div class="card w-100 card mb-5 card-border text-white bg-dark">
+            <div class="imgCatalogo d-flex justify-content-center">
+              <img class="card-img-top" src="imgs/carro-7.png" alt="Card image cap">
+            </div>
+            <div class="card-body text-center">
+              <h5 class="card-title">Modelo S</h5>
+              <p class="card-text">Desde 25 000 000 pesos</p>
+              <a href="descripcion.html" class="btn btn-primary col-12">Comprar</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-4">
           <div class="card w-100 card mb-5 card-border text-white bg-dark">
             <div class="imgCatalogo d-flex justify-content-center">
               <img class="card-img-top" src="imgs/carro-3.png" alt="Card image cap">
@@ -98,9 +110,7 @@
             </div>
           </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-sm">
+        <div class="col-sm-12 col-md-6 col-lg-4">
           <div class="card w-100 card mb-5 card-border text-white bg-dark">
             <div class="imgCatalogo d-flex justify-content-center">
               <img class="card-img-top" src="imgs/carro-4.png" alt="Card image cap">
@@ -112,7 +122,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm">
+        <div class="col-sm-12 col-md-6 col-lg-4">
           <div class="card w-100 card mb-5 card-border text-white bg-dark">
             <div class="imgCatalogo d-flex justify-content-center">
               <img class="card-img-top" src="imgs/carro-5.png" alt="Card image cap">
@@ -120,18 +130,6 @@
             <div class="card-body text-center">
               <h5 class="card-title">Modelo E</h5>
               <p class="card-text">Desde 23 000 pesos</p>
-              <a href="descripcion.html" class="btn btn-primary col-12">Comprar</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm">
-          <div class="card w-100 card mb-5 card-border text-white bg-dark">
-            <div class="imgCatalogo d-flex justify-content-center">
-              <img class="card-img-top" src="imgs/carro-6.png" alt="Card image cap">
-            </div>
-            <div class="card-body text-center">
-              <h5 class="card-title">Modelo F</h5>
-              <p class="card-text">Desde 1 000 pesos</p>
               <a href="descripcion.html" class="btn btn-primary col-12">Comprar</a>
             </div>
           </div>
