@@ -1,6 +1,6 @@
 function checarUsuario() {
-    var x = document.getElementById("tipo-usuario").value;
-    if (x === "Cliente"){
+    var tipoUsuario = document.getElementById("tipo-usuario").value;
+    if (tipoUsuario === "Cliente"){
         formularioCliente();
     }
     else{
@@ -25,7 +25,7 @@ function formularioCliente() {
         "      <div class=\"mb-3\">\n" +
         "        <label for=\"validationCustom04\">Correo electronico</label>\n" +
         "        <input type=\"email\" class=\"form-control\" id=\"validationCustom04\" placeholder=\"nombre@email.com\" required>\n" +
-        "        <div class=\"invalid-feedback\">Email valido pls</div>\n" +
+        "        <div class=\"invalid-feedback\">Favor de ingresa un correo valido.</div>\n" +
         "      </div>\n" +
         "      <div class=\"mb-3\">\n" +
         "        <label for=\"validationCustom03\">Contraseña</label>\n" +
