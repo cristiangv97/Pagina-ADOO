@@ -54,3 +54,34 @@ img.imagen-personalizacion{
     margin-right: 5px;
     margin-left: 5px;
 }
+
+/* Reglas para pantalla de búsqueda */
+
+.imgBusqueda{
+    max-width: 30%;
+    align-items: center;
+}
+.btnSeguirLeyendo .col-sm .align-self-center{
+    align-items: center;
+}
+
+.btnBusqueda{
+    width: 40%;
+    margin-bottom: 1%;
+}
+
+.precioBusqueda{
+    text-align: center;
+}
+/* 
+.imgBusqueda{
+    position: relative;
+    display: inline-block;
+    max-width: 40%;
+}
+
+.busqueda .card-body{
+    position: relative;
+    display: inline-block;
+    left: 40%;
+} */
