@@ -13,7 +13,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
 
-  <script src="js/mostrar-metodo-pago.js"></script>
+  <script src="js/confirmar-compra.js"></script>
 
 </head>
 <body style="background-color: #c8c7c7">
@@ -74,13 +74,10 @@
         <option value="metodo-1">Método de pago 1</option>
         <option value="metodo-2">Método de pago 2</option>
       </select>
-
-
-
       <fieldset disabled>
         <div class="form-group">
-          <label for="disabledSelect">Numero de tarjeta</label>
-          <select id="disabledSelect" class="form-control">
+          <label for="disabledTarjeta">Numero de tarjeta</label>
+          <select id="disabledTarjeta" class="form-control">
             <option id="display-metodo-pago">**** **** **** 5588</option>
           </select>
         </div>
@@ -89,13 +86,20 @@
 
       <a href="agregar-metodo-pago.html" class="btn btn-secondary btn-lg mt-3" role="button" aria-pressed="true"><u>Agregar metodo de pago</u></a>
       <h3 class="m-3">Sucursal a recoger</h3>
-      <select class="form-select form-control-lg">
-        <option>Sucursal 1</option>
-        <option>Sucursal 2</option>
-        <option>Sucursal 3</option>
-        <option>Sucursal 4</option>
-        <option>Sucursal 5</option>
+      <select class="form-select form-control-lg" id="direccion-sucursal" onchange="cambiarDireccion()">
+        <option value="sucursal-1">Sucursal 1</option>
+        <option value="sucursal-2">Sucursal 2</option>
+        <option value="sucursal-3">Sucursal 3</option>
+        <option value="sucursal-4">Sucursal 4</option>
       </select>
+      <fieldset disabled>
+        <div class="form-group">
+          <label for="disabledDireccion">Direccion</label>
+          <select id="disabledDireccion" class="form-control">
+            <option id="display-direccion">ESCOM IPN, Unidad Profesional Adolfo López Mateos, 07320.</option>
+          </select>
+        </div>
+      </fieldset>
     </div>
   </div>
   <div class="row text-center">
