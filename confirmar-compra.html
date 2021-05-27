@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Comfirmar compra</title>
+    <title>Confirmar compra</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 
@@ -112,8 +112,31 @@
       <!-- Boton del modal -->
       <button type="button" class="btnConfirmarCompra btn btn-primary" data-bs-toggle="modal" data-bs-target="#cancelarCompra"><h3>Cancelar compra</h3></button>
     </div>
-    <div class="col-lg-6 col-md-12 p-4">
-      <a class=" btn btn-primary btn-continuar" href="compra-finalizada.html" role="button"><h3>Finalizar compra</h3></a>
+    <div class=" col-lg-6 col-md-12 p-4">
+      <a class="btnConfirmarCompra btn btn-primary btn-continuar" href="compra-finalizada.html" role="button"><h3>Finalizar compra</h3></a>
+    </div>
+  </div>
+
+  <!-- Modal de cancelar compra -->
+
+  <div class="modal fade" id="cancelarCompra" tabindex="-1" aria-labelledby="botonCancelarCompra" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="modalCancelarCompraLabel">¿Está seguro que desea cancelar la compra?</h2>
+        </div>
+
+        <div class="modal-body">
+          <p>Si cancela la compra, todas las perzonalizaciones se perderán.</p>
+        </div>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No cancelar</button>
+          <a href="./menu-personalizacion.html" class="btn btn-danger">Sí cancelar</a>
+        </div>
+
+      </div>
+
     </div>
 
   </div>
