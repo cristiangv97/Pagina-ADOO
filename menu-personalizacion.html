@@ -76,10 +76,10 @@
                     <option value="verde">Verde</option>
                 </select>
                 <h3 class="m-3">Tipo de rines</h3>
-                <select class="form-select form-control-lg">
-                    <option>Rines normales</option>
-                    <option>Rines progresivos</option>
-                    <option>Rines concavos</option>
+                <select class="form-select form-control-lg" id="rines-vehiculo-usuario" onchange="cambiarRines()">
+                    <option value="normales">Rines normales</option>
+                    <option value="progresivos">Rines progresivos</option>
+                    <option value="concavos">Rines concavos</option>
                 </select>
                 <h3 class="m-3">Asientos</h3>
                 <select class="form-select form-control-lg">
@@ -88,7 +88,7 @@
             </div>
         </div>
         <div class="row text-center">
-            <h1 class="text-center display-5">Precio final: $180, 000.00</h1>
+            <h1 class="text-center display-5" id="precio-personalizacion">Precio final: $180, 000.00</h1>
         </div>
         <div class="row text-center">
             <div class="col-md-12 pb-4">
