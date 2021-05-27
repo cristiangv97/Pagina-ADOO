@@ -12,6 +12,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+
+    <script src="js/personalizacion-vehiculo.js"></script>
 </head>
 
 <body>
@@ -58,16 +60,16 @@
         <div class="row m-3">
             <div class="col-lg-7">
                 <div class="text-center">
-                    <img class="rounded" src="imgs/carro-6.png" alt="..." style="max-width: 100%; height: auto">
+                    <img class="rounded" src="imgs/carro-6.png" id="vehiculo-personalizacion" style="max-width: 100%; height: auto">
                 </div>
                 <h2>Modelo A</h2>
             </div>
             <div class="col-lg-5">
                 <h3 class="m-3">Color</h3>
-                <select class="form-select form-control-lg">
-                    <option>Rojo</option>
-                    <option>Blanco</option>
-                    <option>Verde</option>
+                <select class="form-select form-control-lg" id="color-vehiculo-usuario" onchange="cambiarColor()">
+                    <option value="blanco">Blanco</option>
+                    <option value="rojo">Rojo</option>
+                    <option value="verde">Verde</option>
                 </select>
                 <h3 class="m-3">Tipo de rines</h3>
                 <select class="form-select form-control-lg">
