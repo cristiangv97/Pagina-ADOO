@@ -12,6 +12,9 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/mostrar-metodo-pago.js"></script>
+
 </head>
 <body style="background-color: #c8c7c7">
 <!-- NAVBAR -->
@@ -67,10 +70,23 @@
     </div>
     <div class="col-lg-5">
       <h3 class="m-3">Método de pago</h3>
-      <select class="form-select form-control-lg">
-        <option>Método de pago 1</option>
-        <option>Método de pago 2</option>
+      <select class="form-select form-control-lg" id="num-metodo-pago" onchange="cambiarTarjeta()">
+        <option value="metodo-1">Método de pago 1</option>
+        <option value="metodo-2">Método de pago 2</option>
       </select>
+
+
+
+      <fieldset disabled>
+        <div class="form-group">
+          <label for="disabledSelect">Numero de tarjeta</label>
+          <select id="disabledSelect" class="form-control">
+            <option id="display-metodo-pago">**** **** **** 5588</option>
+          </select>
+        </div>
+      </fieldset>
+
+
       <a href="agregar-metodo-pago.html" class="btn btn-secondary btn-lg mt-3" role="button" aria-pressed="true"><u>Agregar metodo de pago</u></a>
       <h3 class="m-3">Sucursal a recoger</h3>
       <select class="form-select form-control-lg">
