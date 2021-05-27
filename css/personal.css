@@ -85,3 +85,11 @@ img.imagen-personalizacion{
     display: inline-block;
     left: 40%;
 } */
+
+.modal{
+    text-align: center;
+}
+
+.btnConfirmarCompra{
+    width: 80%;
+}
