@@ -73,6 +73,11 @@ img.imagen-personalizacion{
 .precioBusqueda{
     text-align: center;
 }
+
+.imgConsulta{
+    align-items: center;
+    max-width: 100%;
+}
 /* 
 .imgBusqueda{
     position: relative;
