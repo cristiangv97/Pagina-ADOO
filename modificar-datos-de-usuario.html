@@ -1,7 +1,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Informació de cuenta</title>
+    <title>Modificar datos de usuario</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -41,6 +41,7 @@
                     <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
                     <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
                     <li class="nav-item"><a class="nav-link bg-danger btn active btn-nav" href="iniciar-sesion.html">Cerrar Sesion</a></li>
+                    
                 </ul>
             </div>
         </div>
@@ -50,8 +51,8 @@
 <div class="container">
 
     <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
-        <h3 class="p-2 text-center">Información de cuenta</h3>
-        <form class="form-control form-control-lg" id="formulario-info-cuenta">
+        <h3 class="p-2 text-center">Modificar datos de usuario</h3>
+        <form class="form-control form-control-lg" id="formulario-modificar-usuario">
             <h2 class="p-2 text-center">DATOS DE SESIÓN</h2>
 
             <div class='mb-3'>
@@ -66,26 +67,25 @@
                 <label for='correo' class='form-label'>Correo electrónico</label>
                 <input type='text' class='form-control' id='correo'  placeholder='jperez@gmail.com'>
             </div>
-             <div class='mb-3'>
-                <label for='contraseña' class='form-label'>Contraseña</label>
-                <input type='password' class='form-control' id='contraseña'>
+            <div class='mb-3'>
+                <label for='nueva-contraseña' class='form-label'>Nueva contraseña</label>
+                <input type='password' class='form-control' id='nueva-contraseña'>
             </div>
             <div class='mb-3'>
-                <a href='modificar-datos-de-usuario.html' class='btn btn-primary col-12 my-3' role='button'>Modificar información</a>
+                <label for='confirmar-contraseña' class='form-label'>Confirmar contraseña</label>
+                <input type='password' class='form-control' id='confirmar-contraseña'>
             </div>
             
-            <h4 class="p-4 text-center">MÉTODOS DE PAGO</h4>
-
-            <div class='mb-3'>
-                <label for='numero-tarjeta' class='form-label'>Número de tarjeta</label>
-                <input type='text' class='form-control' id='numero-tarjeta' placeholder='5565 1265 7891 65489'>
+            <h6 class="p-4 text-center">Para guardar cambios, ingrese su contraseña actual</h4>
+            
+              <div class='mb-3'>
+                <label for='actual-contraseña' class='form-label'>Actual contraseña</label>
+                <input type='password' class='form-control' id='actual-contraseña'>
             </div>
-            <div class='mb-3'>
-                <label for='fecha-vencimiento' class='form-label'>Fecha de vencimiento</label>
-                <input type='date' class='form-control' id='fecha-vencimiento' placeholder='Alvarez'>
-            </div>
+            
             <div class="text-center">
-                <a href='agregar-metodo-pago.html' class='btn btn-primary col-12 my-3' role='button'>Modificar método de pago</a>
+                <a href='index.html' class='btn btn-primary col-12 my-3' role='button'>Guardar cambios</a>
+                <a href='index.html' class='btn btn-danger col-12 my-3' role='button'>Eliminar cuenta</a>
             </div>
         </form>
     </div>
