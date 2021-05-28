@@ -91,13 +91,38 @@
             
               <div class='mb-3'>
                 <label for='actual-contraseña' class='form-label'>Actual contraseña</label>
-                <input type='password' class='form-control' id='actual-contraseña'>
+                <input type='password' class='form-control' id='actual-contraseña' required>
             </div>
             
             <div class="text-center">
                 <a href='información-cuenta.html' class='btn btn-primary col-12 my-3' role='button'>Guardar cambios</a>
-                <a href='index.html' class='btn btn-danger col-12 my-3' role='button'>Eliminar cuenta</a>
+                <button type="button" class="btnEliminarCuenta btn btn-danger" data-bs-toggle="modal" data-bs-target="#eliminarCuenta">Eliminar cuenta</button>
             </div>
+
+            <!-- Modal para confirmación de eliminación de cuenta -->
+
+            <div class="modal fade" id="eliminarCuenta" tabindex="-1" aria-labelledby="botonEliminarCuenta" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="modalCancelarCompraLabel">¿Está seguro que desea eliminar su cuenta?</h2>
+                        </div>
+            
+                        <div class="modal-body">
+                            <p>Si elimina su cuenta, toda su información será borrada de forma permanente.</p>
+                        </div>
+            
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No borrar</button>
+                            <a href="./index.html" class="btn btn-danger">Sí borrar</a>
+                        </div>
+            
+                    </div>
+            
+                </div>
+            </div>
+
+
         </form>
     </div>
 </div>

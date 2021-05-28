@@ -78,23 +78,23 @@ img.imagen-personalizacion{
     align-items: center;
     max-width: 100%;
 }
-/* 
-.imgBusqueda{
-    position: relative;
-    display: inline-block;
-    max-width: 40%;
-}
-
-.busqueda .card-body{
-    position: relative;
-    display: inline-block;
-    left: 40%;
-} */
 
 .modal{
     text-align: center;
 }
 
+/* Para ConfirmarCompra */
 .btnConfirmarCompra{
     width: 80%;
+}
+/* Para Consultar Compras */
+.btnCancelarCompra{
+    width: 40%;
+    margin-bottom: 2%;
+}
+
+/* Para eliminar cuenta */
+
+.btnEliminarCuenta{
+    width: 100%;
 }
