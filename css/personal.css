@@ -98,3 +98,33 @@ img.imagen-personalizacion{
 .btnEliminarCuenta{
     width: 100%;
 }
+
+/* Para Mis ventas del proveedor */
+
+.imgVerCompras{
+    max-height: 100%;
+    vertical-align: middle;
+}
+
+.colMisVentas{
+    margin-right: 1%;
+    max-width: 100%;
+}
+
+.imagenCarro{
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.btnVerCompra{
+    position: relative;
+    top: 35%;
+    height: 40;
+    width: 100%;
+    overflow: hidden;
+    margin: 1% 1% 1% 1%;
+}
+
+.tarjetasVerCompras{
+    font-size: 70%;
+}
