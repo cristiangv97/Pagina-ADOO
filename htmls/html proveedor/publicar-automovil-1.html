@@ -61,7 +61,7 @@
     <div class="container">
         <div class="col p-20 mx-auto col-lg-6 col-sm-10 m-3">
             <h3 class="text-center">Publicar automóvil.</h3>
-            <form class="form-control form-control-lg needs-validation" id="publicar-automovil-2" novalidate>
+            <form class="form-control form-control-lg needs-validation" id="publicar-automovil-1" novalidate action="./publicar-automovil-2.html">
 
                 <!-- Modelo de la publicación -->
 
@@ -127,7 +127,11 @@
                 <div class="row mb-5">
                     <div class="col">
                         <label for="descripcion" class="form-label">Descripción del vendedor.</label>
-                        <input type="text" class="form-control" id="descripcion" placeholder="Ejemplo: La seguridad y comodidad que ofrece este modelo..." required>
+                        <div class="form-floating">
+                            <!-- <input type="text" class="inputDescripcion form-control" id="descripcion" placeholder="Ejemplo: La seguridad y comodidad que ofrece este modelo..." required> -->
+                            <textarea name="textAreaDescripcion" id="descripcion" rows="3" class="w-100"></textarea>
+                            <!-- <label for="textarea">Descripción del vendedor.</label> -->
+                        </div>
                     </div>
                 </div>
 
@@ -138,7 +142,7 @@
                         <button type="button" class="btn btn-danger w-75" data-bs-toggle="modal" data-bs-target="#cancelarPublicacion">Cancelar</button>
                     </div>
                     <div class="col">
-                        <a href="./publicar-automovil-2.html" class="btn btn-primary w-75">Siguiente</a>
+                        <button class="btn btn-primary w-75" type="submit">Siguiente</button>
                     </div>
                 </div>
 

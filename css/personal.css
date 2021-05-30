@@ -164,3 +164,12 @@ img.imagen-personalizacion{
 .Nota{
     font-size: small;
 }
+
+.inputDescripcion{
+    height: 100px;
+}
+
+#descripcion{
+    font-size: 12px;
+    font-size: medium;
+}
