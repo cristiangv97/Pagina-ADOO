@@ -1,0 +1,111 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publicar automovil modelo A-1</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/personal.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+</head>
+
+
+
+
+
+<body style="background-color: #c8c7c7">
+<!-- NAVBAR -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                Isurus Ictu
+            </a>
+            <button class="navbar-toggler ms-auto"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mt-1 text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+                    <li class="nav-item"><a class="nav-link bg-danger btn active btn-nav" href="iniciar-sesion.html">Cerrar Sesion</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+
+    <div class="col p-20 mx-auto col-lg-6 col-sm-10 m-3">
+        <h4 class="p-2 text-center">Publicar Automovil: Modelo A</h3>
+        <form class="form-control form-control-lg" id="publicar-automovil-modeloA">
+            <h2 class="p-2 ">Capacidades:</h2>
+         
+            <div class='mb-1'>
+                <label for='Capacidad-maletero' class='form-label col-4'>Capacidad del maletero(L)
+                <input type='text' class='form-control' id='Capacidad-maletero' placeholder='Ej. 315'> </label>
+               <label for='no-puertas' class='form-label'>Numero de puertas
+                <input type='text' class='form-control' id='no-puertas' placeholder='Ej. 4'></label>
+            </div>
+              <div class='mb-3'>
+                <label for='masa-autorizada' class='form-label col-4'>Máxima masa autorizada(kg)
+                <input type='text' class='form-control' id='masa-autorizada' placeholder='Ej. 500'> </label>
+               <label for='plazas' class='form-label'>Plazas
+                <input type='text' class='form-control' id='plazas' placeholder='Ej. 5'></label>
+            </div>
+
+           <h2 class="p-2 ">Dimensiones:</h2>
+            <div class='mb-1'>
+              <label for='altura' class='form-label col-4'>Altura(m)
+                <input type='text' class='form-control' id='altura' placeholder='Ej. 1.4'> </label>
+               <label for='anchura' class='form-label'>Anchura(m)
+                <input type='text' class='form-control' id='anchura' placeholder='Ej. 2'></label>
+            </div>
+             <div class='mb-3'>
+                 <label for='coeficiente' class='form-label col-4'>Coeficiente aerodinamico
+                <input type='text' class='form-control' id='coeficiente' placeholder='Ej. 0.28'> </label>
+               <label for='distancia-ejes' class='form-label'>Distancia entre ejes(m)
+                <input type='text' class='form-control' id='distancia-ejes' placeholder='Ej. 2.1'></label>
+            </div>
+
+            <h2 class="p-2 ">Prestaciones:</h2>
+             <div class='mb-3'>
+                 <label for='automata' class='form-label col-4'>Automata(km)
+                <input type='text' class='form-control' id='automata' placeholder='Ej. 140'> </label>
+               <label for='peso' class='form-label'>Peso(kg)
+                <input type='text' class='form-control' id='peso' placeholder='Ej. 1580'></label>
+                <label for='aceleracion' class='form-label'>Aceleración de 0 a 100km/h(segundos)</label>
+                <input type='text' class='form-control' id='aceleracion' placeholder='Ej. 13.5'>
+            </div>
+             <div class="text-center">
+                <a href='#' class='btn btn-primary col-4' role='button'>Atras</a>
+                <a href='#' class='btn btn-danger col-4' role='button'>Cancelar</a> 
+                <a href='#' class='btn btn-primary col-4' role='button'>Siguiente</a>   
+              </div>
+             
+              
+            
+        </form>
+    </div>
+</div>
+
+
+
+
+
+</div>
+</body>
+</html>
