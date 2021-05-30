@@ -61,14 +61,14 @@
     <div class="container">
         <div class="col p-20 mx-auto col-lg-6 col-sm-10 m-3">
             <h3 class="text-center">Publicar automóvil.</h3>
-            <form class="form-control form-control-lg">
+            <form class="form-control form-control-lg needs-validation" id="publicar-automovil-2" novalidate>
 
                 <!-- Modelo de la publicación -->
 
                 <div class="row mb-3">
                     <div class="col">
                         <label for="modelo" class="form-label col-4">Modelo</label>
-                        <input type="text" class="form-control" id="modelo" placeholder="Ejemplo: Versa">
+                        <input type="text" class="form-control" id="modelo" placeholder="Ejemplo: Versa" required>
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="marca" class="form-label col-4">Marca</label>
-                        <input type="text" class="form-control" id="marca" placeholder="Ejemplo: Toyota">
+                        <input type="text" class="form-control" id="marca" placeholder="Ejemplo: Toyota" required>
                     </div>
                 </div>
 
@@ -86,14 +86,14 @@
                 <div class="row mb-3">
                     <div class="col">
                         <label for="version" class="form-label col-4">Versión</label>
-                        <input type="text" class="form-control" id="version" placeholder="Ejemplo: SXT T/A">
+                        <input type="text" class="form-control" id="version" placeholder="Ejemplo: SXT T/A" required>
                     </div>
 
                     <!-- Año de la publicación -->
 
                     <div class="col">
                         <label for="anio" class="form-label col-4">Año</label>
-                        <input type="text" class="form-control" id="anio" placeholder="Ejemplo: 2020">
+                        <input type="text" class="form-control" id="anio" placeholder="Ejemplo: 2020" required>
                     </div>
                 </div>
 
@@ -102,7 +102,7 @@
                 <div class="row">
                     <div class="col">
                         <label for="imgPrimaria" class="form-label">Imagen principal</label>
-                        <input type="file" class="form-control" id="imgPrimaria">
+                        <input type="file" class="form-control" id="imgPrimaria" required>
                     </div>
                     <div class="col">
                         <label for="imgSecundaria" class="form-label">Imagen secundaria</label>
@@ -118,14 +118,16 @@
                         <label for="imgCuaternaria" class="form-label">Imagen cuaternaria</label>
                         <input type="file" class="form-control" id="imgCuaternaria">
                     </div>
+                    <p class="Nota">Nota: recuerda que la imagen principal es aquella que aparecerá en el catálogo con los otros automóviles.</p>
                 </div>
+                
 
                 <!-- Descripción de la publicación -->
 
                 <div class="row mb-5">
                     <div class="col">
-                        <label for="descripcion" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="descripcion" placeholder="Ejemplo: La seguridad y comodidad que ofrece este modelo...">
+                        <label for="descripcion" class="form-label">Descripción del vendedor.</label>
+                        <input type="text" class="form-control" id="descripcion" placeholder="Ejemplo: La seguridad y comodidad que ofrece este modelo..." required>
                     </div>
                 </div>
 
@@ -133,13 +135,35 @@
 
                 <div class="row text-center">
                     <div class="col">
-                        <button type="button" class="btn btn-danger w-75">Cancelar</button>
+                        <button type="button" class="btn btn-danger w-75" data-bs-toggle="modal" data-bs-target="#cancelarPublicacion">Cancelar</button>
                     </div>
                     <div class="col">
-                        <a href="./publicar-automovil-2.html" class="btn btn-primary w-75">Continuar</a>
+                        <a href="./publicar-automovil-2.html" class="btn btn-primary w-75">Siguiente</a>
                     </div>
                 </div>
-        </form>
+
+                <div class="modal fade" id="cancelarPublicacion" tabindex="-1" aria-labelledby="botoncancelarPublicacion" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h2 class="modal-title" id="modalcancelarPublicacionLabel">¿Está seguro que desea borrar la publicación?</h2>
+                            </div>
+                
+                            <div class="modal-body">
+                                <p>Si borra la publicación, todos los datos añadidos se perderán.</p>
+                            </div>
+                
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No cancelar</button>
+                                <a href="#misPublicaciones.html" class="btn btn-danger">Sí cancelar</a>
+                            </div>
+                
+                        </div>
+                
+                    </div>
+                
+                </div>
+            </form>
         </div>
     </div>
 </body>
