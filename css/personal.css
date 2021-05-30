@@ -128,3 +128,33 @@ img.imagen-personalizacion{
 .tarjetasVerCompras{
     font-size: 70%;
 }
+
+/* Para los detalles de la compra del proveedor */
+
+.imgDetallesCompra{
+    width: 100%;
+}
+
+.btnDisponible{
+    position: relative;
+    right: 10%;
+    width: 30%;
+}
+
+.btnPublicacion{
+    position: relative;
+    left: 10%;
+    width: 30%;
+}
+
+.btnProblema{
+    position: relative;
+    right: 10%;
+    width: 30%;
+}
+
+.btnCancelarVenta{
+    position: relative;
+    left: 10%;
+    width: 30%;
+}
