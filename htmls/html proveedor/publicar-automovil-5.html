@@ -13,6 +13,7 @@
     <script src="../../js/bootstrap.bundle.min.js"></script>
 
     <script src="../../js/confirmar-compra.js"></script>
+        <script src="../../js/publicar-automovil-5.js"></script>
 </head>
 
 
@@ -65,28 +66,97 @@
 <div class="container">
 
     <div class="col p-20 mx-auto col-lg-6 col-sm-10 m-3">
-        <h4 class="p-2 text-center">Publicar Automovil: Modelo A</h3>
-        <form class="form-control form-control-lg" id="publicar-automovil-modeloA" action="./publicar-automovil-6.html">
-            
-        </form>
+        <h3 class="text-center">Publicar Automovil: Modelo A</h3>
+        <form class="form-control form-control-lg" id="publicar-automovil-1">
+            <div class="contenedorCapacidades  mb-3">
+                <h4 class="p-2">Características personalizables</h4>
 
 
-        <div class="modal fade" id="cancelarPublicacion" tabindex="-1" aria-labelledby="botoncancelarPublicacion" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h2 class="modal-title" id="modalcancelarPublicacionLabel">¿Está seguro que desea borrar la publicación?</h2>
+
+                <div class="row" id="lista-caracteristicas">
+
+                    <!--    Ingreso de características del proveedor al vehiculo -->
+
+
+                    <!-- Titulo "caracterisiticas" -->
+
+                    <div class="col col-lg-6 col-sm-12">
+                        <label for='caracteristica-personalizacion' class='form-label w-100'>Característica</label>
+                        <input type='text' class='form-control' id='caracteristica-personalizacion' value='Color' disabled>
                     </div>
-                    <div class="modal-body">
-                        <p>Si borra la publicación, todos los datos añadidos se perderán.</p>
+
+
+
+
+
+
+
+
+
+                    <!-- Titulo "opciones" -->
+                    <div class="col col-lg-6 col-sm-12" id="caracteristica-0">
+                        <div class="row">
+                            <label class='form-label' id="">Opciones</label>
+                            <div id="lista-caracteristica-0">
+                                <!--Elementos de las caracteristicas -->
+                                <span id="caracteristica-0-opcion-0"></span>
+                            </div>
+                            <button type="button" class="btn btn-info " onclick="agregarOpcion(0)">Agregar Opcion</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No cancelar</button>
-                        <a href="#misPublicaciones.html" class="btn btn-danger">Sí cancelar</a>
+                    <!--    Fin de ingreso de características del proveedor al vehiculo -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <button type="button" class="btn btn-info mt-2 col-12" onclick="agregarCaracteristica()">Agregar característica</button>
+
+            </div>
+
+
+
+            <!-- botones -->
+
+            <div class="row text-center">
+                <div class="col">
+                    <a href='./publicar-automovil-1.html' class='btn btn-primary w-100' role='button'>Atras</a>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#cancelarPublicacion">Cancelar</button>
+                </div>
+                <div class="col">
+                    <a href='./publicar-automovil-3.html' class='btn btn-primary w-100' role='button'>Siguiente</a>
+                </div>
+            </div>
+
+            <div class="modal fade" id="cancelarPublicacion" tabindex="-1" aria-labelledby="botoncancelarPublicacion" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="modalcancelarPublicacionLabel">¿Está seguro que desea borrar la publicación?</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>Si borra la publicación, todos los datos añadidos se perderán.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No cancelar</button>
+                            <a href="#misPublicaciones.html" class="btn btn-danger">Sí cancelar</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </form>
     </div>
 </div>
 
