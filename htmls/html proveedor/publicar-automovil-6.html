@@ -1,0 +1,137 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publicar automovil modelo A-4</title>
+
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <!-- Bootstrap CSS -->
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+          integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" rel="stylesheet">
+    <link href="../../css/personal.css" rel="stylesheet">
+
+    <script referrerpolicy="no-referrer"
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../js/confirmar-compra.js"></script>
+    <script src="../../js/agregar-no-serie.js"></script>
+</head>
+
+
+<body style="background-color: #c8c7c7">
+<!-- NAVBAR -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                Isurus Ictu
+            </a>
+            <button aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                    class="navbar-toggler ms-auto"
+                    data-bs-target="#navbarSupportedContent"
+                    data-bs-toggle="collapse"
+                    type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mt-1 text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+                    <li class="nav-item">
+                        <!-- Inicio de DROPDOWN -->
+                        <div class="dropdown">
+                            <button aria-expanded="false" class="btn btn-primary dropdown-toggle col-12" data-bs-toggle="dropdown"
+                                    id="btnDropDown" type="button">Carros Mauricio
+                            </button>
+                            <ul aria-labelledby="btnDropDown" class="dropdown-menu">
+                                <li><a class="dropdown-item" href="mi cuenta.html">Mi cuenta</a></li>
+                                <li><a class="dropdown-item active" href="publicar-automovil-1.html">Publicar</a></li>
+                                <li><a class="dropdown-item" href="#">Mis publicaciones</a></li>
+                                <li><a class="dropdown-item" href="./mis-ventas.html">Mis ventas</a></li>
+                                <li><a class="dropdown-item" href="../../index.html">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                        <!-- Final de DROPDOWN -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+
+    <div class="col p-20 mx-auto col-12">
+        <h3 class="text-center">Agregar Números de Serie</h3>
+        <form class="form-control form-control-lg">
+            <span id="series-0">
+                <div class="row text-center">
+                <h4 class="col">Color</h4>
+                <h4 class="col">Asientos</h4>
+                <h4 class="col">Rines</h4>
+                <h4 class="col">Motor</h4>
+                <h4 class="col">Precio</h4>
+                </div>
+
+                <div class="contenedorCapacidades  mb-3">
+                    <div class="row" id="lista-caracteristicas">
+                        <!--    Ingreso de características del proveedor al vehiculo -->
+                        <!-- Titulo "opciones" -->
+                        <div class="col col-12 col-sm-12">
+                            <div class="row m-1">
+                                <div id="lista-caracteristica-0">
+                                    <!--Elementos de las caracteristicas -->
+                                    <span id="caracteristica-0-opcion-0"></span>
+                                </div>
+                                <button class="btn btn-info " onclick="agregarOpcion(0)" type="button">Agregar Stock
+                                </button>
+                            </div>
+                        </div>
+                        <!--    Fin de ingreso de características del proveedor al vehiculo -->
+
+
+                    </div>
+
+
+                 </div>
+
+
+            </span>
+            <button class="btn btn-info mt-2 col-12 fw-bold" onclick="agregarCaracteristica()" type="button">Agregar
+                combinación de caracteristicas
+            </button>
+
+
+
+
+            <div aria-hidden="true" aria-labelledby="botoncancelarPublicacion" class="modal fade" id="cancelarPublicacion"
+                 tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="modalcancelarPublicacionLabel">¿Está seguro que desea borrar la
+                                publicación?</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>Si borra la publicación, todos los datos añadidos se perderán.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-primary" data-bs-dismiss="modal" type="button">No cancelar</button>
+                            <a class="btn btn-danger" href="#misPublicaciones.html">Sí cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+</div>
+</body>
+</html>
