@@ -63,7 +63,7 @@
     <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
         <h3 class="p-2 text-center">Información de cuenta</h3>
         <form class="form-control form-control-lg" id="formulario-info-cuenta">
-            <h2 class="p-2 text-center">DATOS DE SESIÓN</h2>
+            <h5 class="p-2 text-center">DATOS DE SESIÓN</h5>
 
             <div class='mb-3'>
                 <label for='nombre' class='form-label'>Nombre</label>
@@ -82,15 +82,15 @@
                 <a href='modificar-datos-de-usuario.html' class='btn btn-primary col-12 my-3' role='button'>Modificar información</a>
             </div>
             
-            <h4 class="p-4 text-center">MÉTODOS DE PAGO</h4>
+            <h5 class="p-4 text-center">MÉTODOS DE PAGO</h5>
 
             <div class='mb-3'>
                 <label for='numero-tarjeta' class='form-label'>Número de tarjeta</label>
-                <input type='text' class='form-control' id='numero-tarjeta' placeholder='5565 1265 7891 65489'>
+                <input type='text' class='form-control' id='numero-tarjeta' disabled value="**** **** **** 6548" placeholder='**** **** **** 6548'>
             </div>
             <div class='mb-3'>
                 <label for='fecha-vencimiento' class='form-label'>Fecha de vencimiento</label>
-                <input type='date' class='form-control' id='fecha-vencimiento' placeholder='Alvarez'>
+                <input type='date' class='form-control' id='fecha-vencimiento' value="2025-01-01" disabled>
             </div>
             <div class="text-center">
                 <a href='agregar-metodo-pago.html' class='btn btn-primary col-12 my-3' role='button'>Modificar método de pago</a>

@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Método de pago</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/personal.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+</head>
+
+
+
+
+
+<body style="background-color: #c8c7c7">
+<!-- NAVBAR -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                Isurus Ictu
+            </a>
+            <button class="navbar-toggler ms-auto"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mt-1 text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+                    <li class="nav-item">
+                         <!-- Inicio de DROPDOWN -->
+                         <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDown" data-bs-toggle="dropdown" aria-expanded="false">Carros Mauricio</button>
+                            <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                                <li><a class="dropdown-item" href="#">Mi cuenta</a></li>
+                                <li><a class="dropdown-item active" href="#">Publicar</a></li>
+                                <li><a class="dropdown-item" href="#">Mis publicaciones</a></li>
+                                <li><a class="dropdown-item" href="./mis-ventas.html">Mis ventas</a></li>
+                                <li><a class="dropdown-item" href="../../index.html">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                        <!-- Final de DROPDOWN -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+
+    <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
+        <h3 class="p-2 text-center">Modificar direcciones de sucursales</h3>
+        <form class="form-control form-control-lg" id="formulario-registro">
+            <h5 class="p-2 text-center">Sucursal 1</h5>
+
+            <div class='mb-3'>
+                <label for='calle' class='form-label'>Calle</label>
+                <input type='text' class='form-control' id='calle' value='Avenida de las granjas'>
+                <label for='colonia' class='form-label'>Colonia</label>
+                <input type='text' class='form-control' id='colonia' value='San Marcos'>
+                <label for='delegacion' class='form-label'>Delegación</label>
+                <input type='text' class='form-control' id='delegacion' value='Xochimilco'>
+                <label for='cp' class='form-label'>Código postal</label>
+                <input type='text' class='form-control' id='cp' value='84625'>
+            </div>
+            <div class="text-center mb-5">
+                <a href='#' class='btn btn-primary col-4' role='button'>Guardar</a>
+                <a href='#' class='btn btn-danger col-4' role='button'>Eliminar</a>
+            </div>
+
+            <h5 class="p-2 text-center">Sucursal 2</h5>
+
+            <div class='mb-3'>
+                <label for='calle' class='form-label'>Calle</label>
+                <input type='text' class='form-control' id='calle' value='Avenida de las avenidas'>
+                <label for='colonia' class='form-label'>Colonia</label>
+                <input type='text' class='form-control' id='colonia' value='Santo de los santos'>
+                <label for='delegacion' class='form-label'>Delegación</label>
+                <input type='text' class='form-control' id='delegacion' value='Azcapotzalco'>
+                <label for='cp' class='form-label'>Código postal</label>
+                <input type='text' class='form-control' id='cp' value='02010'>
+            </div>
+            <div class="text-center mb-5">
+                <a href='#' class='btn btn-primary col-4' role='button'>Guardar</a>
+                <a href='#' class='btn btn-danger col-4' role='button'>Eliminar</a>
+            </div>
+            <a href='#' class='btn btn-primary col-12 my-3' role='button'>Añadir método de pago</a>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+</div>
+</body>
+</html>
