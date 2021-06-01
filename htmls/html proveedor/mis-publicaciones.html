@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mis ventas</title>
+  <title>Mis publicaciones</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -49,8 +49,8 @@
                             <ul class="dropdown-menu" aria-labelledby="btnDropDown">
                                 <li><a class="dropdown-item" href="./mi cuenta.html">Mi cuenta</a></li>
                                 <li><a class="dropdown-item" href="./publicar-automovil-1.html">Publicar</a></li>
-                                <li><a class="dropdown-item" href="mis-publicaciones.html">Mis publicaciones</a></li>
-                                <li><a class="dropdown-item active" href="./mis-ventas.html">Mis ventas</a></li>
+                                <li><a class="dropdown-item active" href="#">Mis publicaciones</a></li>
+                                <li><a class="dropdown-item" href="./mis-ventas.html">Mis ventas</a></li>
                                 <li><a class="dropdown-item" href="../../index.html">Cerrar sesión</a></li>
                             </ul>
                         </div>
@@ -77,9 +77,11 @@
         </div>
     </div>
 
-  <!--  Tarjetas de compras-->
+  <!--  Tarjetas de ventas-->
 
     <div class="tarjetasVerCompras row">
+
+        <!-- automóvil 1 -->
         <div class="card card-border mb-5 text-white bg-dark w-100">
             <div class="card-body">
                 <div class="row g-0">
@@ -91,34 +93,41 @@
                     </div>
         
                     <!-- información del vehículo -->
-                    <div class="colMisVentas col">
+                    <div class="col">
                         <h4>Características:</h4>
-                        <p>Modelo: A</p>
-                        <p>Versión: V-turbo</p>
-                        <p>Fecha de compra: 21/12/2021</p>
-                        <p>Precio pagado: $180,000.00</p>
-                        <p>Estatus del pedido: listo para recoger</p>
+                        <p>Versión: V-Turbo</p>
+                        <p>Marca: Toyota</p>
+                        <p>Fecha de publicación: 2/05/2021</p>
                     </div>
 
                     <!-- información del comprador -->
-                    <div class="colMisVentas col">
-                        <h4>Comprador:</h4>
-                        <p>Nombre: Juanito</p>
-                        <p>Apellidos: Pérez Sánchez</p>
-                        <p>Teléfono: 5512345678</p>
-                        <p>Correo eléctronico: jperez@gmail.com</p>
+                    <div class="col">
+                        <h4>Ventas:</h4>
+                        <p>Número de ventas: 24</p>
+                        <p>Última venta: 11/05/2021</p>
+                        <p>Estatus de la publicación: Activa</p>
+                    </div>
+                </div>
+                <!-- botones -->
+                <div class="row">
+                    <div class="col">
+                        <h2>Modelo A</h2>
+                    </div>
+                    
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100 h-100">Ver publicación</button>
                     </div>
 
-                    <div class="colMisVentas col">
-                        <h4>Personalizaciones:</h4>
-                        <p>Color exterior: Rojo</p>
-                        <p>Color interior: Blanco</p>
-                        <p>Asientos: Piel</p>
-                        <p>Rines: Cromados</p>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100 h-100">Modificar publicación</button>
                     </div>
 
-                    <div class="colMisVentas col">
-                        <a href="detalle-compra.html" class="btnVerCompra btn btn-secondary text-center">Ver compra detallada</a>
+                    <div class="col">
+                        <button type="button" class="btn btn-warning w-100 h-100">Pausar</button>
+                    </div>
+
+                    <div class="col">
+                        <button type="button" class="btn btn-danger w-100 h-100">Eliminar</button>
                     </div>
                 </div>
             </div>
@@ -128,7 +137,7 @@
         <div class="card card-border mb-5 text-white bg-dark w-100">
             <div class="card-body">
                 <div class="row g-0">
-                    <div class="colMisVentas col">
+                    <div class="col colMisVentas">
                         <!-- imagen del carro -->
                         <div class="imgVerCompras col-sm text-center">
                             <img src="../../imgs/carro-2.png" alt="Carro uno" class="imagenCarro">
@@ -136,34 +145,43 @@
                     </div>
         
                     <!-- información del vehículo -->
-                    <div class="colMisVentas col">
+                    <div class="col">
                         <h4>Características:</h4>
                         <p>Modelo: B</p>
                         <p>Versión: V-Xtreme</p>
-                        <p>Fecha de compra: 10/05/2021</p>
-                        <p>Precio pagado: $150,000.00</p>
-                        <p>Estatus del pedido: entregado</p>
+                        <p>Marca: Nissan</p>
+                        <p>Fecha de publicación: 10/05/2021</p>
                     </div>
 
                     <!-- información del comprador -->
-                    <div class="colMisVentas col">
-                        <h4>Comprador:</h4>
-                        <p>Nombre: Marco Antonio</p>
-                        <p>Apellidos: Huerta Méndez</p>
-                        <p>Teléfono: 5554286179</p>
-                        <p>Correo eléctronico: mahm@gmail.com</p>
+                    <div class="col">
+                        <h4>Ventas:</h4>
+                        <p>Número de ventas: 12</p>
+                        <p>Última venta: 12/05/2021</p>
+                        <p>Estatus de la publicación: Pausada</p>
+                    </div>
+                </div>
+
+                <!-- botones -->
+                <div class="row">
+                    <div class="col">
+                        <h2>Modelo A</h2>
+                    </div>
+                    
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100 h-100">Ver publicación</button>
                     </div>
 
-                    <div class="colMisVentas col">
-                        <h4>Personalizaciones:</h4>
-                        <p>Color exterior: Negro</p>
-                        <p>Color interior: Cafe</p>
-                        <p>Asientos: Vinilo</p>
-                        <p>Rines: Normales</p>
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100 h-100">Modificar publicación</button>
                     </div>
 
-                    <div class="colMisVentas col">
-                        <a href="detalle-compra.html" class="btnVerCompra btn btn-secondary text-center">Ver compra detallada</a>
+                    <div class="col">
+                        <button type="button" class="btn btn-success w-100 h-100">Activar</button>
+                    </div>
+
+                    <div class="col">
+                        <button type="button" class="btn btn-danger w-100 h-100">Eliminar</button>
                     </div>
                 </div>
             </div>
