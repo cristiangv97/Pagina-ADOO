@@ -41,7 +41,7 @@ function formularioProveedor(){
     document.getElementById("formulario-registro").innerHTML = "\n" +
         "      <div class=\"mb-3\">\n" +
         "        <label for=\"validationCustom01\">Razón social / Nombre de la empresa</label>\n" +
-        "        <input type=\"text\" class=\"form-control\" id=\"validationCustom01\" required>\n" +
+        "        <input type=\"text\" class=\"form-control\" id=\"validationCustom01\" placeholder='Carros Mauricio' required>\n" +
         "        <div class=\"invalid-feedback\">Favor de ingresar su nombre.</div>\n" +
         "      </div>\n" +
         "    <div class=\"form-row\">\n" +
@@ -59,6 +59,11 @@ function formularioProveedor(){
         "        <label for=\"validationCustom03\">Contraseña</label>\n" +
         "        <input type=\"password\" class=\"form-control\" id=\"validationCustom03\" required>\n" +
         "        <div class=\"invalid-feedback\">Favor de ingresar una contraseña</div>\n" +
+        "      </div>\n" +
+        "      <div class=\"mb-3\">\n" +
+        "        <label for=\"validationCustom04\">Confirmar contraseña</label>\n" +
+        "        <input type=\"password\" class=\"form-control\" id=\"validationCustom04\" required>\n" +
+        "        <div class=\"invalid-feedback\">La contraseña no coincide</div>\n" +
         "      </div>\n" +
         "    </div>\n" +
         "    </div>\n" +
