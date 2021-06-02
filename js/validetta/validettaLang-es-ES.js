@@ -5,6 +5,7 @@
 			$.validettaLanguage.messages = {
 				required	: 'Campo obligatorio.',
 				email		: 'Correo electrónico no válido.',
+				letters		: 'Solo se aceptan letras',
 				number		: 'Este campo sólo acepta valores numéricos.',
 				maxLength	: 'Este campo acepta como máximo {count} caracteres.',
 				minLength	: 'Este campo requiere como mínimo {count} caracteres.',

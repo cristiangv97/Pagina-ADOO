@@ -28,15 +28,15 @@ function formularioCliente() {
         "   <div class=\"form-row\">\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"nombre_registro\">Nombre/s*</label>\n" +
-        "        <input type=\"text\" class=\"form-control\" id=\"nombre_registro\" data-validetta=\"required\" data-vd-message-required='Debes llenar el campo de Nombre/s'>" +
+        "        <input type=\"text\" class=\"form-control\" id=\"nombre_registro\" data-validetta=\"letters,required\" data-vd-message-required='Debes llenar el campo de Nombre/s'>" +
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"apellidos\">Apellido paterno*</label>\n" +
-        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"required\" data-vd-message-required='Debes llenar el campo de Appellido Paterno'>\n" +
+        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"letters,required\" data-vd-message-required='Debes llenar el campo de Appellido Paterno'>\n" +
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"apellidos\">Apellido materno*</label>\n" +
-        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"required\" data-vd-message-required='Debes llenar el campo de Appellido Materno'>\n" +
+        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"letters,required\" data-vd-message-required='Debes llenar el campo de Appellido Materno'>\n" +
         "      </div>\n" +
         "    <div class=\"form-row\">\n" +
         "      <div class=\"mb-3 input-field\">\n" +

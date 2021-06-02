@@ -21,12 +21,15 @@
     //RegExp for input number control method
     RNUMBER = new RegExp( /^[\-\+]?(\d+|\d+\.?\d+)$/ ),
 
+    RLETTERS = new RegExp( /^[a-zA-Z]*$/ ),
+
   /**
    *  Form validate error messages
    */
   messages = {
     required  : 'This field is required. Please be sure to check.',
     email     : 'Your E-mail address appears to be invalid. Please be sure to check.',
+    letters   : 'Solo se aceptan letras',
     number    : 'You can enter only numbers in this field.',
     maxLength : 'Maximum {count} characters allowed!',
     minLength : 'Minimum {count} characters allowed!',
@@ -88,6 +91,9 @@
         case 'select-multiple' : return tmp.val !== null || messages.required;
         default : return tmp.val !== '' || messages.required;
       }
+    },
+    letters : function( tmp ) {
+      return RLETTERS.test( tmp.val ) || messages.letters;
     },
     //  Mail check - it checks the value if it's a valid email address or not
     email : function( tmp ) {
