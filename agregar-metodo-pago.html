@@ -1,4 +1,6 @@
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Método de pago</title>
@@ -18,88 +20,83 @@
 
 
 <body style="background-color: #c8c7c7">
-<!-- NAVBAR -->
-<div class="container-fluid">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
+    <!-- NAVBAR -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
                 Isurus Ictu
             </a>
-            <button class="navbar-toggler ms-auto"
-                    type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
-                    aria-expanded="false"
-                    aria-label="Toggle navigation">
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mt-1 text-center">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
-                    <li class="nav-item">
-                        <!-- Inicio de DROPDOWN -->
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDown" data-bs-toggle="dropdown" aria-expanded="false">Juanito Pérez</button>
-                            <ul class="dropdown-menu" aria-labelledby="btnDropDown">
-                                <li><a class="dropdown-item" href="información-cuenta.html">Cuenta</a></li>
-                                <li><a class="dropdown-item" href="consultar-compras.html">Compras</a></li>
-                                <li><a class="dropdown-item" href="./index.html">Cerrar sesión</a></li>
-                            </ul>
-                        </div>
-                        <!-- Final de DROPDOWN -->
-                    </li>
-                </ul>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-1 text-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+                        <li class="nav-item">
+                            <!-- Inicio de DROPDOWN -->
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDown" data-bs-toggle="dropdown" aria-expanded="false">Juanito Pérez</button>
+                                <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                                    <li><a class="dropdown-item" href="información-cuenta.html">Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="consultar-compras.html">Compras</a></li>
+                                    <li><a class="dropdown-item" href="./index.html">Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+                            <!-- Final de DROPDOWN -->
+                        </li>
+                    </ul>
+                </div>
             </div>
-        </div>
-    </nav>
-</div>
-
-<div class="container">
-
-    <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
-        <h3 class="p-2 text-center">Modificar métodos de pago</h3>
-        <form class="form-control form-control-lg" id="formulario-registro">
-            <h2 class="p-2 text-center">MÉTODO 1</h2>
-
-            <div class='mb-3'>
-                <label for='numero-tarjeta' class='form-label'>Número de tarjeta</label>
-                <input type='text' class='form-control' id='numero-tarjeta' placeholder='5565 1265 7891 65489'>
-            </div>
-            <div class='mb-3'>
-                <label for='codigo-seguridad' class='form-label'>Código de seguridad</label>
-                <input type='text' class='form-control' id='codigo-seguridad'>
-            </div>
-            <div class='mb-3'>
-                <label for='fecha-vencimiento' class='form-label'>Fecha de vencimiento</label>
-                <input type='date' class='form-control' id='fecha-vencimiento'>
-            </div>
-            <h4 class="p-2 text-center">Datos del propietario</h4>
-
-            <div class='mb-3'>
-                <label for='nombre-propietario' class='form-label'>Nombre completo</label>
-                <input type='text' class='form-control' id='nombre-propietario' placeholder="Juanito Pérez">
-            </div>
-            <div class='mb-3'>
-                <label for='telefono-propietario' class='form-label'>Teléfono</label>
-                <input type='text' class='form-control' id='telefono-propietario' placeholder="5604688947">
-            </div>
-            <div class="text-center">
-                <a href='#' class='btn btn-primary col-4' role='button'>Modificar</a>
-                <a href='#' class='btn btn-danger col-4' role='button'>Eliminar</a>
-            </div>
-            <a href='confirmar-compra.html' class='btn btn-primary col-12 my-3' role='button'>Añadir método de pago</a>
-        </form>
+        </nav>
     </div>
-</div>
+
+    <div class="container">
+
+        <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
+            <h3 class="p-2 text-center">Modificar métodos de pago</h3>
+            <form class="form-control form-control-lg" id="formulario-registro">
+                <h2 class="p-2 text-center">MÉTODO 1</h2>
+
+                <div class="mb-3">
+                    <label for="numero-tarjeta" class="form-label">Número de tarjeta</label>
+                    <input type="text" class="form-control" id="numero-tarjeta" placeholder="5565 1265 7891 65489">
+                </div>
+                <div class="mb-3">
+                    <label for="codigo-seguridad" class="form-label">Código de seguridad</label>
+                    <input type="text" class="form-control" id="codigo-seguridad">
+                </div>
+                <div class="mb-3">
+                    <label for="fecha-vencimiento" class="form-label">Fecha de vencimiento</label>
+                    <input type="date" class="form-control" id="fecha-vencimiento">
+                </div>
+                <h4 class="p-2 text-center">Datos del propietario</h4>
+
+                <div class="mb-3">
+                    <label for="nombre-propietario" class="form-label">Nombre completo</label>
+                    <input type="text" class="form-control" id="nombre-propietario" placeholder="Juanito Pérez">
+                </div>
+                <div class="mb-3">
+                    <label for="telefono-propietario" class="form-label">Teléfono</label>
+                    <input type="text" class="form-control" id="telefono-propietario" placeholder="5604688947">
+                </div>
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary col-4" role="button">Modificar</a>
+                    <a href="#" class="btn btn-danger col-4" role="button">Eliminar</a>
+                </div>
+                <a href="confirmar-compra.html" class="btn btn-primary col-12 my-3" role="button">Añadir método de pago</a>
+            </form>
+        </div>
+    </div>
 
 
 
 
 
-</div>
+    <!--</div>-->
 </body>
+
 </html>
