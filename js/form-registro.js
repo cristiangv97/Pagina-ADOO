@@ -61,27 +61,27 @@ function formularioCliente() {
 
 function formularioProveedor(){
     document.getElementById("formulario-registro").innerHTML = "\n" +
-        "   <div class=\"form-row\">\n" +
-        "      <div class=\"mb-3 input-field\">\n" +
-        "        <label for=\"nombre_registro\">Razón social / Nombre de la empresa*</label>\n" +
-        "        <input type=\"text\" class=\"form-control\" id=\"nombre_registro\" data-validetta=\"required\" data-vd-message-required='Debes llenar el campo de Razón social / Nombre de la empresa*'>" +
+        "   <div class='form-row'>\n" +
+        "      <div class='mb-3 input-field'>\n" +
+        "        <label for='nombre_registro'>Razón social / Nombre de la empresa*</label>\n" +
+        "        <input type='text' class='form-control' id='nombre_registro' data-validetta='required' data-vd-message-required='Debes llenar el campo de Razón social / Nombre de la empresa*'>" +
         "      </div>\n" +
-        "    <div class=\"form-row\">\n" +
-        "      <div class=\"mb-3 input-field\">\n" +
-        "        <label for=\"correo\">Correo electronico*</label>\n" +
-        "        <input type=\"text\" id=\"correo\" class=\"form-control\" id=\"correo\" data-validetta='required,email' data-vd-message-required='Debes llenar el campo de Correo electronico'>\n" +
+        "    <div class='form-row'>\n" +
+        "      <div class='mb-3 input-field'>\n" +
+        "        <label for='correo'>Correo electronico*</label>\n" +
+        "        <input type='text' id='correo' class='form-control' id='correo' data-validetta='required,email' data-vd-message-required='Debes llenar el campo de Correo electronico'>\n" +
         "      </div>\n" +
-        "      <div class=\"mb-3 input-field\">\n" +
-        "        <label for=\"contrasena\">Telefono*</label>\n" +
-        "        <input type=\"text\" id=\"contrasena\" class=\"form-control\" data-validetta=\"number,required,minLength[6],maxLength[16]\" data-vd-message-required='Debes llenar el campo de Telefono'>\n" +
+        "      <div class='mb-3 input-field'>\n" +
+        "        <label for='contrasena'>Telefono*</label>\n" +
+        "        <input type='text' id='contrasena' class='form-control' data-validetta='number,required,minLength[6],maxLength[16]' data-vd-message-required='Debes llenar el campo de Telefono'>\n" +
         "      </div>\n" +
-        "      <div class=\"mb-3 input-field\">\n" +
-        "        <label for=\"contrasena\">Contraseña*</label>\n" +
-        "        <input type=\"password\" id=\"contrasena\" class=\"form-control\" data-validetta=\"password,required\" data-vd-message-required='Debes llenar el campo de Contraseña'>\n" +
+        "      <div class='mb-3 input-field'>\n" +
+        "        <label for='contrasena'>Contraseña*</label>\n" +
+        "        <input type='password' id='contrasena' class='form-control' data-validetta='password,required' data-vd-message-required='Debes llenar el campo de Contraseña'>\n" +
         "      </div>\n" +
-        "      <div class=\"mb-3 input-field\">\n" +
-        "        <label for=\"contrasena\">Confirmar contraseña*</label>\n" +
-        "        <input type=\"password\" id=\"contrasena\" class=\"form-control\" data-validetta=\"equalTo[contrasena],required\" data-vd-message-required='Debes llenar el campo de Confirmar contraseña'>\n" +
+        "      <div class='mb-3 input-field'>\n" +
+        "        <label for='contrasena'>Confirmar contraseña*</label>\n" +
+        "        <input type='password' id='contrasena' class='form-control' data-validetta='equalTo[contrasena],required' data-vd-message-required='Debes llenar el campo de Confirmar contraseña'>\n" +
         "      </div>\n" +
         "    </div>\n" +
         "    </div>\n" +
