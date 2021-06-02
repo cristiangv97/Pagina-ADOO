@@ -21,7 +21,7 @@
     //RegExp for input number control method
     RNUMBER = new RegExp( /^[\-\+]?(\d+|\d+\.?\d+)$/ ),
 
-    RLETTERS = new RegExp( /^[a-zA-Z]*$/ ),
+    RLETTERS = new RegExp( /^([^0-9]*)$/ ),
 
   /**
    *  Form validate error messages
