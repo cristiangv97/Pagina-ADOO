@@ -23,6 +23,7 @@ function checarUsuario() {
 }
 
 function formularioCliente() {
+
     document.getElementById("formulario-registro").innerHTML = "\n"+
         "   <div class=\"form-row\">\n" +
         "      <div class=\"mb-3 input-field\">\n" +
@@ -31,11 +32,11 @@ function formularioCliente() {
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"apellidos\">Apellido paterno*</label>\n" +
-        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"required\" data-vd-message-required='Debes llenar el campo de Appelido Paterno'>\n" +
+        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"required\" data-vd-message-required='Debes llenar el campo de Apelido Paterno'>\n" +
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"apellidos\">Apellido materno*</label>\n" +
-        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"required\" data-vd-message-required='Debes llenar el campo de Appelido Paterno'>\n" +
+        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"required\" data-vd-message-required='Debes llenar el campo de Apelido Paterno'>\n" +
         "      </div>\n" +
         "    <div class=\"form-row\">\n" +
         "      <div class=\"mb-3 input-field\">\n" +
