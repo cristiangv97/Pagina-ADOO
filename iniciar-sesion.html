@@ -6,12 +6,20 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <link rel="stylesheet" href="css/personal.css">
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/form-registro.js"></script>
+
+  <script src="js/validetta/validetta.js"></script>
+  <script src="js/validetta/validettaLang-es-ES.js"></script>
+  <link rel="stylesheet" href="js/validetta/validetta.min.css">
 </head>
 
 
@@ -51,18 +59,20 @@
 
 <div class="container">
   <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
-    <form class="form-control form-control-lg" >
+
+    <form class="form-control form-control-lg validar-form" id="inicio-de-sesion" action="index.html">
       <div class="mb-3">
         <label for="entrada-correo" class="form-label">Correo electronico</label>
-        <input type="email" class="form-control" id="entrada-correo" aria-describedby="emailHelp" placeholder="j.alvarez@mail.com" required>
-        <div class="invalid-feedback">Favor de ingresar un usuario.</div>
+        <input type="email" class="form-control" id="entrada-correo" aria-describedby="emailHelp" data-validetta='required,email' placeholder="j.alvarez@mail.com" data-vd-message-required='Debes llenar el campo de Correo eléctronico'>
       </div>
       <div class="mb-3">
         <label for="entrada-contrasena" class="form-label">Contraseña</label>
-        <input type="password" class="form-control" id="entrada-contrasena" required>
+        <input type="password" class="form-control" data-validetta='required' id="entrada-contrasena" data-vd-message-required='Debes llenar el campo de Contraseña'>
       </div>
-      <a href="index.html" class="btn btn-primary col-12" role="button">Iniciar sesión</a>
+      <!-- <a href="index.html" class="btn btn-primary col-12" role="button">Iniciar sesión</a> -->
+      <button type="submit" class="btn btn-primary col-12" value="Iniciar sesión">Iniciar sesión</button>
     </form>
+
   </div>
 </div>
 </body>
