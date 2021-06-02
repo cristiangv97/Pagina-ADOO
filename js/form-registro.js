@@ -48,7 +48,7 @@ function formularioCliente() {
         "        <input type='password' id='contrasena' name='contrasena' class='form-control' data-validetta='password,required' data-vd-message-required='Debes llenar el campo de Contraseña'>\n" +
         "      </div>\n" +
         "      <div class='mb-3 input-field'>\n" +
-        "        <label for='contrasena'>Confirmar contraseña*</label>\n" +
+        "        <label for='confirmarContrasena'>Confirmar contraseña*</label>\n" +
         "        <input type='password' id='confirmarContrasena' class='form-control' data-validetta='equalTo[contrasena],required' data-vd-message-required='Debes llenar el campo de Confirmar contraseña'>\n" +
         "      </div>\n" +
         "    </div>\n" +
