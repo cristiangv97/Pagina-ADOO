@@ -32,11 +32,11 @@ function formularioCliente() {
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"apellidos\">Apellido paterno*</label>\n" +
-        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"letters,required\" data-vd-message-required='Debes llenar el campo de Appellido Paterno'>\n" +
+        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"letters,required\" data-vd-message-required='Debes llenar el campo de Apellido Paterno'>\n" +
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"apellidos\">Apellido materno*</label>\n" +
-        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"letters,required\" data-vd-message-required='Debes llenar el campo de Appellido Materno'>\n" +
+        "        <input type=\"text\" class=\"form-control\" id=\"apellidos\" data-validetta=\"letters,required\" data-vd-message-required='Debes llenar el campo de Apellido Materno'>\n" +
         "      </div>\n" +
         "    <div class=\"form-row\">\n" +
         "      <div class=\"mb-3 input-field\">\n" +
@@ -45,11 +45,11 @@ function formularioCliente() {
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"contrasena\">Contraseña*</label>\n" +
-        "        <input type=\"password\" id=\"contrasena\" class=\"form-control\" data-validetta=\"required,minLength[6],maxLength[16]\" data-vd-message-required='Debes llenar el campo de Contraseña'>\n" +
+        "        <input type=\"password\" id=\"contrasena\" name=\"contrasena\" class=\"form-control\" data-validetta=\"password,required\" data-vd-message-required='Debes llenar el campo de Contraseña'>\n" +
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"contrasena\">Confirmar contraseña*</label>\n" +
-        "        <input type=\"password\" id=\"contrasena\" class=\"form-control\" data-validetta=\"required,minLength[6],maxLength[16]\" data-vd-message-required='Debes llenar el campo de Confirmar contraseña'>\n" +
+        "        <input type=\"password\" id=\"confirmarContrasena\" class=\"form-control\" data-validetta=\"equalTo[contrasena],required\" data-vd-message-required='Debes llenar el campo de Confirmar contraseña'>\n" +
         "      </div>\n" +
         "    </div>\n" +
         "    </div>\n" +
@@ -77,11 +77,11 @@ function formularioProveedor(){
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"contrasena\">Contraseña*</label>\n" +
-        "        <input type=\"password\" id=\"contrasena\" class=\"form-control\" data-validetta=\"required,minLength[6],maxLength[16]\" data-vd-message-required='Debes llenar el campo de Contraseña'>\n" +
+        "        <input type=\"password\" id=\"contrasena\" class=\"form-control\" data-validetta=\"password,required\" data-vd-message-required='Debes llenar el campo de Contraseña'>\n" +
         "      </div>\n" +
         "      <div class=\"mb-3 input-field\">\n" +
         "        <label for=\"contrasena\">Confirmar contraseña*</label>\n" +
-        "        <input type=\"password\" id=\"contrasena\" class=\"form-control\" data-validetta=\"required,minLength[6],maxLength[16]\" data-vd-message-required='Debes llenar el campo de Confirmar contraseña'>\n" +
+        "        <input type=\"password\" id=\"contrasena\" class=\"form-control\" data-validetta=\"equalTo[contrasena],required\" data-vd-message-required='Debes llenar el campo de Confirmar contraseña'>\n" +
         "      </div>\n" +
         "    </div>\n" +
         "    </div>\n" +

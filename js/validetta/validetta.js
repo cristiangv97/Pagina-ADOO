@@ -21,6 +21,8 @@
     //RegExp for input number control method
     RNUMBER = new RegExp( /^[\-\+]?(\d+|\d+\.?\d+)$/ ),
 
+    RPASSWORD = new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/),
+
     RLETTERS = new RegExp( /^([^0-9]*)$/ ),
 
   /**
@@ -30,6 +32,7 @@
     required  : 'This field is required. Please be sure to check.',
     email     : 'Your E-mail address appears to be invalid. Please be sure to check.',
     letters   : 'Solo se aceptan letras.',
+    password : 'La contraseña debe ser de 8 a 16 digitos y debe tener una letra mayúsculas, una minuscula, un número y un caracter especial',
     number    : 'You can enter only numbers in this field.',
     maxLength : 'Maximum {count} characters allowed!',
     minLength : 'Minimum {count} characters allowed!',
@@ -92,6 +95,11 @@
         default : return tmp.val !== '' || messages.required;
       }
     },
+
+    password : function( tmp ){
+      return RPASSWORD.test (tmp.val) || messages.password;
+    },
+
     letters : function( tmp ) {
       return RLETTERS.test( tmp.val ) || messages.letters;
     },
