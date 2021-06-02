@@ -6,6 +6,8 @@
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
   <link rel="stylesheet" href="css/personal.css">
@@ -14,6 +16,10 @@
   <script src="js/bootstrap.bundle.min.js"></script>
 
   <script src="js/form-registro.js"></script>
+
+  <script src="js/validetta/validetta.min.js"></script>
+  <script src="js/validetta/validettaLang-es-ES.js"></script>
+  <link rel="stylesheet" href="js/validetta/validetta.min.css">
 </head>
 
 
@@ -58,7 +64,7 @@
       <option value="Cliente">Cliente</option>
       <option value="Proveedor">Proveedor</option>
     </select>
-    <form class="form-control form-control-lg needs-validation" id="formulario-registro" novalidate action="verificar-correo.html">
+    <form class="form-control form-control-lg validar-form"  id="formulario-registro" action="verificar-correo.html" autocomplete="off">
 
     </form>
   </div>
