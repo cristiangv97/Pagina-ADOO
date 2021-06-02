@@ -23,7 +23,7 @@
 
     RPASSWORD = new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/),
 
-    RLETTERS = new RegExp( /^[a-zA-Zá-éÁ-É]*$/ ),
+    RLETTERS = new RegExp( /^([^0-9]*)$/ ),
 
   /**
    *  Form validate error messages
