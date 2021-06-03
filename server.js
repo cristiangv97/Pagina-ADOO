@@ -52,20 +52,33 @@ app.post("/iniciar-sesion.html", async (req, res) => {
   var myVehiculo = JSON.parse(JSON.stringify(resultV.rows[0]["nombre"]));
 
   var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
-
+  const resCatalogo = await getCatalogo();
+  //console.log("getCatalogo()= " + resCatalogo);
   console.log("Clave: " + myJSON);
 
   if (myJSON == entradaContrasena) {
     console.log("Usuario valido");
-    res.render("index", { entradaCorreo, myVehiculo });
+    res.render("index", { entradaCorreo, resCatalogo });
   }
 
   //pool.end();
 });
 ///////////////////////////////////////
 function getCatalogo() {
-  var obj;
-  return obj;
+  const veh = [];
+
+  const resultV = pool.query("select count(*) from vehiculo");
+  var cantCatalogo = JSON.parse(JSON.stringify(resultV.rows[0]["count"]));
+
+  for (let i = 0; i < cantCatalogo; i++) {
+    const consNom = pool.query("select nombre from vehiculo");
+    var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombre"]));
+    veh.push(nombre);
+  }
+
+  console.log("La cuenta del catalogo fue de " + cantCatalogo);
+  console.log("Nombre: " + veh[0]);
+  return veh;
 }
 ///////////////////////////////////////
 
