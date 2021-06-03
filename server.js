@@ -105,3 +105,7 @@ app.post("/users/register", async (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+app.use(express.static(__dirname + '/'));
+
+// application/javascript;charset=utf-8
