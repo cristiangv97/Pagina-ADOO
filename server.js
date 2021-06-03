@@ -97,7 +97,7 @@ app.post("/iniciar-sesion.html", async (req, res) => {
 
 app.post("/enviarMail", async (req, res) => {
     let emailUsuario = 'gomez.santillan.meza@gmail.com'
-    let codigoVer = 'SIUUUU'
+    let codigoVer = 'siuuuu'
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -110,7 +110,7 @@ app.post("/enviarMail", async (req, res) => {
     let mailOptions = {
         from : "isurusictu@gmail.com",
         to : emailUsuario,
-        subject : 'Código de verificación Isurus Ictu',
+        subject : 'Código de verificación',
         text : codigoVer
     };
 
