@@ -9,8 +9,6 @@ const config = {
   database: "postgres",
 };
 
-const nodemailer = require("nodemailer");
-
 const pool = new Pool(config);
 
 const bcrypt = require("bcrypt");
@@ -94,36 +92,6 @@ app.post("/iniciar-sesion.html", async (req, res) => {
 
   //pool.end();
 });
-
-app.post("/enviarMail", async (req, res) => {
-    let emailUsuario = 'gomez.santillan.meza@gmail.com'
-    let codigoVer = 'siuuuu'
-    let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: "isurusictu@gmail.com",
-          pass: "12345678Mm*"
-        },
-    });
-    let mailOptions = {
-        from : "isurusictu@gmail.com",
-        to : emailUsuario,
-        subject : 'Código de verificación',
-        text : codigoVer
-    };
-
-    transporter.sendMail(mailOptions, function(err, data) {
-        if (err) {
-            console.log('RIP');
-            console.log(err);
-        }
-        else {
-            console.log('Si se mandó');
-        }
-    });
-})
 
 app.post("/descripcion", async (req, res) => {
   let { model } = req.body;
