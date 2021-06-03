@@ -5,11 +5,11 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  password: "1234",
+  // password: "maravilloso",
+  password: "123",
   database: "postgres",
+  // database: "ADOO",
 };
-
-const nodemailer = require("nodemailer");
 
 const pool = new Pool(config);
 
@@ -82,9 +82,8 @@ app.post("/iniciar-sesion.html", async (req, res) => {
   var myVehiculo = JSON.parse(JSON.stringify(resultV.rows[0]["nombre"]));
 
   var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
-  let resCatalogo = [];
-  resCatalogo = await getCatalogo();
-  //console.log("Nombre: " + resCatalogo[0]);
+  const resCatalogo = await getCatalogo();
+  //console.log("getCatalogo()= " + resCatalogo);
   console.log("Clave: " + myJSON);
 
   if (myJSON == entradaContrasena) {
