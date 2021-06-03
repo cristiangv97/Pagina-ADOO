@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-
+const nodemailer = require("nodemailer");
 const { Pool } = require("pg");
 const config = {
   user: "postgres",
@@ -41,6 +41,74 @@ app.get("/index.html", async (req, res) => {
   res.render("index", { entradaCorreo: "", resCatalogo });
 });
 
+app.post("/crear-cuenta.html", async (req, res) => {
+  //implementación solo para usuario
+  let {
+    nombre_registro,
+    apellidoPaterno,
+    apellidoMaterno,
+    correo,
+    contrasena,
+    confirmarContrasena,
+  } = req.body;
+
+  const result = await pool.query(
+    "select * from usuarioComprador where correo=$1",
+    ["{" + [correo] + "}"]
+  );
+
+  //buen código del stack overflow
+  Object.size = function (obj) {
+    var size = 0,
+      key;
+    for (key in obj) {
+      if (obj.hasOwnProperty(key)) size++;
+    }
+    return size;
+  };
+
+  //calculamos el tamaño
+  let tamanio = Object.size(result.rows);
+  console.log(tamanio);
+
+  //si  encuentra un correo igual el tamaño != 0
+  if (tamanio == 0) {
+    console.log("a registrar concha su madre");
+
+    //envia
+    let emailUsuario = "gomez.santillan.meza@gmail.com";
+    let codigoVer = "siuuuu";
+    let transporter = nodemailer.createTransport({
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: "isurusictu@gmail.com",
+        pass: "12345678Mm*",
+      },
+    });
+    let mailOptions = {
+      from: "isurusictu@gmail.com",
+      to: emailUsuario,
+      subject: "Código de verificación",
+      text: codigoVer,
+    };
+
+    transporter.sendMail(mailOptions, function (err, data) {
+      if (err) {
+        console.log("RIP");
+        console.log(err);
+      } else {
+        console.log("Si se mandó");
+      }
+    });
+  } else {
+    console.log("valio verga ya hay un wey");
+  }
+
+  res.render("verificar-correo");
+});
+
 app.post("/iniciar-sesion.html", async (req, res) => {
   let { entradaCorreo, entradaContrasena } = req.body;
   console.log({ entradaCorreo, entradaContrasena });
@@ -52,8 +120,8 @@ app.post("/iniciar-sesion.html", async (req, res) => {
     "select * from usuarioComprador where correo=$1",
     ["{" + [entradaCorreo] + "}"]
   );
-  const resultV = await pool.query("select * from vehiculo");
-  var myVehiculo = JSON.parse(JSON.stringify(resultV.rows[0]["nombre"]));
+  const resultV = await pool.query("select * from modeloCombustion");
+  //var myVehiculo = JSON.parse(JSON.stringify(resultV.rows[0]["modelo"]));
 
   var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
   let resCatalogo = [];
@@ -64,14 +132,16 @@ app.post("/iniciar-sesion.html", async (req, res) => {
   if (myJSON == entradaContrasena) {
     console.log("Usuario valido");
     res.render("index", { entradaCorreo, resCatalogo });
+  } else {
+    res.render("iniciar-sesion");
   }
 
   //pool.end();
 });
 
-app.post("/descripcion", async (req, res) => {
-  let { model } = req.body;
-  console.log("..." + model);
+app.get("/descripcion.html", async (req, res) => {
+  //let { model } = req.body;
+  //console.log("..." + model);
   //res.render("index", { entradaCorreo, resCatalogo });
   res.render("descripcion");
 });
@@ -79,12 +149,12 @@ app.post("/descripcion", async (req, res) => {
 const getCatalogo = async () => {
   try {
     let veh = [];
-    const resultV = await pool.query("select count(*) from vehiculo");
+    const resultV = await pool.query("select count(*) from modeloCombustion");
     var cantCatalogo = JSON.parse(JSON.stringify(resultV.rows[0]["count"]));
 
     for (let i = 0; i < cantCatalogo; i++) {
-      const consNom = await pool.query("select nombre from vehiculo");
-      var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombre"]));
+      const consNom = await pool.query("select modelo from modeloCombustion");
+      var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["modelo"]));
       veh.push(nombre);
     }
 
@@ -97,14 +167,6 @@ const getCatalogo = async () => {
   }
 };
 ///////////////////////////////////////
-
-app.get("/users/register", (req, res) => {
-  res.render("register");
-});
-
-app.get("/users/login", (req, res) => {
-  res.render("login");
-});
 
 app.get("/users/dashboard", (req, res) => {
   res.render("dashboard", { user: "Conor", pass: "1234" });

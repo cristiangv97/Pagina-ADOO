@@ -110,7 +110,7 @@
                 <div class="imgCatalogo d-flex justify-content-center">
                   <img
                     class="card-img-top"
-                    src="imgs/carro-<%=i%>.png"
+                    src="imgs/<%=resCatalogo[i]%>.png"
                     alt="Card image cap"
                   />
                 </div>
@@ -126,36 +126,16 @@
                     <h5 class="card-title"><%=resCatalogo[i]%></h5>
                     <p class="card-text">Desde 15 000 pesos</p>
 
-                    <!--<a href="descripcion.html" class="btn btn-primary col-12"
+                    <a
+                      href="descripcion.html?modelo=<%=resCatalogo[i]%>"
+                      class="btn btn-primary col-12"
                       >Comprar</a
-                    >-->
-                    <button class="btn btn-primary col-12" type="submit">
-                      Comprar
-                    </button>
+                    >
                   </form>
                 </div>
               </div>
             </div>
             <% } %>
-            <!--          tarjeta -->
-            <div class="col-lg-4 col-md-6 col-sm-12">
-              <div class="card w-100 card mb-5 card-border text-white bg-dark">
-                <div class="imgCatalogo d-flex justify-content-center">
-                  <img
-                    class="card-img-top"
-                    src="imgs/carro-1.png"
-                    alt="Card image cap"
-                  />
-                </div>
-                <div class="card-body text-center">
-                  <h5 class="card-title"><%=resCatalogo[0]%></h5>
-                  <p class="card-text">Desde 15 000 pesos</p>
-                  <a href="descripcion.html" class="btn btn-primary col-12"
-                    >Comprar</a
-                  >
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
