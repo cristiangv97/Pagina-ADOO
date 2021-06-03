@@ -5,10 +5,10 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  // password: "maravilloso",
-  password: "123",
-  database: "postgres",
-  // database: "ADOO",
+  password: "maravilloso",
+  // password: "123",
+  // database: "postgres",
+  database: "ADOO",
 };
 
 const pool = new Pool(config);
@@ -30,6 +30,10 @@ app.get("/", async (req, res) => {
 
 app.get("/iniciar-sesion.html", (req, res) => {
   res.render("iniciar-sesion");
+});
+
+app.post("/crear-cuenta.html", (req, res) => {
+  res.render("verificar-correo");
 });
 
 app.get("/agregar-metodo-pago.html", (req, res) => {
