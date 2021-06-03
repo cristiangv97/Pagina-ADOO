@@ -1,0 +1,19 @@
+Iniciar-Sesion.html, cambio de id entrada-correo por entradaCorreo, renombrar en las carpetas necesarias
+Iniciar-Sesion.html, cambio de id entrada-contrasena por entradaContrasena, renombrar en las carpetas necesarias
+Index, agregar JS para comprobar sesion, si no saben q pdo preguntenle a Jhon
+Error JS y CSS, las páginas no ejecutan los JS ni los CSS ni las referencias externas, revisar y corregir para optimo funcionamiento de las páginas{
+    Refused to apply style from 'http://localhost:4000/css/personal.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+    crear-cuenta.html:32 GET http://localhost:4000/js/bootstrap.bundle.min.js net::ERR_ABORTED 404 (Not Found)
+    crear-cuenta.html:34 GET http://localhost:4000/js/form-registro.js net::ERR_ABORTED 404 (Not Found)
+    crear-cuenta.html:36 GET http://localhost:4000/js/validetta/validetta.js net::ERR_ABORTED 404 (Not Found)
+    crear-cuenta.html:37 GET http://localhost:4000/js/validetta/validettaLang-es-ES.js net::ERR_ABORTED 404 (Not Found)
+    crear-cuenta.html:1 Refused to apply style from 'http://localhost:4000/js/validetta/validetta.min.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+    crear-cuenta.html:32 GET http://localhost:4000/js/bootstrap.bundle.min.js net::ERR_ABORTED 404 (Not Found)
+    crear-cuenta.html:34 GET http://localhost:4000/js/form-registro.js net::ERR_ABORTED 404 (Not Found)
+    crear-cuenta.html:36 GET http://localhost:4000/js/validetta/validetta.js net::ERR_ABORTED 404 (Not Found)
+    crear-cuenta.html:37 GET http://localhost:4000/js/validetta/validettaLang-es-ES.js net::ERR_ABORTED 404 (Not Found)
+    crear-cuenta.html:1 Refused to apply style from 'http://localhost:4000/js/validetta/validetta.min.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.
+    crear-cuenta.html:41 Uncaught ReferenceError: formularioCliente is not defined
+    at onload (crear-cuenta.html:41)
+    onload @ crear-cuenta.html:41
+}
