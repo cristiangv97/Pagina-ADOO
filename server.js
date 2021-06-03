@@ -30,6 +30,30 @@ app.get("/iniciar-sesion.html", (req, res) => {
   res.render("iniciar-sesion");
 });
 
+app.get("/agregar-metodo-pago.html", (req, res) => {
+  res.render("agregar-metodo-pago");
+});
+
+app.get("/confirmar-compra.html", (req, res) => {
+  res.render("confirmar-compra");
+});
+
+app.get("/compra-finalizada.html", (req, res) => {
+  res.render("compra-finalizada");
+});
+
+app.get("/menu-personalizacion.html", (req, res) => {
+  res.render("menu-personalizacion");
+});
+
+app.get("/mas-vendidos.html", (req, res) => {
+  res.render("mas-vendidos");
+});
+
+app.get("/mas-recientes.html", (req, res) => {
+  res.render("mas-recientes");
+});
+
 app.get("/crear-cuenta.html", (req, res) => {
   res.render("crear-cuenta");
 });
