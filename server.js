@@ -5,8 +5,10 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  password: "1234",
-  database: "postgres",
+  password: "maravilloso",
+  // password: "123",
+  // database: "postgres",
+  database: "ADOO",
 };
 
 const pool = new Pool(config);
@@ -28,6 +30,34 @@ app.get("/", async (req, res) => {
 
 app.get("/iniciar-sesion.html", (req, res) => {
   res.render("iniciar-sesion");
+});
+
+app.post("/crear-cuenta.html", (req, res) => {
+  res.render("verificar-correo");
+});
+
+app.get("/agregar-metodo-pago.html", (req, res) => {
+  res.render("agregar-metodo-pago");
+});
+
+app.get("/confirmar-compra.html", (req, res) => {
+  res.render("confirmar-compra");
+});
+
+app.get("/compra-finalizada.html", (req, res) => {
+  res.render("compra-finalizada");
+});
+
+app.get("/menu-personalizacion.html", (req, res) => {
+  res.render("menu-personalizacion");
+});
+
+app.get("/mas-vendidos.html", (req, res) => {
+  res.render("mas-vendidos");
+});
+
+app.get("/mas-recientes.html", (req, res) => {
+  res.render("mas-recientes");
 });
 
 app.get("/crear-cuenta.html", (req, res) => {
@@ -124,9 +154,8 @@ app.post("/iniciar-sesion.html", async (req, res) => {
   //var myVehiculo = JSON.parse(JSON.stringify(resultV.rows[0]["modelo"]));
 
   var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
-  let resCatalogo = [];
-  resCatalogo = await getCatalogo();
-  //console.log("Nombre: " + resCatalogo[0]);
+  const resCatalogo = await getCatalogo();
+  //console.log("getCatalogo()= " + resCatalogo);
   console.log("Clave: " + myJSON);
 
   if (myJSON == entradaContrasena) {
