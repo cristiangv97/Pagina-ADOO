@@ -31,6 +31,10 @@ app.get("/crear-cuenta.html", (req, res) => {
   res.render("crear-cuenta");
 });
 
+app.get("/index.html", (req, res) => {
+  res.render("index", {entradaCorreo:""});
+});
+
 app.post("/iniciar-sesion.html", async (req, res) => {
   let { entradaCorreo, entradaContrasena } = req.body;
   console.log({ entradaCorreo, entradaContrasena });
