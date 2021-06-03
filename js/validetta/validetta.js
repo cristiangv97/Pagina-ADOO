@@ -107,7 +107,7 @@
 
     validCode : function ( tmp ){
       return RVALIDCODE.test (tmp.val) || messages.validcode;
-    }
+    },
 
     letters : function( tmp ) {
       return RLETTERS.test( tmp.val ) || messages.letters;
