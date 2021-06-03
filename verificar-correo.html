@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <title>Verificar correo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
   <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
@@ -12,6 +14,12 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
   <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/form-registro.js"></script>
+
+  <script src="js/validetta/validetta.js"></script>
+  <script src="js/validetta/validettaLang-es-ES.js"></script>
+  <link rel="stylesheet" href="js/validetta/validetta.min.css">
 </head>
 
 
@@ -51,14 +59,15 @@
 
 <div class="container">
   <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
-    <form class="form-control form-control-lg" >
+    <form class="form-control form-control-lg validar-form" id="verificar-correo" action="index.html" autocomplete="off">
       <div class="mb-3">
-        <h3 class="text-center">Verificación de correo</h3>
+        <h3 class="text-center">Verificación de correo*</h3>
         <label for="codigo-de-verificacion" class="form-label">Por favor, ingrese en este campo el último código enviado a su correo electrónico desde emailvalidation-noresp@isurusictu.com.</label>
-        <input type="password" class="form-control" id="codigo-de-verificacion" required placeholder="Ejemplo: 552DR4">
+        <input type="text" class="form-control" id="codigo-de-verificacion" placeholder="Ejemplo: 552DR4" data-validetta='required,validCode,maxLength[6],minLength[6]' data-vd-message-required='Debes llenar el campo de Verificación de correo'>
         <!-- <label for="entrada-contrasena" class="form-label">Código de verificación:</label> -->
       </div>
-      <a href="index.html" class="btn btn-primary col-12" role="button">Verificar código</a>
+      <!-- <a href="index.html" class="btn btn-primary col-12" role="button">Verificar código</a> -->
+      <button class="btn btn-primary col-12" type="submit">Verificar código</button>
     </form>
   </div>
 </div>

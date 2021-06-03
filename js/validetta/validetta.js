@@ -23,6 +23,8 @@
 
     RPASSWORD = new RegExp(/^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,16}$/),
 
+    RVALIDCODE = new RegExp( /^((A-Z)(0-9))*$/ ),
+
     // RLETTERS = new RegExp( /^([^0-9]*)$/ ),
     RLETTERS = new RegExp( /^[((a-z)(A-Z)(áéíóúÁÉÍÚÓÉñÑ))(?!\s{1})]*$/ ),
 
@@ -35,6 +37,7 @@
     email     : 'Your E-mail address appears to be invalid. Please be sure to check.',
     letters   : 'Este campo debe contener solamente letras y espacios.',
     password : 'La Contraseña debe contener de 8 a 16 digitos, tener una letra mayúsculas, una minuscula, un número y un caracter especial',
+    validcode : 'El código de verificación debe contener solo números y letras mayúsculas.',
     number    : 'You can enter only numbers in this field.',
     maxLength : 'Maximum {count} characters allowed!',
     minLength : 'Minimum {count} characters allowed!',
@@ -101,6 +104,10 @@
     password : function( tmp ){
       return RPASSWORD.test (tmp.val) || messages.password;
     },
+
+    validCode : function ( tmp ){
+      return RVALIDCODE.test (tmp.val) || messages.validcode;
+    }
 
     letters : function( tmp ) {
       return RLETTERS.test( tmp.val ) || messages.letters;
