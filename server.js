@@ -31,10 +31,6 @@ app.get("/iniciar-sesion.html", (req, res) => {
   res.render("iniciar-sesion", { state: "" });
 });
 
-app.post("/crear-cuenta.html", (req, res) => {
-  res.render("verificar-correo");
-});
-
 app.get("/agregar-metodo-pago.html", (req, res) => {
   res.render("agregar-metodo-pago");
 });
@@ -96,15 +92,13 @@ app.post("/crear-cuenta.html", async (req, res) => {
   //si  encuentra un correo igual el tamaño != 0
   if (tamanio === 0) {
     console.log('Registrando usuario');
-    /*
     const result = await pool.query(
-      "INSERT INTO usuarioComprador (nombreUC, apellidoPatUC, apellidoMatUC ,correo, clave, verificado) VALUES ('$1','$2','$3','$4','$5', $6)",
-      [nombre_registro, apellidoPaterno, apellidoMaterno, correo, contrasena, "TRUE"]
+      "INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave) VALUES ($1, $3, $2, $4, $5)",
+      [nombre_registro, apellidoPaterno, apellidoMaterno, correo, contrasena]
     );
-    */
+
     //generación del código
     const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-
     function generateString(length) {
         let result = ' ';
         const charactersLength = characters.length;
@@ -115,8 +109,7 @@ app.post("/crear-cuenta.html", async (req, res) => {
         return result;
     }
     
-    //envia
-    let emailUsuario = correo;
+    //envia 
     let codigoVer = generateString(6);
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -129,7 +122,7 @@ app.post("/crear-cuenta.html", async (req, res) => {
     });
     let mailOptions = {
         from : "isurusictu@gmail.com",
-        to : emailUsuario,
+        to : correo,
         subject : 'Código de verificación',
         text : "Su código de verificación es " + codigoVer
     };
