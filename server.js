@@ -5,15 +5,14 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  password: "maravilloso",
-  // password: "123",
-  // database: "postgres",
-  database: "ADOO",
+  password: "1234",
+  database: "postgres",
 };
 
 const pool = new Pool(config);
 
 const bcrypt = require("bcrypt");
+const { render } = require("ejs");
 
 const PORT = process.env.PORT || 4000;
 
@@ -29,7 +28,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/iniciar-sesion.html", (req, res) => {
-  res.render("iniciar-sesion");
+  res.render("iniciar-sesion", { state: "" });
 });
 
 app.post("/crear-cuenta.html", (req, res) => {
@@ -148,23 +147,26 @@ app.post("/iniciar-sesion.html", async (req, res) => {
 
   const result = await pool.query(
     "select * from usuarioComprador where correo=$1",
-    ["{" + [entradaCorreo] + "}"]
+    [entradaCorreo]
   );
-  const resultV = await pool.query("select * from modeloCombustion");
-  //var myVehiculo = JSON.parse(JSON.stringify(resultV.rows[0]["modelo"]));
 
-  var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
-  const resCatalogo = await getCatalogo();
-  //console.log("getCatalogo()= " + resCatalogo);
-  console.log("Clave: " + myJSON);
+  if (result.rowCount != 0) {
+    var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
+    const resCatalogo = await getCatalogo();
 
-  if (myJSON == entradaContrasena) {
-    console.log("Usuario valido");
-    res.render("index", { entradaCorreo, resCatalogo });
+    console.log("Clave: " + myJSON);
+
+    if (myJSON == entradaContrasena) {
+      console.log("Usuario valido");
+      res.render("index", { entradaCorreo, resCatalogo });
+    } else {
+      console.log("No se encontraron coincidencias para este correo");
+      res.render("iniciar-sesion", { state: "Datos Erroneos" });
+    }
   } else {
-    res.render("iniciar-sesion");
+    console.log("No se encontraron coincidencias para este correo");
+    res.render("iniciar-sesion", { state: "Datos Erroneos" });
   }
-
   //pool.end();
 });
 
