@@ -25,7 +25,6 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="js/bootstrap.bundle.min.js"></script>
-    <script src="../js/sesion.js"></script>
   </head>
 
   <body style="background-color: #c8c7c7">
@@ -34,7 +33,9 @@
     <div class="container-fluid">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"> Isurus Ictu </a>
+          <a class="navbar-brand" href="index.html?sesion=<%=entradaCorreo%>">
+            Isurus Ictu
+          </a>
           <button
             class="navbar-toggler ms-auto"
             type="button"
@@ -125,11 +126,12 @@
                     <h5 class="card-title"><%=resCatalogo[i]%></h5>
                     <p class="card-text">Desde 15 000 pesos</p>
 
-                    <a
-                      href="descripcion.html?modelo=<%=resCatalogo[i]%>"
-                      class="btn btn-primary col-12"
+                    <!--<a href="descripcion.html" class="btn btn-primary col-12"
                       >Comprar</a
-                    >
+                    >-->
+                    <button class="btn btn-primary col-12" type="submit">
+                      Comprar
+                    </button>
                   </form>
                 </div>
               </div>

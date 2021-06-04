@@ -1,17 +1,17 @@
 drop table metodoPAgo cascade;
 drop table usuarioComprador cascade;
-drop table vehiculo;
+drop table modeloCombustion;
 ----------------------------
 --los campos aceptan null de momento SOLO para hacer las pruebas de incersiones
 create table usuarioComprador(
 	idUsuarioC serial primary key not null,
-	nombreUC varchar[30],
-	apellidoMatUC varchar[30],
-	apellidoPatUC varchar[30],
-	telefonoUC varchar[30],
+	nombreUC varchar(30),
+	apellidoMatUC varchar(30),
+	apellidoPatUC varchar(30),
+	telefonoUC varchar(30),
 	verificado boolean,
-	correo varchar[50],
-	clave varchar[50] not null
+	correo varchar(50),
+	clave varchar(50) not null
 );
 create table metodoPago(
 	nTarjeta varchar(16) primary key not null,
@@ -20,15 +20,24 @@ create table metodoPago(
 	foreign key (idUsuarioC) references usuarioComprador(idUsuarioC) on delete cascade
 );
 
-create table vehiculo(
-	nombre varchar[30]
+create table modeloCombustion(
+	idModelo serial primary key not null,
+	modelo varchar(30) not null,
+	marca varchar(30) not null,
+	versionModelo varchar(30) not null,
+	anoModelo char(4) not null,
+	descripcionModelo text not null,
+	motorModelo varchar(30) not null
 );
-
-INSERT INTO usuarioComprador (nombreUC,correo, clave) VALUES ('{Usuario}','{a@a.com}','{1234567}');
-INSERT INTO vehiculo(nombre) VALUES ('{Mazda}');
-INSERT INTO vehiculo(nombre) VALUES ('{Civic}');
-INSERT INTO vehiculo(nombre) VALUES ('{Sentra}');
-INSERT INTO vehiculo(nombre) VALUES ('{Tsuru}');
-INSERT INTO vehiculo(nombre) VALUES ('{Tesla Roadster}');
-INSERT INTO vehiculo(nombre) VALUES ('{Hot Wheels}');
-select * from usuarioComprador;
+-----------------------------------------
+INSERT INTO usuarioComprador (nombreUC,correo, clave) VALUES ('Usuario','a@a.com','1234567');
+INSERT INTO modeloCombustion(modelo,marca,versionModelo,anoModelo,descripcionModelo,motorModelo)
+VALUES ('Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L Skyactiv-G'),
+('Mazda 2','Sedán','Sport','2019','Está muy chulo x2 jsjsjs','2.5L Skyactiv-G'),
+('Mazda 3','Sedán','Eco','2017','Está muy chulo x3 jsjsjs','4L Skyactiv-T'),
+('Mazda 4','Sedán','Sport','2020','Está muy chulo x4 jsjsjs','2.5L Skyactiv-G'),
+('Mazda 5','Sedán','Sport','2015','Está muy chulo x5 jsjsjs','4L Skyactiv-G'),
+('Mazda 6','Sedán','Sport','2018','Está muy chulo x6 jsjsjs','2.5L Skyactiv-G'),
+('Mazda 7','Sedán','Sport','2021','Está muy chulo x7 jsjsjs','4L Skyactiv-G');
+------------------------------------------
+select * from modeloCombustion;
