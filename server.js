@@ -72,14 +72,7 @@ app.get("/index.html", async (req, res) => {
 
 app.post("/crear-cuenta.html", async (req, res) => {
   //implementación solo para usuario
-  let {
-    nombre_registro,
-    apellidoPaterno,
-    apellidoMaterno,
-    correo,
-    contrasena,
-    confirmarContrasena,
-  } = req.body;
+  let { nombre_registro, apellidoPaterno, apellidoMaterno, correo,  contrasena, confirmarContrasena} = req.body;
 
   const result = await pool.query(
     "select * from usuarioComprador where correo=$1",
@@ -87,7 +80,7 @@ app.post("/crear-cuenta.html", async (req, res) => {
   );
 
   //buen código del stack overflow
-  Object.size = function (obj) {
+  Object.size = function(obj) {
     var size = 0,
       key;
     for (key in obj) {
@@ -101,41 +94,64 @@ app.post("/crear-cuenta.html", async (req, res) => {
   console.log(tamanio);
 
   //si  encuentra un correo igual el tamaño != 0
-  if (tamanio == 0) {
-    console.log("a registrar concha su madre");
+  if (tamanio === 0) {
+    console.log('Registrando usuario');
+    /*
+    const result = await pool.query(
+      "INSERT INTO usuarioComprador (nombreUC, apellidoPatUC, apellidoMatUC ,correo, clave, verificado) VALUES ('$1','$2','$3','$4','$5', $6)",
+      [nombre_registro, apellidoPaterno, apellidoMaterno, correo, contrasena, "TRUE"]
+    );
+    */
+    //generación del código
+    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
+    function generateString(length) {
+        let result = ' ';
+        const charactersLength = characters.length;
+        for ( let i = 0; i < length; i++ ) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+
+        return result;
+    }
+    
     //envia
-    let emailUsuario = "gomez.santillan.meza@gmail.com";
-    let codigoVer = "siuuuu";
+    let emailUsuario = correo;
+    let codigoVer = generateString(6);
     let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: "isurusictu@gmail.com",
-        pass: "12345678Mm*",
-      },
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: "isurusictu@gmail.com",
+          pass: "12345678Mm*"
+        },
     });
     let mailOptions = {
-      from: "isurusictu@gmail.com",
-      to: emailUsuario,
-      subject: "Código de verificación",
-      text: codigoVer,
+        from : "isurusictu@gmail.com",
+        to : emailUsuario,
+        subject : 'Código de verificación',
+        text : "Su código de verificación es " + codigoVer
     };
 
-    transporter.sendMail(mailOptions, function (err, data) {
-      if (err) {
-        console.log("RIP");
-        console.log(err);
-      } else {
-        console.log("Si se mandó");
-      }
+    transporter.sendMail(mailOptions, function(err, data) {
+        if (err) {
+            console.log('RIP');
+            console.log(err);
+        }
+        else {
+            console.log('Si se mandó');
+        }
     });
-  } else {
-    console.log("valio verga ya hay un wey");
+
+    res.render("verificar-correo");
   }
 
-  res.render("verificar-correo");
+  else {
+    console.log('Usuario ya registrado');
+    res.render('crear-cuenta');
+  }
+
 });
 
 app.post("/iniciar-sesion.html", async (req, res) => {
