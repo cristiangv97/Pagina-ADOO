@@ -5,13 +5,12 @@ drop table modeloCombustion;
 --los campos aceptan null de momento SOLO para hacer las pruebas de incersiones
 create table usuarioComprador(
 	idUsuarioC serial primary key not null,
-	nombreUC varchar(30),
-	apellidoMatUC varchar(30),
-	apellidoPatUC varchar(30),
-	telefonoUC varchar(30),
-	verificado boolean,
-	correo varchar(50),
-	clave varchar(50) not null
+	nombreUC varchar(30) not null,
+	apellidoMatUC varchar(30) not null,
+	apellidoPatUC varchar(30) not null,
+	correo varchar(50) not null,
+	clave varchar(50) not null,
+	verificado boolean default false
 );
 create table metodoPago(
 	nTarjeta varchar(16) primary key not null,
@@ -30,7 +29,8 @@ create table modeloCombustion(
 	motorModelo varchar(30) not null
 );
 -----------------------------------------
-INSERT INTO usuarioComprador (nombreUC,correo, clave) VALUES ('Usuario','a@a.com','1234567');
+INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave)
+VALUES ('Usuario','apelMat','apelPat','a@a.com','1234567');
 INSERT INTO modeloCombustion(modelo,marca,versionModelo,anoModelo,descripcionModelo,motorModelo)
 VALUES ('Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L Skyactiv-G'),
 ('Mazda 2','Sedán','Sport','2019','Está muy chulo x2 jsjsjs','2.5L Skyactiv-G'),
