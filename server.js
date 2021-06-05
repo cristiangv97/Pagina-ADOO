@@ -11,11 +11,13 @@ const config = {
   database: "ADOO",
 };
 
+var enSesion;
+
 const pool = new Pool(config);
 
 const bcrypt = require("bcrypt");
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 4003;
 
 app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
@@ -25,7 +27,14 @@ app.get("/", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   //console.log("Nombre: " + resCatalogo[0]);
-  res.render("index", { entradaCorreo: "", resCatalogo });
+  if (enSesion){
+    console.log(enSesion);
+    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("index", {estatusSesion: "", resCatalogo});
+  }
 });
 
 app.get("/iniciar-sesion.html", (req, res) => {
@@ -48,9 +57,9 @@ app.get("/compra-finalizada.html", (req, res) => {
   res.render("compra-finalizada");
 });
 
-app.get("/menu-personalizacion.html", (req, res) => {
-  res.render("menu-personalizacion");
-});
+// app.get("/menu-personalizacion.html", (req, res) => {
+//   res.render("menu-personalizacion");
+// });
 
 app.get("/mas-vendidos.html", (req, res) => {
   res.render("mas-vendidos");
@@ -64,16 +73,51 @@ app.get("/crear-cuenta.html", (req, res) => {
   res.render("crear-cuenta");
 });
 
+app.post("/descripcion.html", (req, res) => {
+  // console.log('descripcion llamada');
+  if (enSesion){
+    console.log('logged-in');
+    res.render("descripcion", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("descripcion", {estatusSesion: ""});
+  }
+
+});
+
 app.get("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   //console.log("Nombre: " + resCatalogo[0]);
-  res.render("index", { entradaCorreo: "", resCatalogo });
+  if (enSesion){
+    console.log(enSesion);
+    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("index", {estatusSesion: "", resCatalogo});
+  }
+});
+
+app.post("/index.html", async (req, res) => {
+  let resCatalogo = [];
+  resCatalogo = await getCatalogo();
+  //console.log("Nombre: " + resCatalogo[0]);
+  if (enSesion){
+    console.log(enSesion);
+    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("index", {estatusSesion: "", resCatalogo});
+  }
 });
 
 app.post("/iniciar-sesion.html", async (req, res) => {
   let { entradaCorreo, entradaContrasena } = req.body;
   console.log({ entradaCorreo, entradaContrasena });
+
 
   //let hashedPassword = await bcrypt.hash(password, 10);
   //console.log(hashedPassword);
@@ -89,10 +133,11 @@ app.post("/iniciar-sesion.html", async (req, res) => {
   const resCatalogo = await getCatalogo();
   //console.log("getCatalogo()= " + resCatalogo);
   console.log("Clave: " + myJSON);
-
+  // console.log("This is gen"+entradaCorreoGen);
   if (myJSON == entradaContrasena) {
+    enSesion = true;
     console.log("Usuario valido");
-    res.render("index", { entradaCorreo, resCatalogo });
+    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
   }
 
   //pool.end();
@@ -104,7 +149,38 @@ app.post("/descripcion", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   res.render("descripcion");
 });
-///////////////////////////////////////
+
+app.post("/descripcion", async (req, res) => {
+  let { model } = req.body;
+  console.log("..." + model);
+  //res.render("index", { entradaCorreo, resCatalogo });
+  res.render("descripcion");
+});
+
+
+app.post("/menu-personalizacion.html", async (req, res) => {
+  //res.render("index", { entradaCorreo, resCatalogo });
+  if (enSesion){
+    console.log(enSesion);
+    res.render("menu-personalizacion", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("menu-personalizacion", {estatusSesion: ""});
+  }
+});
+
+app.get("/menu-personalizacion.html", async (req, res) => {
+  //console.log("Nombre: " + resCatalogo[0]);
+  if (enSesion){
+    console.log(enSesion);
+    res.render("menu-personalizacion", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("menu-personalizacion", {estatusSesion: ""});
+  }
+});///////////////////////////////////////
 const getCatalogo = async () => {
   try {
     let veh = [];
