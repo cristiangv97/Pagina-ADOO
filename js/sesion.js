@@ -94,3 +94,11 @@ function checarSesion(condicionSesion) {
 
     }
 }
+
+function checarValidacion(errorM){
+    console.log("1" + errorM);
+    if(errorM.length > 0){
+        alert(errorM);
+        console.log("2" + errorM);
+    }
+}

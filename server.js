@@ -5,10 +5,13 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  password: "maravilloso",
+  // password: "maravilloso",
   // password: "123",
+  password: "admin",
   // database: "postgres",
   database: "ADOO",
+
+
 };
 
 var enSesion;
@@ -16,6 +19,7 @@ var enSesion;
 const pool = new Pool(config);
 
 const bcrypt = require("bcrypt");
+const { render } = require("ejs");
 
 const PORT = process.env.PORT || 4003;
 
@@ -38,7 +42,7 @@ app.get("/", async (req, res) => {
 });
 
 app.get("/iniciar-sesion.html", (req, res) => {
-  res.render("iniciar-sesion");
+  res.render("iniciar-sesion", {estatusSesion: ""});
 });
 
 app.post("/crear-cuenta.html", (req, res) => {
@@ -129,15 +133,22 @@ app.post("/iniciar-sesion.html", async (req, res) => {
   const resultV = await pool.query("select * from vehiculo");
   var myVehiculo = JSON.parse(JSON.stringify(resultV.rows[0]["nombre"]));
 
-  var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
-  const resCatalogo = await getCatalogo();
-  //console.log("getCatalogo()= " + resCatalogo);
-  console.log("Clave: " + myJSON);
-  // console.log("This is gen"+entradaCorreoGen);
-  if (myJSON == entradaContrasena) {
-    enSesion = true;
-    console.log("Usuario valido");
-    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
+    console.log("Contador de resultados: " + result.rowCount);
+
+  if (result.rowCount > 0) {
+    var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
+    const resCatalogo = await getCatalogo();
+    //console.log("getCatalogo()= " + resCatalogo);
+    console.log("Clave: " + myJSON);
+    // console.log("This is gen"+entradaCorreoGen);
+    if (myJSON == entradaContrasena) {
+      enSesion = true;
+      console.log("Usuario valido");
+      res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
+    }
+  }else{
+    console.log("El usuario no existe");
+    res.render("iniciar-sesion", {estatusSesion: "Correo o contraseña no válidos."});
   }
 
   //pool.end();
