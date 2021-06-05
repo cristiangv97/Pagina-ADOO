@@ -53,10 +53,6 @@ app.get("/agregar-metodo-pago.html", (req, res) => {
   res.render("agregar-metodo-pago");
 });
 
-app.get("/confirmar-compra.html", (req, res) => {
-  res.render("confirmar-compra");
-});
-
 app.get("/compra-finalizada.html", (req, res) => {
   res.render("compra-finalizada");
 });
@@ -192,6 +188,34 @@ app.get("/menu-personalizacion.html", async (req, res) => {
     res.render("menu-personalizacion", {estatusSesion: ""});
   }
 });///////////////////////////////////////
+
+// confirmar compra
+
+app.post("/confirmar-compra.html", async (req, res) => {
+  //res.render("index", { entradaCorreo, resCatalogo });
+  if (enSesion){
+    console.log(enSesion);
+    res.render("confirmar-compra", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("iniciar-sesion", {estatusSesion: ""});
+  }
+});
+
+app.get("/confirmar-compra.html", async (req, res) => {
+  //console.log("Nombre: " + resCatalogo[0]);
+  if (enSesion){
+    console.log(enSesion);
+    res.render("confirmar-compra", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("iniciar-sesion", {estatusSesion: ""});
+  }
+});///////////////////////////////////////
+
+
 const getCatalogo = async () => {
   try {
     let veh = [];
