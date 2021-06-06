@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Método de pago</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/personal.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
+  <script src="js/bootstrap.bundle.min.js"></script>
+
+  <script src="js/form-registro.js"></script>
+
+  <script src="js/validetta/validetta.js"></script>
+  <script src="js/validetta/validettaLang-es-ES.js"></script>
+  <link rel="stylesheet" href="js/validetta/validetta.min.css">
+</head>
+
+
+
+
+
+<body style="background-color: #c8c7c7">
+    <!-- NAVBAR -->
+    <div class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">
+                Isurus Ictu
+            </a>
+                <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mt-1 text-center">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+                        <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+                        <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+                        <li class="nav-item">
+                            <!-- Inicio de DROPDOWN -->
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDown" data-bs-toggle="dropdown" aria-expanded="false">Juanito Pérez</button>
+                                <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                                    <li><a class="dropdown-item" href="información-cuenta.html">Cuenta</a></li>
+                                    <li><a class="dropdown-item" href="consultar-compras.html">Compras</a></li>
+                                    <li><a class="dropdown-item" href="./index.html">Cerrar sesión</a></li>
+                                </ul>
+                            </div>
+                            <!-- Final de DROPDOWN -->
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+
+        <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
+            <h3 class="p-2 text-center">Modificar métodos de pago</h3>
+            <form class="form-control form-control-lg validar-form" id="formulario-registro" action="información-cuenta.html">
+                <h2 class="p-2 text-center">MÉTODO 1</h2>
+
+                <div class="mb-3">
+                    <label for="numero-tarjeta" class="form-label">Número de tarjeta*</label>
+                    <input type="text" class="form-control" id="numero-tarjeta" placeholder="5565 1265 7891 6549" data-validetta='creditCard,required' data-vd-message-required='Debes llenar el campo de Número de tarjeta'>
+                </div>
+                <div class="mb-3">
+                    <label for="codigo-seguridad" class="form-label">Código de seguridad*</label>
+                    <input type="text" class="form-control" id="codigo-seguridad" data-validetta='number,required,minLength[3],maxLength[3]' data-vd-message-required='Debes llenar el campo de Código de seguridad'>
+                </div>
+                <div class="mb-3">
+                    <label for="fecha-vencimiento" class="form-label">Fecha de vencimiento*</label>
+                    <input type="date" class="form-control" id="fecha-vencimiento" data-validetta='required' data-vd-message-required='Debes llenar el campo de Fecha de vencimiento'>
+                </div>
+                <h4 class="p-2 text-center">Datos del propietario</h4>
+
+                <div class="mb-3">
+                    <label for="nombre-propietario" class="form-label">Nombre completo*</label>
+                    <input type="text" class="form-control" id="nombre-propietario" placeholder="Juanito Pérez" data-validetta='letters,required' data-vd-message-required='Debes llenar el campo de Nombre'>
+                </div>
+                <div class="mb-3">
+                    <label for="telefono-propietario" class="form-label">Teléfono*</label>
+                    <input type="text" class="form-control" id="telefono-propietario" placeholder="5604688947" data-validetta='number,required,minLength[10],maxLength[10]' data-vd-message-required='Debes llenar el campo de Telefono'>
+                </div>
+                <div class="text-center">
+                    <a href="#" class="btn btn-primary col-4" role="button">Guardar</a>
+                    <a href="#" class="btn btn-danger col-4" role="button">Eliminar</a>
+                </div>
+                <!-- <a href="confirmar-compra.html" class="btn btn-primary col-12 my-3" role="button">Añadir método de pago</a> -->
+                <button class="btn btn-primary col-12 my-3" type="submit">Añadir método de pago</button>
+            </form>
+        </div>
+    </div>
+
+
+
+
+
+    <!--</div>-->
+</body>
+
+</html>

@@ -1,0 +1,169 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Publicar automovil modelo A-4</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/personal.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
+    <script src="../../js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../js/confirmar-compra.js"></script>
+        <script src="../../js/publicar-automovil-5.js"></script>
+</head>
+
+
+
+
+
+<body style="background-color: #c8c7c7">
+<!-- NAVBAR -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                Isurus Ictu
+            </a>
+            <button class="navbar-toggler ms-auto"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mt-1 text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+                    <li class="nav-item">
+                        <!-- Inicio de DROPDOWN -->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDown" data-bs-toggle="dropdown" aria-expanded="false">Carros Mauricio</button>
+                            <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                                <li><a class="dropdown-item" href="mi cuenta.html">Mi cuenta</a></li>
+                                <li><a class="dropdown-item active" href="publicar-automovil-1.html">Publicar</a></li>
+                                <li><a class="dropdown-item" href="mis-publicaciones.html">Mis publicaciones</a></li>
+                                <li><a class="dropdown-item" href="./mis-ventas.html">Mis ventas</a></li>
+                                <li><a class="dropdown-item" href="../../index.html">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                        <!-- Final de DROPDOWN -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+
+    <div class="col p-20 mx-auto col-lg-6 col-sm-10 m-3">
+        <h3 class="text-center">Publicar Automovil: Modelo A</h3>
+        <form class="form-control form-control-lg" id="publicar-automovil-1">
+            <div class="contenedorCapacidades  mb-3">
+                <h4 class="p-2">Características personalizables</h4>
+
+
+
+                <div class="row" id="lista-caracteristicas">
+
+                    <!--    Ingreso de características del proveedor al vehiculo -->
+
+
+                    <!-- Titulo "caracterisiticas" -->
+
+                    <div class="col col-lg-6 col-sm-12">
+                        <label for='caracteristica-personalizacion' class='form-label w-100'>Característica</label>
+                        <input type='text' class='form-control' id='caracteristica-personalizacion' value='Color' disabled>
+                    </div>
+
+
+
+
+
+
+
+
+
+                    <!-- Titulo "opciones" -->
+                    <div class="col col-lg-6 col-sm-12" id="caracteristica-0">
+                        <div class="row">
+                            <label class='form-label' id="">Opciones</label>
+                            <div id="lista-caracteristica-0">
+                                <!--Elementos de las caracteristicas -->
+                                <span id="caracteristica-0-opcion-0"></span>
+                            </div>
+                            <button type="button" class="btn btn-info " onclick="agregarOpcion(0)">Agregar Opcion</button>
+                        </div>
+                    </div>
+                    <!--    Fin de ingreso de características del proveedor al vehiculo -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                </div>
+                <button type="button" class="btn btn-info mt-2 col-12" onclick="agregarCaracteristica()">Agregar característica</button>
+
+            </div>
+
+
+
+            <!-- botones -->
+
+            <div class="row text-center">
+                <div class="col">
+                    <a href='./publicar-automovil-1.html' class='btn btn-primary w-100' role='button'>Atras</a>
+                </div>
+                <div class="col">
+                    <button type="button" class="btn btn-danger w-100" data-bs-toggle="modal" data-bs-target="#cancelarPublicacion">Cancelar</button>
+                </div>
+                <div class="col">
+                    <a href='./publicar-automovil-6.html' class='btn btn-primary w-100' role='button'>Siguiente</a>
+                </div>
+            </div>
+
+            <div class="modal fade" id="cancelarPublicacion" tabindex="-1" aria-labelledby="botoncancelarPublicacion" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h2 class="modal-title" id="modalcancelarPublicacionLabel">¿Está seguro que desea borrar la publicación?</h2>
+                        </div>
+                        <div class="modal-body">
+                            <p>Si borra la publicación, todos los datos añadidos se perderán.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No cancelar</button>
+                            <a href="#misPublicaciones.html" class="btn btn-danger">Sí cancelar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+
+</div>
+</body>
+</html>

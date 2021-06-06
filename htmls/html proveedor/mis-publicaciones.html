@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Mis publicaciones</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../css/personal.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
+  <script src="../../js/bootstrap.bundle.min.js"></script>
+
+  <script src="../../js/confirmar-compra.js"></script>
+</head>
+
+
+
+
+<body style="background-color: #c8c7c7">
+<!-- NAVBAR -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../index.html">
+                Isurus Ictu
+            </a>
+            <button class="navbar-toggler ms-auto"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mt-1 text-center">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html">Catálogo completo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../mas-vendidos.html">Más vendidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../mas-recientes.html">Más recientes</a></li>
+                    <li class="nav-item">
+                        <!-- Inicio de DROPDOWN -->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDown" data-bs-toggle="dropdown" aria-expanded="false">Carros Mauricio</button>
+                            <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                                <li><a class="dropdown-item" href="./mi cuenta.html">Mi cuenta</a></li>
+                                <li><a class="dropdown-item" href="./publicar-automovil-1.html">Publicar</a></li>
+                                <li><a class="dropdown-item active" href="#">Mis publicaciones</a></li>
+                                <li><a class="dropdown-item" href="./mis-ventas.html">Mis ventas</a></li>
+                                <li><a class="dropdown-item" href="../../index.html">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                        <!-- Final de DROPDOWN -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+  <div class="input-group p-2">
+    <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Buscar"
+           aria-describedby="search-addon" />
+    <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
+    <a href="../../buscar-vehiculo.html" class="btn btn-primary">Buscar</a>
+  </div>
+
+  <!-- TITULO DE LA BÚSQUEDA -->
+    <div class="row mt-3">
+        <div class="col">
+        <h1>Mis ventas</h1>
+        </div>
+    </div>
+
+  <!--  Tarjetas de ventas-->
+
+    <div class="tarjetasVerCompras row">
+
+        <!-- automóvil 1 -->
+        <div class="card card-border mb-5 text-white bg-dark w-100">
+            <div class="card-body">
+                <div class="row g-0">
+                    <div class="colMisVentas col">
+                        <!-- imagen del carro -->
+                        <div class="imgVerCompras col-sm text-center">
+                            <img src="../../imgs/carro-1.png" alt="Carro uno" class="imagenCarro">
+                        </div>
+                    </div>
+        
+                    <!-- información del vehículo -->
+                    <div class="col">
+                        <h4>Características:</h4>
+                        <p>Versión: V-Turbo</p>
+                        <p>Marca: Toyota</p>
+                        <p>Fecha de publicación: 2/05/2021</p>
+                    </div>
+
+                    <!-- información del comprador -->
+                    <div class="col">
+                        <h4>Ventas:</h4>
+                        <p>Número de ventas: 24</p>
+                        <p>Última venta: 11/05/2021</p>
+                        <p>Estatus de la publicación: Activa</p>
+                    </div>
+                </div>
+                <!-- botones -->
+                <div class="row">
+                    <div class="col">
+                        <h2>Modelo A</h2>
+                    </div>
+                    
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100 h-100">Ver publicación</button>
+                    </div>
+
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100 h-100">Modificar publicación</button>
+                    </div>
+
+                    <div class="col">
+                        <button type="button" class="btn btn-warning w-100 h-100">Pausar</button>
+                    </div>
+
+                    <div class="col">
+                        <button type="button" class="btn btn-danger w-100 h-100">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+
+        <!-- Carro dos -->
+        <div class="card card-border mb-5 text-white bg-dark w-100">
+            <div class="card-body">
+                <div class="row g-0">
+                    <div class="col colMisVentas">
+                        <!-- imagen del carro -->
+                        <div class="imgVerCompras col-sm text-center">
+                            <img src="../../imgs/carro-2.png" alt="Carro uno" class="imagenCarro">
+                        </div>
+                    </div>
+        
+                    <!-- información del vehículo -->
+                    <div class="col">
+                        <h4>Características:</h4>
+                        <p>Modelo: B</p>
+                        <p>Versión: V-Xtreme</p>
+                        <p>Marca: Nissan</p>
+                        <p>Fecha de publicación: 10/05/2021</p>
+                    </div>
+
+                    <!-- información del comprador -->
+                    <div class="col">
+                        <h4>Ventas:</h4>
+                        <p>Número de ventas: 12</p>
+                        <p>Última venta: 12/05/2021</p>
+                        <p>Estatus de la publicación: Pausada</p>
+                    </div>
+                </div>
+
+                <!-- botones -->
+                <div class="row">
+                    <div class="col">
+                        <h2>Modelo A</h2>
+                    </div>
+                    
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100 h-100">Ver publicación</button>
+                    </div>
+
+                    <div class="col">
+                        <button type="button" class="btn btn-primary w-100 h-100">Modificar publicación</button>
+                    </div>
+
+                    <div class="col">
+                        <button type="button" class="btn btn-success w-100 h-100">Activar</button>
+                    </div>
+
+                    <div class="col">
+                        <button type="button" class="btn btn-danger w-100 h-100">Eliminar</button>
+                    </div>
+                </div>
+            </div>
+        </div> 
+    </div>
+
+  
+</div>
+</body>
+</html>

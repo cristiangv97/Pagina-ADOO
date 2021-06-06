@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Descripción del vehiculo</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+  <link rel="stylesheet" href="../../css/personal.css">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
+  <script src="../../js/bootstrap.bundle.min.js"></script>
+
+  <script src="../../js/confirmar-compra.js"></script>
+
+</head>
+<body style="background-color: #c8c7c7">
+<!-- NAVBAR -->
+<div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="../../index.html">
+                Isurus Ictu
+            </a>
+            <button class="navbar-toggler ms-auto"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mt-1 text-center">
+                    <li class="nav-item"><a class="nav-link" href="../../index.html">Catálogo completo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../mas-vendidos.html">Más vendidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="../../mas-recientes.html">Más recientes</a></li>
+                    <li class="nav-item">
+                        <!-- Inicio de DROPDOWN -->
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDownUsuario" data-bs-toggle="dropdown" aria-expanded="false">Carros Mauricio</button>
+                            <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                                <li><a class="dropdown-item" href="mi cuenta.html">Mi cuenta</a></li>
+                                <li><a class="dropdown-item" href="publicar-automovil-1.html">Publicar</a></li>
+                                <li><a class="dropdown-item" href="mis-publicaciones.html">Mis publicaciones</a></li>
+                                <li><a class="dropdown-item active" href="./mis-ventas.html">Mis ventas</a></li>
+                                <li><a class="dropdown-item" href="../../index.html">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                        <!-- Final de DROPDOWN -->
+                    </li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container">
+    <div class="input-group p-2">
+        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Buscar"
+                aria-describedby="search-addon" />
+        <a href="../../buscar-vehiculo.html" class="btn btn-primary">Buscar</a>
+    </div>
+
+    <div class="descripcionCompra p-5">
+        <div class="card mb-3 bg-dark text-white border-white card-border border-5">
+            <div class="container2">
+                <div class="row">
+                    <div class="col text-center">
+                        <h2>Detalles del comprador.</h2>
+                        <p><strong>Fecha de compra:</strong> 21/12/2021</p>
+                        <p><strong>Comprador:</strong> Juanito Pérez Sánchez</p>
+                        <p><strong>Teléfono: </strong> 5512345678</p>
+                        <p><strong>Correo: </strong> jperez@gmail.com</p>
+                        <!-- Fecha de compra, comprador, teléfono, correo. -->
+                    </div>
+                    <div class="col text-center">
+                        <h3>Imagen del automóvil.</h3>
+                        <div class="imgDetallesCompra">
+                            <img src="../../imgs/carro-1.png" alt="Automóvil comprado.">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center">
+                        <h3>Detalles del automóvil.</h3>
+                        <p><strong>Número de serie: </strong> #123456</p>
+                        <p><strong>Modelo: </strong>A</p>
+                        <p><strong>Versión: </strong>V-turbo</p>
+                        <p><strong>Color exterior: </strong>Gris</p>
+                        <p><strong>Asientos: </strong>Piel</p>
+                        <p><strong>Rines: </strong>Cromados</p>
+                        <!-- Número de serie del automóvil, modelo, versión y todas las Características y sus opciones. -->
+                    </div>
+                    <div class="col text-center">
+                        <h3>Detalles del pedido.</h3>
+                        <p><strong>Sucursal de entrega: </strong>Av. Wilfrido Massieu s/n, Nueva Industrial Vallejo, Gustavo A. Madero, 07738.</p>
+                        <p><strong>Tipo de pago: </strong>Tarjeta de crédito</p>
+                        <p><strong>Pago: </strong>$180,000.00</p>
+                        <p><strong>Estatus:</strong> Listo para la entrega.</p>
+                        <!-- Sucursal de entrega, tipo de pago, dinero pagado. -->
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center m-2">
+                        <button class="btnDisponible btn btn-primary" type="button" id="disponible">Dispobible para recoger</button>
+                        <button class="btnPublicacion btn btn-primary" type="button" id="verPublicacion">Ver publicación</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col text-center m-2">
+                        <button class="btnProblema btn btn-danger" type="button" id="reportarProblema">Reportar un problema</button>
+                        <button class="btnCancelarVenta btn btn-danger" type="button" id="cancelarVenta">Cancelar venta</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>
