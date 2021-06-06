@@ -27,6 +27,12 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
+
+
+
+
+
+/************************************************ HOME ************************************************/
 app.get("/", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
@@ -41,18 +47,29 @@ app.get("/", async (req, res) => {
   }
 });
 
-app.get("/iniciar-sesion.html", (req, res) => {
-  res.render("iniciar-sesion", {estatusSesion: ""});
-});
 
+
+
+
+/************************************************ CREAR CUENTA ************************************************/
 app.post("/crear-cuenta.html", (req, res) => {
   res.render("verificar-correo");
 });
 
+
+
+
+
+/************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/agregar-metodo-pago.html", (req, res) => {
   res.render("agregar-metodo-pago");
 });
 
+
+
+
+
+/************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/compra-finalizada.html", (req, res) => {
   res.render("compra-finalizada");
 });
@@ -61,18 +78,38 @@ app.get("/compra-finalizada.html", (req, res) => {
 //   res.render("menu-personalizacion");
 // });
 
+
+
+
+
+/************************************************ MAS VENDIDOS ************************************************/
 app.get("/mas-vendidos.html", (req, res) => {
   res.render("mas-vendidos");
 });
 
+
+
+
+
+/************************************************ MAS RECIENTES ************************************************/
 app.get("/mas-recientes.html", (req, res) => {
   res.render("mas-recientes");
 });
 
+
+
+
+
+/************************************************ CREAR CUENTA ************************************************/
 app.get("/crear-cuenta.html", (req, res) => {
   res.render("crear-cuenta");
 });
 
+
+
+
+
+/************************************************ DESCRIPCION ************************************************/
 app.post("/descripcion.html", (req, res) => {
   // console.log('descripcion llamada');
   if (enSesion){
@@ -86,6 +123,27 @@ app.post("/descripcion.html", (req, res) => {
 
 });
 
+app.post("/descripcion", async (req, res) => {
+  let { model } = req.body;
+  console.log("..." + model);
+  //res.render("index", { entradaCorreo, resCatalogo });
+  res.render("descripcion");
+});
+
+app.post("/descripcion", async (req, res) => {
+  let { model } = req.body;
+  console.log("..." + model);
+  //res.render("index", { entradaCorreo, resCatalogo });
+  res.render("descripcion");
+});
+
+
+
+
+
+
+
+/************************************************ INDEX ************************************************/
 app.get("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
@@ -112,6 +170,15 @@ app.post("/index.html", async (req, res) => {
     console.log('not-logged-in');
     res.render("index", {estatusSesion: "", resCatalogo});
   }
+});
+
+
+
+
+
+/************************************************ INICIAR SESION ************************************************/
+app.get("/iniciar-sesion.html", (req, res) => {
+  res.render("iniciar-sesion", {estatusSesion: ""});
 });
 
 app.post("/iniciar-sesion.html", async (req, res) => {
@@ -150,21 +217,11 @@ app.post("/iniciar-sesion.html", async (req, res) => {
   //pool.end();
 });
 
-app.post("/descripcion", async (req, res) => {
-  let { model } = req.body;
-  console.log("..." + model);
-  //res.render("index", { entradaCorreo, resCatalogo });
-  res.render("descripcion");
-});
-
-app.post("/descripcion", async (req, res) => {
-  let { model } = req.body;
-  console.log("..." + model);
-  //res.render("index", { entradaCorreo, resCatalogo });
-  res.render("descripcion");
-});
 
 
+
+
+/************************************************ MENU PERSONALIZACION ************************************************/
 app.post("/menu-personalizacion.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion){
@@ -187,10 +244,16 @@ app.get("/menu-personalizacion.html", async (req, res) => {
     console.log('not-logged-in');
     res.render("menu-personalizacion", {estatusSesion: ""});
   }
-});///////////////////////////////////////
+});
 
-// confirmar compra
 
+
+
+
+
+
+
+/************************************************ CONFIRMAR COMPRA ************************************************/
 app.post("/confirmar-compra.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion){
@@ -213,8 +276,19 @@ app.get("/confirmar-compra.html", async (req, res) => {
     console.log('not-logged-in');
     res.render("iniciar-sesion", {estatusSesion: ""});
   }
-});///////////////////////////////////////
+});
 
+
+
+
+
+
+
+
+
+/*****************************************************************************************************************/
+/************************************************ FUNCIONES ADICI ************************************************/
+/*****************************************************************************************************************/
 
 const getCatalogo = async () => {
   try {
@@ -236,7 +310,7 @@ const getCatalogo = async () => {
     console.log(e);
   }
 };
-///////////////////////////////////////
+
 
 app.get("/users/register", (req, res) => {
   res.render("register");
