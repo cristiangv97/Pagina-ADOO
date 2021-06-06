@@ -1,5 +1,6 @@
 drop table metodoPAgo cascade;
 drop table usuarioComprador cascade;
+drop table vehiculo;
 drop table modeloCombustion;
 ----------------------------
 --los campos aceptan null de momento SOLO para hacer las pruebas de incersiones

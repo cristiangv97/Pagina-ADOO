@@ -5,9 +5,16 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  password: "1234",
-  database: "postgres",
+  password: "maravilloso",
+  // password: "123",
+  // password: "admin",
+  // database: "postgres",
+  database: "ADOO",
+
+
 };
+
+var enSesion;
 
 const pool = new Pool(config);
 
@@ -20,50 +27,151 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
+
+
+
+
+
+/************************************************ HOME ************************************************/
 app.get("/", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   //console.log("Nombre: " + resCatalogo[0]);
-  res.render("index", { entradaCorreo: "", resCatalogo });
+  if (enSesion){
+    console.log(enSesion);
+    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("index", {estatusSesion: "", resCatalogo});
+  }
 });
 
-app.get("/iniciar-sesion.html", (req, res) => {
-  res.render("iniciar-sesion", { state: "" });
+
+
+
+
+/************************************************ CREAR CUENTA ************************************************/
+app.post("/crear-cuenta.html", (req, res) => {
+  res.render("verificar-correo");
 });
 
+
+
+
+
+/************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/agregar-metodo-pago.html", (req, res) => {
   res.render("agregar-metodo-pago");
 });
 
-app.get("/confirmar-compra.html", (req, res) => {
-  res.render("confirmar-compra");
-});
 
+
+
+
+/************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/compra-finalizada.html", (req, res) => {
   res.render("compra-finalizada");
 });
 
-app.get("/menu-personalizacion.html", (req, res) => {
-  res.render("menu-personalizacion");
-});
+// app.get("/menu-personalizacion.html", (req, res) => {
+//   res.render("menu-personalizacion");
+// });
 
+
+
+
+
+/************************************************ MAS VENDIDOS ************************************************/
 app.get("/mas-vendidos.html", (req, res) => {
   res.render("mas-vendidos");
 });
 
+
+
+
+
+/************************************************ MAS RECIENTES ************************************************/
 app.get("/mas-recientes.html", (req, res) => {
   res.render("mas-recientes");
+});
+
+
+
+
+
+/************************************************ CREAR CUENTA ************************************************/
+app.get("/crear-cuenta.html", (req, res) => {
+  res.render("crear-cuenta");
+});
+
+
+
+
+
+/************************************************ DESCRIPCION ************************************************/
+app.post("/descripcion", (req, res) => {
+  // console.log('descripcion llamada');
+  if (enSesion){
+    console.log('logged-in');
+    res.render("descripcion", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("descripcion", {estatusSesion: ""});
+  }
+
+});
+
+app.get("/descripcion.html", (req, res) => {
+  if (enSesion){
+    console.log('logged-in');
+    res.render("descripcion", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("descripcion", {estatusSesion: ""});
+  }
 });
 
 app.get("/crear-cuenta.html", (req, res) => {
   res.render("crear-cuenta");
 });
 
+
+
+
+
+
+
+
+/************************************************ INDEX ************************************************/
 app.get("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   //console.log("Nombre: " + resCatalogo[0]);
-  res.render("index", { entradaCorreo: "", resCatalogo });
+  if (enSesion){
+    console.log(enSesion);
+    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("index", {estatusSesion: "", resCatalogo});
+  }
+});
+
+app.post("/index.html", async (req, res) => {
+  let resCatalogo = [];
+  resCatalogo = await getCatalogo();
+  //console.log("Nombre: " + resCatalogo[0]);
+  if (enSesion){
+    console.log(enSesion);
+    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("index", {estatusSesion: "", resCatalogo});
+  }
 });
 
 app.post("/crear-cuenta.html", async (req, res) => {
@@ -108,8 +216,8 @@ app.post("/crear-cuenta.html", async (req, res) => {
 
         return result;
     }
-    
-    //envia 
+
+    //envia
     let codigoVer = generateString(6);
     let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
@@ -147,9 +255,15 @@ app.post("/crear-cuenta.html", async (req, res) => {
 
 });
 
+/************************************************ INICIAR SESION ************************************************/
+app.get("/iniciar-sesion.html", (req, res) => {
+  res.render("iniciar-sesion", {estatusSesion: ""});
+});
+
 app.post("/iniciar-sesion.html", async (req, res) => {
   let { entradaCorreo, entradaContrasena } = req.body;
   console.log({ entradaCorreo, entradaContrasena });
+
 
   //let hashedPassword = await bcrypt.hash(password, 10);
   //console.log(hashedPassword);
@@ -159,33 +273,100 @@ app.post("/iniciar-sesion.html", async (req, res) => {
     [entradaCorreo]
   );
 
-  if (result.rowCount != 0) {
-    var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
-    const resCatalogo = await getCatalogo();
+    console.log("Contador de resultados: " + result.rowCount);
 
-    console.log("Clave: " + myJSON);
-
-    if (myJSON == entradaContrasena) {
-      console.log("Usuario valido");
-      res.render("index", { entradaCorreo, resCatalogo });
-    } else {
-      console.log("No se encontraron coincidencias para este correo");
-      res.render("iniciar-sesion", { state: "Datos Erroneos" });
+    if (result.rowCount > 0) {
+        var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
+        const resCatalogo = await getCatalogo();
+        //console.log("getCatalogo()= " + resCatalogo);
+        console.log("Clave: " + myJSON);
+        // console.log("This is gen"+entradaCorreoGen);
+        if (myJSON == entradaContrasena) {
+            enSesion = true;
+            console.log("Usuario valido");
+            res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
+        }
+    }else{
+        console.log("El usuario no existe");
+        res.render("iniciar-sesion", {estatusSesion: "Correo o contraseña no válidos."});
     }
-  } else {
-    console.log("No se encontraron coincidencias para este correo");
-    res.render("iniciar-sesion", { state: "Datos Erroneos" });
-  }
+
   //pool.end();
 });
 
-app.get("/descripcion.html", async (req, res) => {
-  //let { model } = req.body;
-  //console.log("..." + model);
+
+
+
+
+/************************************************ MENU PERSONALIZACION ************************************************/
+app.post("/menu-personalizacion.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
-  res.render("descripcion");
+  if (enSesion){
+    console.log(enSesion);
+    res.render("menu-personalizacion", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("menu-personalizacion", {estatusSesion: ""});
+  }
 });
-///////////////////////////////////////
+
+app.get("/menu-personalizacion.html", async (req, res) => {
+  //console.log("Nombre: " + resCatalogo[0]);
+  if (enSesion){
+    console.log(enSesion);
+    res.render("menu-personalizacion", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("menu-personalizacion", {estatusSesion: ""});
+  }
+});
+
+
+
+
+
+
+
+
+/************************************************ CONFIRMAR COMPRA ************************************************/
+app.post("/confirmar-compra.html", async (req, res) => {
+  //res.render("index", { entradaCorreo, resCatalogo });
+  if (enSesion){
+    console.log(enSesion);
+    res.render("confirmar-compra", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("iniciar-sesion", {estatusSesion: ""});
+  }
+});
+
+app.get("/confirmar-compra.html", async (req, res) => {
+  //console.log("Nombre: " + resCatalogo[0]);
+  if (enSesion){
+    console.log(enSesion);
+    res.render("confirmar-compra", {estatusSesion: "sesion-iniciada"});
+  }
+  else{
+    console.log('not-logged-in');
+    res.render("iniciar-sesion", {estatusSesion: ""});
+  }
+});
+
+
+
+
+
+
+
+
+
+/*****************************************************************************************************************/
+/************************************************ FUNCIONES EXTRA ************************************************/
+/*****************************************************************************************************************/
+
 const getCatalogo = async () => {
   try {
     let veh = [];

@@ -31,13 +31,15 @@
     <script src="js/bootstrap.bundle.min.js"></script>
 
     <script src="js/form-registro.js"></script>
+    <script src="js/sesion.js"></script>
 
     <script src="js/validetta/validetta.js"></script>
     <script src="js/validetta/validettaLang-es-ES.js"></script>
     <link rel="stylesheet" href="js/validetta/validetta.min.css" />
   </head>
 
-  <body style="background-color: #c8c7c7">
+  <body style="background-color: #c8c7c7" onload="checarValidacion('<%=estatusSesion%>')">
+
     <!-- NAVBAR -->
     <div class="container-fluid">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
@@ -121,7 +123,6 @@
             />
           </div>
           <!-- <a href="index.html" class="btn btn-primary col-12" role="button">Iniciar sesión</a> -->
-          <p style="color: red"><%=state%></p>
           <button
             type="submit"
             class="btn btn-primary col-12"
