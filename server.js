@@ -6,12 +6,10 @@ const config = {
   user: "postgres",
   host: "localhost",
   // password: "maravilloso",
-  password: "123",
+  password: "1234",
   // password: "admin",
   database: "postgres",
   // database: "ADOO",
-
-
 };
 
 var enSesion;
@@ -27,47 +25,29 @@ app.use(express.static(__dirname + "/public"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: false }));
 
-
-
-
-
-
 /************************************************ HOME ************************************************/
 app.get("/", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   //console.log("Nombre: " + resCatalogo[0]);
-  if (enSesion){
+  if (enSesion) {
     console.log(enSesion);
-    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
-  }
-  else{
-    console.log('not-logged-in');
-    res.render("index", {estatusSesion: "", resCatalogo});
+    res.render("index", { estatusSesion: "sesion-iniciada", resCatalogo });
+  } else {
+    console.log("not-logged-in");
+    res.render("index", { estatusSesion: "", resCatalogo });
   }
 });
-
-
-
-
 
 /************************************************ CREAR CUENTA ************************************************/
 app.post("/crear-cuenta.html", (req, res) => {
   res.render("verificar-correo");
 });
 
-
-
-
-
 /************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/agregar-metodo-pago.html", (req, res) => {
   res.render("agregar-metodo-pago");
 });
-
-
-
-
 
 /************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/compra-finalizada.html", (req, res) => {
@@ -78,85 +58,58 @@ app.get("/compra-finalizada.html", (req, res) => {
 //   res.render("menu-personalizacion");
 // });
 
-
-
-
-
 /************************************************ MAS VENDIDOS ************************************************/
 app.get("/mas-vendidos.html", (req, res) => {
   res.render("mas-vendidos");
 });
-
-
-
-
 
 /************************************************ MAS RECIENTES ************************************************/
 app.get("/mas-recientes.html", (req, res) => {
   res.render("mas-recientes");
 });
 
-
-
-
-
 /************************************************ CREAR CUENTA ************************************************/
 app.get("/crear-cuenta.html", (req, res) => {
   res.render("crear-cuenta");
 });
 
-
-
-
-
 /************************************************ DESCRIPCION ************************************************/
 app.post("/descripcion", (req, res) => {
   // console.log('descripcion llamada');
-  if (enSesion){
-    console.log('logged-in');
-    res.render("descripcion", {estatusSesion: "sesion-iniciada"});
+  if (enSesion) {
+    console.log("logged-in");
+    res.render("descripcion", { estatusSesion: "sesion-iniciada" });
+  } else {
+    console.log("not-logged-in");
+    res.render("descripcion", { estatusSesion: "" });
   }
-  else{
-    console.log('not-logged-in');
-    res.render("descripcion", {estatusSesion: ""});
-  }
-
 });
 
 app.get("/descripcion.html", (req, res) => {
-  if (enSesion){
-    console.log('logged-in');
-    res.render("descripcion", {estatusSesion: "sesion-iniciada"});
-  }
-  else{
-    console.log('not-logged-in');
-    res.render("descripcion", {estatusSesion: ""});
+  if (enSesion) {
+    console.log("logged-in");
+    res.render("descripcion", { estatusSesion: "sesion-iniciada" });
+  } else {
+    console.log("not-logged-in");
+    res.render("descripcion", { estatusSesion: "" });
   }
 });
 
 app.get("/crear-cuenta.html", (req, res) => {
   res.render("crear-cuenta");
 });
-
-
-
-
-
-
-
 
 /************************************************ INDEX ************************************************/
 app.get("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   //console.log("Nombre: " + resCatalogo[0]);
-  if (enSesion){
+  if (enSesion) {
     console.log(enSesion);
-    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
-  }
-  else{
-    console.log('not-logged-in');
-    res.render("index", {estatusSesion: "", resCatalogo});
+    res.render("index", { estatusSesion: "sesion-iniciada", resCatalogo });
+  } else {
+    console.log("not-logged-in");
+    res.render("index", { estatusSesion: "", resCatalogo });
   }
 });
 
@@ -164,19 +117,25 @@ app.post("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   //console.log("Nombre: " + resCatalogo[0]);
-  if (enSesion){
+  if (enSesion) {
     console.log(enSesion);
-    res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
-  }
-  else{
-    console.log('not-logged-in');
-    res.render("index", {estatusSesion: "", resCatalogo});
+    res.render("index", { estatusSesion: "sesion-iniciada", resCatalogo });
+  } else {
+    console.log("not-logged-in");
+    res.render("index", { estatusSesion: "", resCatalogo });
   }
 });
 
 app.post("/crear-cuenta.html", async (req, res) => {
   //implementación solo para usuario
-  let { nombre_registro, apellidoPaterno, apellidoMaterno, correo,  contrasena, confirmarContrasena} = req.body;
+  let {
+    nombre_registro,
+    apellidoPaterno,
+    apellidoMaterno,
+    correo,
+    contrasena,
+    confirmarContrasena,
+  } = req.body;
 
   const result = await pool.query(
     "select * from usuarioComprador where correo=$1",
@@ -184,7 +143,7 @@ app.post("/crear-cuenta.html", async (req, res) => {
   );
 
   //buen código del stack overflow
-  Object.size = function(obj) {
+  Object.size = function (obj) {
     var size = 0,
       key;
     for (key in obj) {
@@ -199,71 +158,68 @@ app.post("/crear-cuenta.html", async (req, res) => {
 
   //si  encuentra un correo igual el tamaño != 0
   if (tamanio === 0) {
-    console.log('Registrando usuario');
+    console.log("Registrando usuario");
     const result = await pool.query(
       "INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave) VALUES ($1, $3, $2, $4, $5)",
       [nombre_registro, apellidoPaterno, apellidoMaterno, correo, contrasena]
     );
 
     //generación del código
-    const characters ='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     function generateString(length) {
-        let result = ' ';
-        const charactersLength = characters.length;
-        for ( let i = 0; i < length; i++ ) {
-            result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
+      let result = " ";
+      const charactersLength = characters.length;
+      for (let i = 0; i < length; i++) {
+        result += characters.charAt(
+          Math.floor(Math.random() * charactersLength)
+        );
+      }
 
-        return result;
+      return result;
     }
 
     //envia
     let codigoVer = generateString(6);
     let transporter = nodemailer.createTransport({
-        host: "smtp.gmail.com",
-        port: 587,
-        secure: false, // true for 465, false for other ports
-        auth: {
-          user: "isurusictu@gmail.com",
-          pass: "12345678Mm*"
-        },
+      host: "smtp.gmail.com",
+      port: 587,
+      secure: false, // true for 465, false for other ports
+      auth: {
+        user: "isurusictu@gmail.com",
+        pass: "12345678Mm*",
+      },
     });
     let mailOptions = {
-        from : "isurusictu@gmail.com",
-        to : correo,
-        subject : 'Código de verificación',
-        text : "Su código de verificación es " + codigoVer
+      from: "isurusictu@gmail.com",
+      to: correo,
+      subject: "Código de verificación",
+      text: "Su código de verificación es " + codigoVer,
     };
 
-    transporter.sendMail(mailOptions, function(err, data) {
-        if (err) {
-            console.log('RIP');
-            console.log(err);
-        }
-        else {
-            console.log('Si se mandó');
-        }
+    transporter.sendMail(mailOptions, function (err, data) {
+      if (err) {
+        console.log("RIP");
+        console.log(err);
+      } else {
+        console.log("Si se mandó");
+      }
     });
 
     res.render("verificar-correo");
+  } else {
+    console.log("Usuario ya registrado");
+    res.render("crear-cuenta");
   }
-
-  else {
-    console.log('Usuario ya registrado');
-    res.render('crear-cuenta');
-  }
-
 });
 
 /************************************************ INICIAR SESION ************************************************/
 app.get("/iniciar-sesion.html", (req, res) => {
-  res.render("iniciar-sesion", {estatusSesion: ""});
+  res.render("iniciar-sesion", { estatusSesion: "" });
 });
 
 app.post("/iniciar-sesion.html", async (req, res) => {
   let { entradaCorreo, entradaContrasena } = req.body;
   console.log({ entradaCorreo, entradaContrasena });
-
 
   //let hashedPassword = await bcrypt.hash(password, 10);
   //console.log(hashedPassword);
@@ -273,95 +229,74 @@ app.post("/iniciar-sesion.html", async (req, res) => {
     [entradaCorreo]
   );
 
-    console.log("Contador de resultados: " + result.rowCount);
+  console.log("Contador de resultados: " + result.rowCount);
 
-    if (result.rowCount > 0) {
-        var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
-        const resCatalogo = await getCatalogo();
-        //console.log("getCatalogo()= " + resCatalogo);
-        console.log("Clave: " + myJSON);
-        // console.log("This is gen"+entradaCorreoGen);
-        if (myJSON == entradaContrasena) {
-            enSesion = true;
-            console.log("Usuario valido");
-            res.render("index", {estatusSesion: "sesion-iniciada", resCatalogo});
-        }
-    }else{
-        console.log("El usuario no existe");
-        res.render("iniciar-sesion", {estatusSesion: "Correo o contraseña no válidos."});
+  if (result.rowCount > 0) {
+    var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
+    const resCatalogo = await getCatalogo();
+    //console.log("getCatalogo()= " + resCatalogo);
+    console.log("Clave: " + myJSON);
+    // console.log("This is gen"+entradaCorreoGen);
+    if (myJSON == entradaContrasena) {
+      enSesion = true;
+      console.log("Usuario valido");
+      res.render("index", { estatusSesion: "sesion-iniciada", resCatalogo });
     }
+  } else {
+    console.log("El usuario no existe");
+    res.render("iniciar-sesion", {
+      estatusSesion: "Correo o contraseña no válidos.",
+    });
+  }
 
   //pool.end();
 });
 
-
-
-
-
 /************************************************ MENU PERSONALIZACION ************************************************/
 app.post("/menu-personalizacion.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
-  if (enSesion){
+  if (enSesion) {
     console.log(enSesion);
-    res.render("menu-personalizacion", {estatusSesion: "sesion-iniciada"});
-  }
-  else{
-    console.log('not-logged-in');
-    res.render("menu-personalizacion", {estatusSesion: ""});
+    res.render("menu-personalizacion", { estatusSesion: "sesion-iniciada" });
+  } else {
+    console.log("not-logged-in");
+    res.render("menu-personalizacion", { estatusSesion: "" });
   }
 });
 
 app.get("/menu-personalizacion.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
-  if (enSesion){
+  if (enSesion) {
     console.log(enSesion);
-    res.render("menu-personalizacion", {estatusSesion: "sesion-iniciada"});
-  }
-  else{
-    console.log('not-logged-in');
-    res.render("menu-personalizacion", {estatusSesion: ""});
+    res.render("menu-personalizacion", { estatusSesion: "sesion-iniciada" });
+  } else {
+    console.log("not-logged-in");
+    res.render("menu-personalizacion", { estatusSesion: "" });
   }
 });
-
-
-
-
-
-
-
 
 /************************************************ CONFIRMAR COMPRA ************************************************/
 app.post("/confirmar-compra.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
-  if (enSesion){
+  if (enSesion) {
     console.log(enSesion);
-    res.render("confirmar-compra", {estatusSesion: "sesion-iniciada"});
-  }
-  else{
-    console.log('not-logged-in');
-    res.render("iniciar-sesion", {estatusSesion: ""});
+    res.render("confirmar-compra", { estatusSesion: "sesion-iniciada" });
+  } else {
+    console.log("not-logged-in");
+    res.render("iniciar-sesion", { estatusSesion: "" });
   }
 });
 
 app.get("/confirmar-compra.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
-  if (enSesion){
+  if (enSesion) {
     console.log(enSesion);
-    res.render("confirmar-compra", {estatusSesion: "sesion-iniciada"});
-  }
-  else{
-    console.log('not-logged-in');
-    res.render("iniciar-sesion", {estatusSesion: ""});
+    res.render("confirmar-compra", { estatusSesion: "sesion-iniciada" });
+  } else {
+    console.log("not-logged-in");
+    res.render("iniciar-sesion", { estatusSesion: "" });
   }
 });
-
-
-
-
-
-
-
-
 
 /*****************************************************************************************************************/
 /************************************************ FUNCIONES EXTRA ************************************************/
