@@ -17,34 +17,51 @@
     <script src="../js/sesion.js"></script>
 </head>
 
-<body style="background-color: #c8c7c7" onload="checarSesion('<%=estatusSesion%>')">
+<body style="background-color: #c8c7c7">
+<!-- NAVBAR -->
 <div class="container-fluid" id="barra-de-navegacion">
-<!--    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">-->
-<!--        <div class="container-fluid">-->
-<!--            <a class="navbar-brand" href="index.html">-->
-<!--                Isurus Ictu-->
-<!--            </a>-->
-<!--            <button class="navbar-toggler ms-auto"-->
-<!--                    type="button"-->
-<!--                    data-bs-toggle="collapse"-->
-<!--                    data-bs-target="#navbarSupportedContent"-->
-<!--                    aria-controls="navbarSupportedContent"-->
-<!--                    aria-expanded="false"-->
-<!--                    aria-label="Toggle navigation">-->
-<!--                <span class="navbar-toggler-icon"></span>-->
-<!--            </button>-->
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="index.html">
+                Isurus Ictu
+            </a>
+            <button class="navbar-toggler ms-auto"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-<!--            <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
-<!--                <ul class="navbar-nav ms-auto mt-1 text-center">-->
-<!--                    <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link bg-secondary btn active btn-nav" href="iniciar-sesion.html">Iniciar Sesion</a></li>-->
-<!--                    <li class="nav-item"><a class="nav-link bg-primary btn active btn-nav" href="crear-cuenta.html">Registrarse</a></li>-->
-<!--                </ul>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--    </nav>-->
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ms-auto mt-1 text-center">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
+                    <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
+                    <!-- Checamos si la sesion ha sido declarada como iniciada -->
+                    <% if (estatusSesion) { %>
+                    <li class="nav-item">
+                        <div class="dropdown">
+                            <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDown" data-bs-toggle="dropdown" aria-expanded="false"><%=estatusSesion%></button>
+                            <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                                <li><a class="dropdown-item" href="información-cuenta.html">Cuenta</a></li>
+                                <li><a class="dropdown-item" href="consultar-compras.html">Compras</a></li>
+                                <li><a class="dropdown-item" href="./index.html">Cerrar sesión</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <!-- En caso contrario mandamos este bloque -->
+                    <% } else {%>
+                        <li class="nav-item"><a class="nav-link bg-secondary btn active btn-nav" href="iniciar-sesion.html">Iniciar Sesion</a></li>
+                        <li class="nav-item"><a class="nav-link bg-primary btn active btn-nav" href="crear-cuenta.html">Registrarse</a></li>
+
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </nav>
 </div>
 
 <div class="container">

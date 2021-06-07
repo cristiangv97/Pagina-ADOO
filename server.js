@@ -13,6 +13,7 @@ const config = {
 };
 
 var enSesion;
+var estatusSesion;
 
 const pool = new Pool(config);
 
@@ -32,10 +33,10 @@ app.get("/", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
     console.log(enSesion);
-    res.render("index", { estatusSesion: "sesion-iniciada", resCatalogo });
+    res.render("index", { estatusSesion, resCatalogo });
   } else {
     console.log("not-logged-in");
-    res.render("index", { estatusSesion: "", resCatalogo });
+    res.render("index", { estatusSesion, resCatalogo });
   }
 });
 
@@ -78,20 +79,20 @@ app.post("/descripcion", (req, res) => {
   // console.log('descripcion llamada');
   if (enSesion) {
     console.log("logged-in");
-    res.render("descripcion", { estatusSesion: "sesion-iniciada" });
+    res.render("descripcion", { estatusSesion});
   } else {
     console.log("not-logged-in");
-    res.render("descripcion", { estatusSesion: "" });
+    res.render("descripcion", { estatusSesion});
   }
 });
 
 app.get("/descripcion.html", (req, res) => {
   if (enSesion) {
     console.log("logged-in");
-    res.render("descripcion", { estatusSesion: "sesion-iniciada" });
+    res.render("descripcion", { estatusSesion});
   } else {
     console.log("not-logged-in");
-    res.render("descripcion", { estatusSesion: "" });
+    res.render("descripcion", { estatusSesion});
   }
 });
 
@@ -106,10 +107,10 @@ app.get("/index.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
     console.log(enSesion);
-    res.render("index", { estatusSesion: "sesion-iniciada", resCatalogo });
+    res.render("index", { estatusSesion, resCatalogo });
   } else {
     console.log("not-logged-in");
-    res.render("index", { estatusSesion: "", resCatalogo });
+    res.render("index", { estatusSesion, resCatalogo });
   }
 });
 
@@ -119,10 +120,10 @@ app.post("/index.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
     console.log(enSesion);
-    res.render("index", { estatusSesion: "sesion-iniciada", resCatalogo });
+    res.render("index", { estatusSesion, resCatalogo });
   } else {
     console.log("not-logged-in");
-    res.render("index", { estatusSesion: "", resCatalogo });
+    res.render("index", { estatusSesion, resCatalogo });
   }
 });
 
@@ -214,7 +215,7 @@ app.post("/crear-cuenta.html", async (req, res) => {
 
 /************************************************ INICIAR SESION ************************************************/
 app.get("/iniciar-sesion.html", (req, res) => {
-  res.render("iniciar-sesion", { estatusSesion: "" });
+  res.render("iniciar-sesion", { estatusSesion });
 });
 
 app.post("/iniciar-sesion.html", async (req, res) => {
@@ -238,9 +239,16 @@ app.post("/iniciar-sesion.html", async (req, res) => {
     console.log("Clave: " + myJSON);
     // console.log("This is gen"+entradaCorreoGen);
     if (myJSON == entradaContrasena) {
+      estatusSesion = result.rows[0].nombreuc;
       enSesion = true;
       console.log("Usuario valido");
-      res.render("index", { estatusSesion: "sesion-iniciada", resCatalogo });
+      res.render("index", { estatusSesion, resCatalogo });
+    }
+    else {
+      console.log("El usuario no existe");
+      res.render("iniciar-sesion", {
+        estatusSesion: "Correo o contraseña no válidos.",
+      });
     }
   } else {
     console.log("El usuario no existe");
@@ -257,10 +265,10 @@ app.post("/menu-personalizacion.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
     console.log(enSesion);
-    res.render("menu-personalizacion", { estatusSesion: "sesion-iniciada" });
+    res.render("menu-personalizacion", { estatusSesion});
   } else {
     console.log("not-logged-in");
-    res.render("menu-personalizacion", { estatusSesion: "" });
+    res.render("menu-personalizacion", { estatusSesion });
   }
 });
 
@@ -268,10 +276,10 @@ app.get("/menu-personalizacion.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
     console.log(enSesion);
-    res.render("menu-personalizacion", { estatusSesion: "sesion-iniciada" });
+    res.render("menu-personalizacion", { estatusSesion});
   } else {
     console.log("not-logged-in");
-    res.render("menu-personalizacion", { estatusSesion: "" });
+    res.render("menu-personalizacion", { estatusSesion});
   }
 });
 
@@ -280,10 +288,10 @@ app.post("/confirmar-compra.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
     console.log(enSesion);
-    res.render("confirmar-compra", { estatusSesion: "sesion-iniciada" });
+    res.render("confirmar-compra", { estatusSesion});
   } else {
     console.log("not-logged-in");
-    res.render("iniciar-sesion", { estatusSesion: "" });
+    res.render("iniciar-sesion", { estatusSesion});
   }
 });
 
@@ -291,10 +299,10 @@ app.get("/confirmar-compra.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
     console.log(enSesion);
-    res.render("confirmar-compra", { estatusSesion: "sesion-iniciada" });
+    res.render("confirmar-compra", { estatusSesion});
   } else {
     console.log("not-logged-in");
-    res.render("iniciar-sesion", { estatusSesion: "" });
+    res.render("iniciar-sesion", { estatusSesion});
   }
 });
 
