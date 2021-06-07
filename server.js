@@ -50,14 +50,28 @@ app.get("/agregar-metodo-pago.html", (req, res) => {
   res.render("agregar-metodo-pago");
 });
 
-/************************************************ AGREGAR METODO DE PAGO ************************************************/
-app.get("/compra-finalizada.html", (req, res) => {
-  res.render("compra-finalizada");
+/************************************************ COMPRA FINALIZADA ************************************************/
+app.post("/compra-finalizada.html", async (req, res) => {
+  //res.render("index", { entradaCorreo, resCatalogo });
+  if (enSesion) {
+    console.log(enSesion);
+    res.render("compra-finalizada", { estatusSesion});
+  } else {
+    console.log("not-logged-in");
+    res.render("iniciar-sesion", { estatusSesion });
+  }
 });
 
-// app.get("/menu-personalizacion.html", (req, res) => {
-//   res.render("menu-personalizacion");
-// });
+app.get("/compra-finalizada.html", async (req, res) => {
+  //console.log("Nombre: " + resCatalogo[0]);
+  if (enSesion) {
+    console.log(enSesion);
+    res.render("compra-finalizada", { estatusSesion});
+  } else {
+    console.log("not-logged-in");
+    res.render("iniciar-sesion", { estatusSesion});
+  }
+});
 
 /************************************************ MAS VENDIDOS ************************************************/
 app.get("/mas-vendidos.html", (req, res) => {
@@ -300,6 +314,29 @@ app.get("/confirmar-compra.html", async (req, res) => {
   if (enSesion) {
     console.log(enSesion);
     res.render("confirmar-compra", { estatusSesion});
+  } else {
+    console.log("not-logged-in");
+    res.render("iniciar-sesion", { estatusSesion});
+  }
+});
+
+/************************************************ INORMACION CUENTA ************************************************/
+app.post("/informacion-cuenta.html", async (req, res) => {
+  //res.render("index", { entradaCorreo, resCatalogo });
+  if (enSesion) {
+    console.log(enSesion);
+    res.render("informacion-cuenta", { estatusSesion});
+  } else {
+    console.log("not-logged-in");
+    res.render("iniciar-sesion", { estatusSesion});
+  }
+});
+
+app.get("/informacion-cuenta.html", async (req, res) => {
+  //console.log("Nombre: " + resCatalogo[0]);
+  if (enSesion) {
+    console.log(enSesion);
+    res.render("informacion-cuenta", { estatusSesion});
   } else {
     console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion});
