@@ -5,11 +5,11 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  // password: "maravilloso",
-  password: "1234",
+  password: "maravilloso",
+  // password: "1234",
   // password: "admin",
-  database: "postgres",
-  // database: "ADOO",
+  // database: "postgres",
+  database: "ADOO",
 };
 
 var enSesion;
@@ -43,6 +43,23 @@ app.get("/", async (req, res) => {
 /************************************************ CREAR CUENTA ************************************************/
 app.post("/crear-cuenta.html", (req, res) => {
   res.render("verificar-correo");
+});
+
+/************************************************ CERRAR SESION ************************************************/
+app.get("/cerrar-sesion.html", async (req, res) => {
+  let resCatalogo = [];
+  resCatalogo = await getCatalogo();
+  estatusSesion = null;
+  enSesion = false;
+  res.render("index", {estatusSesion, resCatalogo});
+});
+
+app.post("/cerrar-sesion.html", async (req, res) => {
+  let resCatalogo = [];
+  resCatalogo = await getCatalogo();
+  estatusSesion = null;
+  enSesion = false;
+  res.render("index", {estatusSesion, resCatalogo});
 });
 
 /************************************************ AGREGAR METODO DE PAGO ************************************************/
