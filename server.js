@@ -51,7 +51,7 @@ app.get("/cerrar-sesion.html", async (req, res) => {
   resCatalogo = await getCatalogo();
   estatusSesion = null;
   enSesion = false;
-  res.render("index", {estatusSesion, resCatalogo});
+  res.render("index", { estatusSesion, resCatalogo });
 });
 
 app.post("/cerrar-sesion.html", async (req, res) => {
@@ -59,7 +59,7 @@ app.post("/cerrar-sesion.html", async (req, res) => {
   resCatalogo = await getCatalogo();
   estatusSesion = null;
   enSesion = false;
-  res.render("index", {estatusSesion, resCatalogo});
+  res.render("index", { estatusSesion, resCatalogo });
 });
 
 /************************************************ AGREGAR METODO DE PAGO ************************************************/
@@ -72,7 +72,7 @@ app.post("/compra-finalizada.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
     console.log(enSesion);
-    res.render("compra-finalizada", { estatusSesion});
+    res.render("compra-finalizada", { estatusSesion });
   } else {
     console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
@@ -83,10 +83,10 @@ app.get("/compra-finalizada.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
     console.log(enSesion);
-    res.render("compra-finalizada", { estatusSesion});
+    res.render("compra-finalizada", { estatusSesion });
   } else {
     console.log("not-logged-in");
-    res.render("iniciar-sesion", { estatusSesion});
+    res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
@@ -110,20 +110,20 @@ app.post("/descripcion", (req, res) => {
   // console.log('descripcion llamada');
   if (enSesion) {
     console.log("logged-in");
-    res.render("descripcion", { estatusSesion});
+    res.render("descripcion", { estatusSesion });
   } else {
     console.log("not-logged-in");
-    res.render("descripcion", { estatusSesion});
+    res.render("descripcion", { estatusSesion });
   }
 });
 
 app.get("/descripcion.html", (req, res) => {
   if (enSesion) {
     console.log("logged-in");
-    res.render("descripcion", { estatusSesion});
+    res.render("descripcion", { estatusSesion });
   } else {
     console.log("not-logged-in");
-    res.render("descripcion", { estatusSesion});
+    res.render("descripcion", { estatusSesion });
   }
 });
 
@@ -274,8 +274,7 @@ app.post("/iniciar-sesion.html", async (req, res) => {
       enSesion = true;
       console.log("Usuario valido");
       res.render("index", { estatusSesion, resCatalogo });
-    }
-    else {
+    } else {
       console.log("El usuario no existe");
       res.render("iniciar-sesion", {
         estatusSesion: "Correo o contraseña no válidos.",
@@ -296,7 +295,7 @@ app.post("/menu-personalizacion.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
     console.log(enSesion);
-    res.render("menu-personalizacion", { estatusSesion});
+    res.render("menu-personalizacion", { estatusSesion });
   } else {
     console.log("not-logged-in");
     res.render("menu-personalizacion", { estatusSesion });
@@ -307,10 +306,10 @@ app.get("/menu-personalizacion.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
     console.log(enSesion);
-    res.render("menu-personalizacion", { estatusSesion});
+    res.render("menu-personalizacion", { estatusSesion });
   } else {
     console.log("not-logged-in");
-    res.render("iniciar-sesion", { estatusSesion});
+    res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
@@ -319,10 +318,10 @@ app.post("/confirmar-compra.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
     console.log(enSesion);
-    res.render("confirmar-compra", { estatusSesion});
+    res.render("confirmar-compra", { estatusSesion });
   } else {
     console.log("not-logged-in");
-    res.render("iniciar-sesion", { estatusSesion});
+    res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
@@ -330,10 +329,10 @@ app.get("/confirmar-compra.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
     console.log(enSesion);
-    res.render("confirmar-compra", { estatusSesion});
+    res.render("confirmar-compra", { estatusSesion });
   } else {
     console.log("not-logged-in");
-    res.render("iniciar-sesion", { estatusSesion});
+    res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
@@ -342,10 +341,10 @@ app.post("/informacion-cuenta.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
     console.log(enSesion);
-    res.render("informacion-cuenta", { estatusSesion});
+    res.render("informacion-cuenta", { estatusSesion });
   } else {
     console.log("not-logged-in");
-    res.render("iniciar-sesion", { estatusSesion});
+    res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
@@ -353,10 +352,10 @@ app.get("/informacion-cuenta.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
     console.log(enSesion);
-    res.render("informacion-cuenta", { estatusSesion});
+    res.render("informacion-cuenta", { estatusSesion });
   } else {
     console.log("not-logged-in");
-    res.render("iniciar-sesion", { estatusSesion});
+    res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
@@ -371,7 +370,9 @@ const getCatalogo = async () => {
     var cantCatalogo = JSON.parse(JSON.stringify(resultV.rows[0]["count"]));
 
     for (let i = 0; i < cantCatalogo; i++) {
-      const consNom = await pool.query("select modelo from modeloCombustion");
+      const consNom = await pool.query(
+        "select nombreModelo from modeloCombustion"
+      );
       var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["modelo"]));
       veh.push(nombre);
     }
