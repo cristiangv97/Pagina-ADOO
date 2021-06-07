@@ -57,6 +57,7 @@ create table cuentaBancaria(
 	foreign key (idProveedor) references usuarioProveedor(idProveedor) on delete cascade
 );
 --modelos de autos de combustion y sus proveedores
+--atributos que aceptan valores vacios solo para entorno de pruebas
 create table modeloCombustion(
 	idModeloC serial primary key not null,
 	nombreModelo varchar(30) not null,
@@ -64,30 +65,30 @@ create table modeloCombustion(
 	versionModelo varchar(30) not null,
 	anoModelo char(4) not null,
 	descripcionModelo text not null,
-	motor varchar(30) not null,
-	kgMMA integer not null,
-	capacidadMaletero integer not null,
-	nPuertas integer not null,
-	nPlazas integer not null,
-	mAltura float not null,
-	mAncho float not null,
-	mDistanciaEjes float not null,
-	coeficienteAerodinamico float not null,
-	kmAutonomia integer not null,
-	kgPeso integer not null,
-	segAceleracion0a100 float not null,
-	susDelantera varchar(30) not null,
-	susTrasera varchar(30) not null,
-	frenosDelanteros varchar(30) not null,
-	frenosTraseros varchar(30) not null,
-	neumaticos varchar(30) not null,
-	materialLlantas varchar(30) not null,
-	tipoMotor varchar(30) not null,
-	kwPotencia float not null,
+	motorModelo varchar(30),
+	kgMMA integer,
+	capacidadMaletero integer,
+	nPuertas integer,
+	nPlazas integer,
+	mAltura float,
+	mAncho float,
+	mDistanciaEjes float,
+	coeficienteAerodinamico float,
+	kmAutonomia integer,
+	kgPeso integer,
+	segAceleracion0a100 float,
+	susDelantera varchar(30),
+	susTrasera varchar(30),
+	frenosDelanteros varchar(30),
+	frenosTraseros varchar(30),
+	neumaticos varchar(30),
+	materialLlantas varchar(30),
+	tipoMotor varchar(30),
+	kwPotencia float,
 	combustible varchar(30),
-	nCilindros integer not null,
-	cm3Cilindrada float not null,
-	gkmEmisionCO2 float not null
+	nCilindros integer,
+	cm3Cilindrada float,
+	gkmEmisionCO2 float
 );
 create table modeloProveedorC(
 	idModeloProveedorC varchar(10) primary key not null,
@@ -97,6 +98,7 @@ create table modeloProveedorC(
 	foreign key (idModeloC) references modeloCombustion(idModeloC) on delete cascade
 );
 --modelos de autos electricos y sus proveedores
+--atributos que aceptan valores vacios solo para entorno de pruebas
 create table modeloElectrico(
 	idModeloE serial primary key not null,
 	nombreModelo varchar(30) not null,
@@ -104,28 +106,27 @@ create table modeloElectrico(
 	versionModelo varchar(30) not null,
 	anoModelo char(4) not null,
 	descripcionModelo text not null,
-	motor varchar(30) not null,
-	kgMMA integer not null,
-	capacidadMaletero integer not null,
-	nPuertas integer not null,
-	nPlazas integer not null,
-	mAltura float not null,
-	mAncho float not null,
-	mDistanciaEjes float not null,
-	coeficienteAerodinamico float not null,
-	kmAutonomia integer not null,
-	kgPeso integer not null,
-	segAceleracion0a100 float not null,
-	susDelantera varchar(30) not null,
-	susTrasera varchar(30) not null,
-	frenosDelanteros varchar(30) not null,
-	frenosTraseros varchar(30) not null,
-	neumaticos varchar(30) not null,
-	materialLlantas varchar(30) not null,
-	kwPotencia float not null,
-	tipoMotor varchar(30) not null,
-	kwhCapacidadBateria float not null,
-	hTiempoCarga time not null
+	motorModelo varchar(30),
+	kgMMA integer,
+	capacidadMaletero integer,
+	nPuertas integer,
+	nPlazas integer,
+	mAltura float,
+	mAncho float,
+	mDistanciaEjes float,
+	coeficienteAerodinamico float,
+	kmAutonomia integer,
+	kgPeso integer,
+	segAceleracion0a100 float,
+	susDelantera varchar(30),
+	susTrasera varchar(30),
+	frenosDelanteros varchar(30),
+	frenosTraseros varchar(30),
+	materialLlantas varchar(30),
+	kwPotencia float,
+	tipoMotor varchar(30),
+	kwhCapacidadBateria float,
+	hTiempoCarga time
 );
 create table modeloProveedorE(
 	idModeloProveedorE varchar(10) primary key not null,
@@ -172,7 +173,7 @@ create table compra(
 -----------------------------------------
 INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave)
 VALUES ('Usuario','apelMat','apelPat','a@a.com','1234567');
---INSERT INTO modeloCombustion(modelo,marca,versionModelo,anoModelo,descripcionModelo,motorModelo)
+INSERT INTO modeloCombustion(nombreModelo,marcaModelo,versionModelo,anoModelo,descripcionModelo,motorModelo)
 VALUES ('Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L Skyactiv-G'),
 ('Mazda 2','Sedán','Sport','2019','Está muy chulo x2 jsjsjs','2.5L Skyactiv-G'),
 ('Mazda 3','Sedán','Eco','2017','Está muy chulo x3 jsjsjs','4L Skyactiv-T'),
