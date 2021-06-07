@@ -5,11 +5,11 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  password: "maravilloso",
-  // password: "1234",
+  // password: "maravilloso",
+  password: "1234",
   // password: "admin",
-  // database: "postgres",
-  database: "ADOO",
+  database: "postgres",
+  // database: "ADOO",
 };
 
 var enSesion;
