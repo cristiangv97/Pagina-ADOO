@@ -40,10 +40,6 @@ app.get("/", async (req, res) => {
   }
 });
 
-/************************************************ CREAR CUENTA ************************************************/
-app.post("/crear-cuenta.html", (req, res) => {
-  res.render("verificar-correo");
-});
 
 /************************************************ CERRAR SESION ************************************************/
 app.get("/cerrar-sesion.html", async (req, res) => {
@@ -64,7 +60,7 @@ app.post("/cerrar-sesion.html", async (req, res) => {
 
 /************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/agregar-metodo-pago.html", (req, res) => {
-  res.render("agregar-metodo-pago");
+  res.render("agregar-metodo-pago", {estatusSesion});
 });
 
 /************************************************ COMPRA FINALIZADA ************************************************/
@@ -158,6 +154,7 @@ app.post("/index.html", async (req, res) => {
   }
 });
 
+/************************************************ CREAR CUENTA ************************************************/
 app.post("/crear-cuenta.html", async (req, res) => {
   //implementación solo para usuario
   let {
