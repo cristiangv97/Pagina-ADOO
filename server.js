@@ -364,6 +364,7 @@ app.get("/informacion-cuenta.html", async (req, res) => {
 /*****************************************************************************************************************/
 
 const getCatalogo = async () => {
+  console.log("Si llego hasta aca");
   try {
     let veh = [];
     const resultV = await pool.query("select count(*) from modeloCombustion");
@@ -373,7 +374,8 @@ const getCatalogo = async () => {
       const consNom = await pool.query(
         "select nombreModelo from modeloCombustion"
       );
-      var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["modelo"]));
+      var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombremodelo"]));
+      //console.log("Nombres:" + nombre);
       veh.push(nombre);
     }
 
