@@ -5,9 +5,9 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  // password: "maravilloso",
+  password: "maravilloso",
   // password: "1234",
-  password: "admin",
+  // password: "admin",
   // database: "postgres",
   database: "ADOO",
 };
@@ -30,14 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
-  //console.log("Nombre: " + resCatalogo[0]);
-  if (enSesion) {
-    // console.log(enSesion);
     res.render("index", { estatusSesion, resCatalogo });
-  } else {
-    // console.log("not-logged-in");
-    res.render("index", { estatusSesion, resCatalogo });
-  }
 });
 
 
@@ -65,23 +58,17 @@ app.get("/agregar-metodo-pago.html", (req, res) => {
 
 /************************************************ COMPRA FINALIZADA ************************************************/
 app.post("/compra-finalizada.html", async (req, res) => {
-  //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
-    // console.log(enSesion);
     res.render("compra-finalizada", { estatusSesion });
   } else {
-    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
 app.get("/compra-finalizada.html", async (req, res) => {
-  //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    // console.log(enSesion);
     res.render("compra-finalizada", { estatusSesion });
   } else {
-    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
@@ -109,27 +96,14 @@ app.post("/descripcion", async (req, res) => {
 });
 
 app.get("/descripcion.html", (req, res) => {
-  if (enSesion) {
-    // console.log("logged-in");
-    res.render("descripcion", { estatusSesion});
-  } else {
-    // console.log("not-logged-in");
     res.render("descripcion", { estatusSesion });
-  }
 });
 
 /************************************************ INDEX ************************************************/
 app.get("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
-  //console.log("Nombre: " + resCatalogo[0]);
-  if (enSesion) {
-    // console.log(enSesion);
     res.render("index", { estatusSesion, resCatalogo });
-  } else {
-    // console.log("not-logged-in");
-    res.render("index", { estatusSesion, resCatalogo });
-  }
 });
 
 app.post("/index.html", async (req, res) => {
@@ -137,13 +111,7 @@ app.post("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   console.log("Nombre recibido del index es: " + nombre_carro);
-  if (enSesion) {
-    // console.log(enSesion);
     res.render("index", { estatusSesion, resCatalogo });
-  } else {
-    // console.log("not-logged-in");
-    res.render("index", { estatusSesion, resCatalogo });
-  }
 });
 
 /************************************************ CREAR CUENTA ************************************************/
@@ -285,69 +253,47 @@ app.post("/iniciar-sesion.html", async (req, res) => {
 
 /************************************************ MENU PERSONALIZACION ************************************************/
 app.post("/menu-personalizacion.html", async (req, res) => {
-  //res.render("index", { entradaCorreo, resCatalogo });
-  if (enSesion) {
-    // console.log(enSesion);
     res.render("menu-personalizacion", { estatusSesion });
-  } else {
-    // console.log("not-logged-in");
-    res.render("menu-personalizacion", { estatusSesion });
-  }
 });
 
 app.get("/menu-personalizacion.html", async (req, res) => {
-  //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    // console.log(enSesion);
     res.render("menu-personalizacion", { estatusSesion });
   } else {
-    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
 /************************************************ CONFIRMAR COMPRA ************************************************/
 app.post("/confirmar-compra.html", async (req, res) => {
-  //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
-    // console.log(enSesion);
     res.render("confirmar-compra", { estatusSesion });
   } else {
-    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
 app.get("/confirmar-compra.html", async (req, res) => {
-  //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    // console.log(enSesion);
     res.render("confirmar-compra", { estatusSesion });
   } else {
-    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
 /************************************************ INORMACION CUENTA ************************************************/
 app.post("/informacion-cuenta.html", async (req, res) => {
-  //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
-    // console.log(enSesion);
     res.render("informacion-cuenta", { estatusSesion });
   } else {
-    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
 
 app.get("/informacion-cuenta.html", async (req, res) => {
-  //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    // console.log(enSesion);
     res.render("informacion-cuenta", { estatusSesion });
   } else {
-    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
