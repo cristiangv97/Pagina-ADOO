@@ -32,10 +32,10 @@ app.get("/", async (req, res) => {
   resCatalogo = await getCatalogo();
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("index", { estatusSesion, resCatalogo });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("index", { estatusSesion, resCatalogo });
   }
 });
@@ -67,10 +67,10 @@ app.get("/agregar-metodo-pago.html", (req, res) => {
 app.post("/compra-finalizada.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("compra-finalizada", { estatusSesion });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
@@ -78,10 +78,10 @@ app.post("/compra-finalizada.html", async (req, res) => {
 app.get("/compra-finalizada.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("compra-finalizada", { estatusSesion });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
@@ -96,35 +96,31 @@ app.get("/mas-recientes.html", (req, res) => {
   res.render("mas-recientes");
 });
 
-/************************************************ CREAR CUENTA ************************************************/
-app.get("/crear-cuenta.html", (req, res) => {
-  res.render("crear-cuenta");
-});
 
 /************************************************ DESCRIPCION ************************************************/
 app.post("/descripcion", (req, res) => {
-  // console.log('descripcion llamada');
+  console.log("post descirpcion llamada");
+  let {
+    modelo
+  } = req.body;
+  console.log("El modelo seleccionado fue: " + modelo);
   if (enSesion) {
-    console.log("logged-in");
-    res.render("descripcion", { estatusSesion });
+    // console.log("logged-in");
+    res.render("descripcion", { estatusSesion, modelo });
   } else {
-    console.log("not-logged-in");
-    res.render("descripcion", { estatusSesion });
+    // console.log("not-logged-in");
+    res.render("descripcion", { estatusSesion, modelo });
   }
 });
 
 app.get("/descripcion.html", (req, res) => {
   if (enSesion) {
-    console.log("logged-in");
-    res.render("descripcion", { estatusSesion });
+    // console.log("logged-in");
+    res.render("descripcion", { estatusSesion});
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("descripcion", { estatusSesion });
   }
-});
-
-app.get("/crear-cuenta.html", (req, res) => {
-  res.render("crear-cuenta");
 });
 
 /************************************************ INDEX ************************************************/
@@ -133,28 +129,33 @@ app.get("/index.html", async (req, res) => {
   resCatalogo = await getCatalogo();
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("index", { estatusSesion, resCatalogo });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("index", { estatusSesion, resCatalogo });
   }
 });
 
 app.post("/index.html", async (req, res) => {
+  console.log("Llamaste a post del index");
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
-  //console.log("Nombre: " + resCatalogo[0]);
+  console.log("Nombre recibido del index es: " + nombre_carro);
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("index", { estatusSesion, resCatalogo });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("index", { estatusSesion, resCatalogo });
   }
 });
 
 /************************************************ CREAR CUENTA ************************************************/
+app.get("/crear-cuenta.html", (req, res) => {
+  res.render("crear-cuenta");
+});
+
 app.post("/crear-cuenta.html", async (req, res) => {
   //implementación solo para usuario
   let {
@@ -291,10 +292,10 @@ app.post("/iniciar-sesion.html", async (req, res) => {
 app.post("/menu-personalizacion.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("menu-personalizacion", { estatusSesion });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("menu-personalizacion", { estatusSesion });
   }
 });
@@ -302,10 +303,10 @@ app.post("/menu-personalizacion.html", async (req, res) => {
 app.get("/menu-personalizacion.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("menu-personalizacion", { estatusSesion });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
@@ -314,10 +315,10 @@ app.get("/menu-personalizacion.html", async (req, res) => {
 app.post("/confirmar-compra.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("confirmar-compra", { estatusSesion });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
@@ -325,10 +326,10 @@ app.post("/confirmar-compra.html", async (req, res) => {
 app.get("/confirmar-compra.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("confirmar-compra", { estatusSesion });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
@@ -337,10 +338,10 @@ app.get("/confirmar-compra.html", async (req, res) => {
 app.post("/informacion-cuenta.html", async (req, res) => {
   //res.render("index", { entradaCorreo, resCatalogo });
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("informacion-cuenta", { estatusSesion });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
@@ -348,10 +349,10 @@ app.post("/informacion-cuenta.html", async (req, res) => {
 app.get("/informacion-cuenta.html", async (req, res) => {
   //console.log("Nombre: " + resCatalogo[0]);
   if (enSesion) {
-    console.log(enSesion);
+    // console.log(enSesion);
     res.render("informacion-cuenta", { estatusSesion });
   } else {
-    console.log("not-logged-in");
+    // console.log("not-logged-in");
     res.render("iniciar-sesion", { estatusSesion });
   }
 });
@@ -361,7 +362,6 @@ app.get("/informacion-cuenta.html", async (req, res) => {
 /*****************************************************************************************************************/
 
 const getCatalogo = async () => {
-  console.log("Si llego hasta aca");
   try {
     let veh = [];
     const resultV = await pool.query("select count(*) from modeloCombustion");
@@ -376,7 +376,7 @@ const getCatalogo = async () => {
       veh.push(nombre);
     }
 
-    console.log("La cuenta del catalogo fue de " + cantCatalogo);
+    // console.log("La cuenta del catalogo fue de " + cantCatalogo);
     //console.log("La cuenta del catalogo fue de " + veh.length.toString());
     //console.log("Nombre: " + veh[0]);
     return veh;
