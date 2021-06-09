@@ -359,15 +359,24 @@ app.get("/informacion-cuenta.html", async (req, res) => {
 const getCatalogo = async () => {
   try {
     let veh = [];
-    const resultV = await pool.query("select count(*) from modeloCombustion");
-    var cantCatalogo = JSON.parse(JSON.stringify(resultV.rows[0]["count"]));
+    const resultVE = await pool.query("select count(idModelo) from (select idModeloC as idModelo from modeloCombustion UNION all select idModeloE from modeloElectrico ) as Cantidad;");
+    var cantCatalogoE = JSON.parse(JSON.stringify(resultVE.rows[0]["count"]));
+    console.log("Total de automóviles eléctricos y de combustión: " + cantCatalogoE);
 
-    for (let i = 0; i < cantCatalogo; i++) {
+    // const resultVC = await pool.query("select count(*) from modeloCombustion");
+    // var cantCatalogoC = JSON.parse(JSON.stringify(resultVC.rows[0]["count"]));
+    // console.log("Combustión: " + cantCatalogoC);
+
+    // var cantCatalogo = cantCatalogoC + cantCatalogoE;
+
+    for (let i = 0; i < cantCatalogoE; i++) {
       const consNom = await pool.query(
-        "select nombreModelo from modeloCombustion"
+        "select nombreModelo from modeloCombustion UNION ALL select nombreModelo from modeloElectrico;"
+        // "select nombreModelo from modeloCombustion"
       );
       var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombremodelo"]));
       //console.log("Nombres:" + nombre);
+      // Orden de los automóviles es, primero combustión y después eléctricos.
       veh.push(nombre);
     }
 
@@ -383,7 +392,7 @@ const getCatalogo = async () => {
 const getModelo = async ( modelo ) =>{
   console.log("Inicio de función idModelo");
   try{
-    let resultModelos = await pool.query("select * from modeloCombustion where nombreModelo = $1", 
+    let resultModelos = await pool.query("select * from (select idModeloC as idModelo, 'C' as tipo, nombreModelo, marcaModelo, versionModelo, anoModelo, descripcionModelo, motorModelo  from modeloCombustion UNION ALL select idModeloE, 'E' as tipo, nombreModelo, marcaModelo, versionModelo, anoModelo, descripcionModelo, motorModelo from modeloElectrico ) as Tabla where nombreModelo = $1", 
     [modelo]
     );
     // var idmod = JSON.parse(JSON.stringify(resultModelos.rows[0]["idmodeloc"]));
