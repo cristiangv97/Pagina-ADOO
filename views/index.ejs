@@ -113,12 +113,13 @@
                 <div class="card-body text-center">
                   <form action="descripcion" method="post">
                     <label
-                      name="model"
+                      name="model-<%=i%>>"
                       value="<%=resCatalogo[i]%>"
                       id="model"
                       style="display: none"
                       ><%=resCatalogo[i]%></label
                     >
+                      <input style="display: none" name="modelo" value="<%=resCatalogo[i]%>">
                     <h5 class="card-title"><%=resCatalogo[i]%></h5>
                     <p class="card-text">Desde 15 000 pesos</p>
 
