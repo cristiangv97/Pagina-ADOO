@@ -98,19 +98,14 @@ app.get("/mas-recientes.html", (req, res) => {
 
 
 /************************************************ DESCRIPCION ************************************************/
-app.post("/descripcion", (req, res) => {
+app.post("/descripcion", async (req, res) => {
   console.log("post descirpcion llamada");
   let {
     modelo
   } = req.body;
-  console.log("El modelo seleccionado fue: " + modelo);
-  if (enSesion) {
-    // console.log("logged-in");
-    res.render("descripcion", { estatusSesion, modelo });
-  } else {
-    // console.log("not-logged-in");
-    res.render("descripcion", { estatusSesion, modelo });
-  }
+  infoModelo = await getModelo(modelo);
+  console.log(infoModelo.nombremodelo);
+  res.render("descripcion", { estatusSesion, modelo, infoModelo });
 });
 
 app.get("/descripcion.html", (req, res) => {
@@ -381,6 +376,19 @@ const getCatalogo = async () => {
     //console.log("Nombre: " + veh[0]);
     return veh;
   } catch (e) {
+    console.log(e);
+  }
+};
+
+const getModelo = async ( modelo ) =>{
+  console.log("Inicio de función idModelo");
+  try{
+    let resultModelos = await pool.query("select * from modeloCombustion where nombreModelo = $1", 
+    [modelo]
+    );
+    // var idmod = JSON.parse(JSON.stringify(resultModelos.rows[0]["idmodeloc"]));
+    return resultModelos.rows[0];
+  }catch(e){
     console.log(e);
   }
 };

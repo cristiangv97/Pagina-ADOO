@@ -74,53 +74,57 @@
 
 
 
-    <div class="row m-4">
+    <div class="row">
       <div class="col-lg-5">
-          <h1 class="text-center display-3 texto-azul">Modelo A</h1>
+          <h1 class="text-center display-3 texto-azul"><%=modelo%></h1>
           <p class="text-center">
-            Categoria: Troca del año
+            Marca: <%=infoModelo.marcamodelo%>
           </p>
           <p class="text-center">
             Colores disponibles
           </p>
           <p class="text-center">
-            Año: 2021
+            Versión: <%=infoModelo.versionmodelo%>
           </p>
           <p class="text-center">
-            Modelo: <%=modelo%>
+            Año: <%=infoModelo.anomodelo%>
           </p>
-        <h2 class="text-center texto-azul">
+          <p class="text-center">
+            Motor: <%=infoModelo.motormodelo%>
+          </p>
+        <!-- <h2 class="text-center texto-azul">
           Adquirir vehiculo
-        </h2>
+        </h2> -->
       </div>
       <div class="col-lg-7">
         <div class="text-center">
-          <img class="rounded" src="imgs/carro-6.png" alt="..." style="max-width: 100%; height: auto">
+          <img class="rounded imgDesc" src="/imgs/<%=infoModelo.nombremodelo%>.png" alt="..." style="max-width: 100%; height: auto">
         </div>
       </div>
     </div>
-    <div class="row">
-      <div class="col col-lg-6 col-sm-12 m-3">
+    <div class="row text-center">
+      <div class="col m-3">
         <div class="text-center">
+          <h2 class="text-center texto-azul">
+            Adquirir vehiculo
+          </h2>
           <h1>Desde $15 000</h1>
+          <div class="text-center">
+            <a href="menu-personalizacion.html" class="btn btn-primary btn-lg m-3" role="button" aria-pressed="true">Comprar ahora</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="row">
+    <!-- <div class="row">
       <div class="col col-lg-6 col-sm-12">
-        <div class="text-center">
-          <a href="menu-personalizacion.html" class="btn btn-primary btn-lg m-3" role="button" aria-pressed="true">Comprar ahora</a>
-        </div>
+        
       </div>
-    </div>
+    </div> -->
     <div class="row m-4">
       <div class="col">
         <h2>Descripción</h2>
         <p><em>Etiquetas: Gasolina, 4 puertas, carro para godín, económico, radio fm, turbo, Apple CarPlay</em></p>
-        <p>Si eres un godinez, este es el auto perfecto, no hacer a caso a esta descripcion, es solo un ejemplo jaja.</p>
-        <p>Hola este es un texto de relleno. Me parece que el carrro cuenta con 4 ruedas, radio FM, viene en varios colores: <em>gris, blanco oscuro, negro claro y brilla bajo el sol</em></p>
-        <p>4 asientos, motor incluido con turbo como en rapidos y furiosos</p>
-        <p>El carro en la vida real no esta pixeleado</p>
+        <p><%=infoModelo.descripcionmodelo%></p>
       </div>
 
     </div>
