@@ -5,15 +5,15 @@ const { Pool } = require("pg");
 const config = {
   user: "postgres",
   host: "localhost",
-  password: "maravilloso",
-  // password: "1234",
+  // password: "maravilloso",
+  password: "1234",
   // password: "admin",
-  // database: "postgres",
-  database: "ADOO",
+  database: "postgres",
+  // database: "ADOO",
 };
 
 var enSesion;
-var estatusSesion;
+var variableSesion;
 
 const pool = new Pool(config);
 
@@ -30,7 +30,7 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
-    res.render("index", { estatusSesion, resCatalogo });
+    res.render("index", { variableSesion, resCatalogo });
 });
 
 
@@ -38,38 +38,38 @@ app.get("/", async (req, res) => {
 app.get("/cerrar-sesion.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
-  estatusSesion = null;
+  variableSesion = null;
   enSesion = false;
-  res.render("index", { estatusSesion, resCatalogo });
+  res.render("index", { variableSesion, resCatalogo });
 });
 
 app.post("/cerrar-sesion.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
-  estatusSesion = null;
+  variableSesion = null;
   enSesion = false;
-  res.render("index", { estatusSesion, resCatalogo });
+  res.render("index", { variableSesion, resCatalogo });
 });
 
 /************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/agregar-metodo-pago.html", (req, res) => {
-  res.render("agregar-metodo-pago", {estatusSesion});
+  res.render("agregar-metodo-pago", {variableSesion});
 });
 
 /************************************************ COMPRA FINALIZADA ************************************************/
 app.post("/compra-finalizada.html", async (req, res) => {
   if (enSesion) {
-    res.render("compra-finalizada", { estatusSesion });
+    res.render("compra-finalizada", { variableSesion });
   } else {
-    res.render("iniciar-sesion", { estatusSesion });
+    res.render("iniciar-sesion", { variableSesion });
   }
 });
 
 app.get("/compra-finalizada.html", async (req, res) => {
   if (enSesion) {
-    res.render("compra-finalizada", { estatusSesion });
+    res.render("compra-finalizada", { variableSesion });
   } else {
-    res.render("iniciar-sesion", { estatusSesion });
+    res.render("iniciar-sesion", { variableSesion });
   }
 });
 
@@ -92,18 +92,18 @@ app.post("/descripcion", async (req, res) => {
   } = req.body;
   infoModelo = await getModelo(modelo);
   console.log(infoModelo.nombremodelo);
-  res.render("descripcion", { estatusSesion, modelo, infoModelo });
+  res.render("descripcion", { variableSesion, modelo, infoModelo });
 });
 
 app.get("/descripcion.html", (req, res) => {
-    res.render("descripcion", { estatusSesion });
+    res.render("descripcion", { variableSesion });
 });
 
 /************************************************ INDEX ************************************************/
 app.get("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
-    res.render("index", { estatusSesion, resCatalogo });
+    res.render("index", { variableSesion, resCatalogo });
 });
 
 app.post("/index.html", async (req, res) => {
@@ -111,7 +111,7 @@ app.post("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   console.log("Nombre recibido del index es: " + nombre_carro);
-    res.render("index", { estatusSesion, resCatalogo });
+    res.render("index", { variableSesion, resCatalogo });
 });
 
 /************************************************ CREAR CUENTA ************************************************/
@@ -207,7 +207,7 @@ app.post("/crear-cuenta.html", async (req, res) => {
 
 /************************************************ INICIAR SESION ************************************************/
 app.get("/iniciar-sesion.html", (req, res) => {
-  res.render("iniciar-sesion", { estatusSesion });
+  res.render("iniciar-sesion", { variableSesion });
 });
 
 app.post("/iniciar-sesion.html", async (req, res) => {
@@ -230,21 +230,21 @@ app.post("/iniciar-sesion.html", async (req, res) => {
     //console.log("getCatalogo()= " + resCatalogo);
     console.log("Clave: " + myJSON);
     // console.log("This is gen"+entradaCorreoGen);
-    if (myJSON == entradaContrasena) {
-      estatusSesion = result.rows[0].nombreuc;
+    if (myJSON === entradaContrasena) {
+      variableSesion = result.rows[0].nombreuc;
       enSesion = true;
       console.log("Usuario valido");
-      res.render("index", { estatusSesion, resCatalogo });
+      res.render("index", { variableSesion, resCatalogo });
     } else {
       console.log("El usuario no existe");
       res.render("iniciar-sesion", {
-        estatusSesion: "Correo o contraseña no válidos.",
+        variableSesion:"Correo o contraseña no válidos.",
       });
     }
   } else {
     console.log("El usuario no existe");
     res.render("iniciar-sesion", {
-      estatusSesion: "Correo o contraseña no válidos.",
+      variableSesion:"Correo o contraseña no válidos.",
     });
   }
 
@@ -253,48 +253,48 @@ app.post("/iniciar-sesion.html", async (req, res) => {
 
 /************************************************ MENU PERSONALIZACION ************************************************/
 app.post("/menu-personalizacion.html", async (req, res) => {
-    res.render("menu-personalizacion", { estatusSesion });
+    res.render("menu-personalizacion", { variableSesion });
 });
 
 app.get("/menu-personalizacion.html", async (req, res) => {
   if (enSesion) {
-    res.render("menu-personalizacion", { estatusSesion });
+    res.render("menu-personalizacion", { variableSesion });
   } else {
-    res.render("iniciar-sesion", { estatusSesion });
+    res.render("iniciar-sesion", { variableSesion });
   }
 });
 
 /************************************************ CONFIRMAR COMPRA ************************************************/
 app.post("/confirmar-compra.html", async (req, res) => {
   if (enSesion) {
-    res.render("confirmar-compra", { estatusSesion });
+    res.render("confirmar-compra", { variableSesion });
   } else {
-    res.render("iniciar-sesion", { estatusSesion });
+    res.render("iniciar-sesion", { variableSesion });
   }
 });
 
 app.get("/confirmar-compra.html", async (req, res) => {
   if (enSesion) {
-    res.render("confirmar-compra", { estatusSesion });
+    res.render("confirmar-compra", { variableSesion });
   } else {
-    res.render("iniciar-sesion", { estatusSesion });
+    res.render("iniciar-sesion", { variableSesion });
   }
 });
 
 /************************************************ INORMACION CUENTA ************************************************/
 app.post("/informacion-cuenta.html", async (req, res) => {
   if (enSesion) {
-    res.render("informacion-cuenta", { estatusSesion });
+    res.render("informacion-cuenta", { variableSesion });
   } else {
-    res.render("iniciar-sesion", { estatusSesion });
+    res.render("iniciar-sesion", { variableSesion });
   }
 });
 
 app.get("/informacion-cuenta.html", async (req, res) => {
   if (enSesion) {
-    res.render("informacion-cuenta", { estatusSesion });
+    res.render("informacion-cuenta", { variableSesion });
   } else {
-    res.render("iniciar-sesion", { estatusSesion });
+    res.render("iniciar-sesion", { variableSesion });
   }
 });
 
