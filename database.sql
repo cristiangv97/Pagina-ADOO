@@ -21,7 +21,7 @@ create table usuarioComprador(
 	apellidoPatUC varchar(30) not null,
 	correo varchar(50) not null,
 	clave varchar(50) not null,
-	verificado boolean default false not null
+	verificado varchar(30) default 'not' not null
 );
 create table metodoPago(
 	nTarjeta varchar(16) primary key not null,
@@ -35,7 +35,7 @@ create table usuarioProveedor(
 	nombreUP varchar(30),
 	correo varchar(30) not null,
 	clave varchar(30) not null,
-	verificado boolean default false not null
+	verificado varchar(30) default 'not' not null
 );
 create table sucursal(
 	idSucursal serial primary key not null,

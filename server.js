@@ -30,9 +30,8 @@ app.use(express.urlencoded({ extended: false }));
 app.get("/", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
-    res.render("index", { variableSesion, resCatalogo });
+  res.render("index", { variableSesion, resCatalogo });
 });
-
 
 /************************************************ CERRAR SESION ************************************************/
 app.get("/cerrar-sesion.html", async (req, res) => {
@@ -53,7 +52,7 @@ app.post("/cerrar-sesion.html", async (req, res) => {
 
 /************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/agregar-metodo-pago.html", (req, res) => {
-  res.render("agregar-metodo-pago", {variableSesion});
+  res.render("agregar-metodo-pago", { variableSesion });
 });
 
 /************************************************ COMPRA FINALIZADA ************************************************/
@@ -83,27 +82,24 @@ app.get("/mas-recientes.html", (req, res) => {
   res.render("mas-recientes");
 });
 
-
 /************************************************ DESCRIPCION ************************************************/
 app.post("/descripcion", async (req, res) => {
   console.log("post descirpcion llamada");
-  let {
-    modelo
-  } = req.body;
+  let { modelo } = req.body;
   infoModelo = await getModelo(modelo);
   console.log(infoModelo.nombremodelo);
   res.render("descripcion", { variableSesion, modelo, infoModelo });
 });
 
 app.get("/descripcion.html", (req, res) => {
-    res.render("descripcion", { variableSesion });
+  res.render("descripcion", { variableSesion });
 });
 
 /************************************************ INDEX ************************************************/
 app.get("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
-    res.render("index", { variableSesion, resCatalogo });
+  res.render("index", { variableSesion, resCatalogo });
 });
 
 app.post("/index.html", async (req, res) => {
@@ -111,7 +107,7 @@ app.post("/index.html", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   console.log("Nombre recibido del index es: " + nombre_carro);
-    res.render("index", { variableSesion, resCatalogo });
+  res.render("index", { variableSesion, resCatalogo });
 });
 
 /************************************************ CREAR CUENTA ************************************************/
@@ -151,12 +147,6 @@ app.post("/crear-cuenta.html", async (req, res) => {
 
   //si  encuentra un correo igual el tamaño != 0
   if (tamanio === 0) {
-    console.log("Registrando usuario");
-    const result = await pool.query(
-      "INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave) VALUES ($1, $3, $2, $4, $5)",
-      [nombre_registro, apellidoPaterno, apellidoMaterno, correo, contrasena]
-    );
-
     //generación del código
     const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     function generateString(length) {
@@ -188,6 +178,27 @@ app.post("/crear-cuenta.html", async (req, res) => {
       subject: "Código de verificación",
       text: "Su código de verificación es " + codigoVer,
     };
+
+    console.log("Registrando usuario");
+    const result = await pool.query(
+      "INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave,verificado) VALUES ($1, $3, $2, $4, $5, $6)",
+      [
+        nombre_registro,
+        apellidoPaterno,
+        apellidoMaterno,
+        correo,
+        contrasena,
+        codigoVer,
+      ]
+    );
+
+    //subir el codigo de confirmacion a la base para despues
+    //utilizarlo en la pantallad de verificacion y como parametro a validar
+    //en el inicio de sesion
+    const ver = pool.query(
+      "update usuarioComprador set verificado = '$1' where correo='$2'",
+      [codigoVer, correo]
+    );
 
     transporter.sendMail(mailOptions, function (err, data) {
       if (err) {
@@ -230,21 +241,31 @@ app.post("/iniciar-sesion.html", async (req, res) => {
     //console.log("getCatalogo()= " + resCatalogo);
     console.log("Clave: " + myJSON);
     // console.log("This is gen"+entradaCorreoGen);
+    //Validar que el usuario este verificado
+    const verif = await pool.query(
+      "select verificado from usuarioComprador where correo=$1",
+      [entradaCorreo]
+    );
+    var resVer = JSON.parse(JSON.stringify(verif.rows[0]["verificado"]));
     if (myJSON === entradaContrasena) {
       variableSesion = result.rows[0].nombreuc;
       enSesion = true;
+      if (resVer === "not") {
+        console.log("Verificacion: " + resVer);
+        res.render("verificar-correo");
+      }
       console.log("Usuario valido");
       res.render("index", { variableSesion, resCatalogo });
     } else {
       console.log("El usuario no existe");
       res.render("iniciar-sesion", {
-        variableSesion:"Correo o contraseña no válidos.",
+        variableSesion: "Correo o contraseña no válidos.",
       });
     }
   } else {
     console.log("El usuario no existe");
     res.render("iniciar-sesion", {
-      variableSesion:"Correo o contraseña no válidos.",
+      variableSesion: "Correo o contraseña no válidos.",
     });
   }
 
@@ -253,7 +274,7 @@ app.post("/iniciar-sesion.html", async (req, res) => {
 
 /************************************************ MENU PERSONALIZACION ************************************************/
 app.post("/menu-personalizacion.html", async (req, res) => {
-    res.render("menu-personalizacion", { variableSesion });
+  res.render("menu-personalizacion", { variableSesion });
 });
 
 app.get("/menu-personalizacion.html", async (req, res) => {
@@ -305,9 +326,13 @@ app.get("/informacion-cuenta.html", async (req, res) => {
 const getCatalogo = async () => {
   try {
     let veh = [];
-    const resultVE = await pool.query("select count(idModelo) from (select idModeloC as idModelo from modeloCombustion UNION all select idModeloE from modeloElectrico ) as Cantidad;");
+    const resultVE = await pool.query(
+      "select count(idModelo) from (select idModeloC as idModelo from modeloCombustion UNION all select idModeloE from modeloElectrico ) as Cantidad;"
+    );
     var cantCatalogoE = JSON.parse(JSON.stringify(resultVE.rows[0]["count"]));
-    console.log("Total de automóviles eléctricos y de combustión: " + cantCatalogoE);
+    console.log(
+      "Total de automóviles eléctricos y de combustión: " + cantCatalogoE
+    );
 
     // const resultVC = await pool.query("select count(*) from modeloCombustion");
     // var cantCatalogoC = JSON.parse(JSON.stringify(resultVC.rows[0]["count"]));
@@ -335,15 +360,16 @@ const getCatalogo = async () => {
   }
 };
 
-const getModelo = async ( modelo ) =>{
+const getModelo = async (modelo) => {
   console.log("Inicio de función idModelo");
-  try{
-    let resultModelos = await pool.query("select * from (select idModeloC as idModelo, 'C' as tipo, nombreModelo, marcaModelo, versionModelo, anoModelo, descripcionModelo, motorModelo  from modeloCombustion UNION ALL select idModeloE, 'E' as tipo, nombreModelo, marcaModelo, versionModelo, anoModelo, descripcionModelo, motorModelo from modeloElectrico ) as Tabla where nombreModelo = $1", 
-    [modelo]
+  try {
+    let resultModelos = await pool.query(
+      "select * from (select idModeloC as idModelo, 'C' as tipo, nombreModelo, marcaModelo, versionModelo, anoModelo, descripcionModelo, motorModelo  from modeloCombustion UNION ALL select idModeloE, 'E' as tipo, nombreModelo, marcaModelo, versionModelo, anoModelo, descripcionModelo, motorModelo from modeloElectrico ) as Tabla where nombreModelo = $1",
+      [modelo]
     );
     // var idmod = JSON.parse(JSON.stringify(resultModelos.rows[0]["idmodeloc"]));
     return resultModelos.rows[0];
-  }catch(e){
+  } catch (e) {
     console.log(e);
   }
 };
