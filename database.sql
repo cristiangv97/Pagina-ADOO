@@ -171,8 +171,8 @@ create table compra(
 	foreign key (nTarjeta) references metodoPago(nTarjeta)
 );
 -----------------------------------------
-INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave)
-VALUES ('Usuario','apelMat','apelPat','a@a.com','1234567');
+INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave,verificado)
+VALUES ('Usuario','apelMat','apelPat','a@a.com','1234567','verCode');
 INSERT INTO modeloCombustion(nombreModelo,marcaModelo,versionModelo,anoModelo,descripcionModelo,motorModelo)
 VALUES ('Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L Skyactiv-G'),
 ('Mazda 2','Sedán','Sport','2019','Está muy chulo x2 jsjsjs','2.5L Skyactiv-G'),
