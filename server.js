@@ -91,7 +91,7 @@ app.post("/descripcion", async (req, res) => {
   res.render("descripcion", { variableSesion, modelo, infoModelo });
 });
 
-app.get("/descripcion.html", (req, res) => {
+app.get("/descripcion", async (req, res) => {
   res.render("descripcion", { variableSesion });
 });
 
@@ -273,11 +273,11 @@ app.post("/iniciar-sesion.html", async (req, res) => {
 });
 
 /************************************************ MENU PERSONALIZACION ************************************************/
-app.post("/menu-personalizacion.html", async (req, res) => {
+app.post("/menu-personalizacion", async (req, res) => {
   res.render("menu-personalizacion", { variableSesion });
 });
 
-app.get("/menu-personalizacion.html", async (req, res) => {
+app.get("/menu-personalizacion", async (req, res) => {
   if (enSesion) {
     res.render("menu-personalizacion", { variableSesion });
   } else {
@@ -286,7 +286,7 @@ app.get("/menu-personalizacion.html", async (req, res) => {
 });
 
 /************************************************ CONFIRMAR COMPRA ************************************************/
-app.post("/confirmar-compra.html", async (req, res) => {
+app.post("/confirmar-compra", async (req, res) => {
   if (enSesion) {
     res.render("confirmar-compra", { variableSesion });
   } else {
@@ -294,7 +294,7 @@ app.post("/confirmar-compra.html", async (req, res) => {
   }
 });
 
-app.get("/confirmar-compra.html", async (req, res) => {
+app.get("/confirmar-compra", async (req, res) => {
   if (enSesion) {
     res.render("confirmar-compra", { variableSesion });
   } else {
@@ -326,9 +326,7 @@ app.get("/informacion-cuenta.html", async (req, res) => {
 const getCatalogo = async () => {
   try {
     let veh = [];
-    const resultVE = await pool.query(
-      "select count(idModelo) from (select idModeloC as idModelo from modeloCombustion UNION all select idModeloE from modeloElectrico ) as Cantidad;"
-    );
+    const resultVE = await pool.query("select count(*) from modelo;");
     var cantCatalogoE = JSON.parse(JSON.stringify(resultVE.rows[0]["count"]));
     console.log(
       "Total de automóviles eléctricos y de combustión: " + cantCatalogoE
@@ -342,13 +340,20 @@ const getCatalogo = async () => {
 
     for (let i = 0; i < cantCatalogoE; i++) {
       const consNom = await pool.query(
-        "select nombreModelo from modeloCombustion UNION ALL select nombreModelo from modeloElectrico;"
+        "select nombreModelo from modelo;"
         // "select nombreModelo from modeloCombustion"
       );
       var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombremodelo"]));
+      const preM = await pool.query(
+        "select min(precio) from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
+          nombre +
+          "');"
+      );
+      var precio = JSON.parse(JSON.stringify(preM.rows[0]["min"]));
+
       //console.log("Nombres:" + nombre);
       // Orden de los automóviles es, primero combustión y después eléctricos.
-      veh.push(nombre);
+      veh.push(nombre, precio);
     }
 
     // console.log("La cuenta del catalogo fue de " + cantCatalogo);
@@ -363,12 +368,20 @@ const getCatalogo = async () => {
 const getModelo = async (modelo) => {
   console.log("Inicio de función idModelo");
   try {
+    let result = [];
     let resultModelos = await pool.query(
-      "select * from (select idModeloC as idModelo, 'C' as tipo, nombreModelo, marcaModelo, versionModelo, anoModelo, descripcionModelo, motorModelo  from modeloCombustion UNION ALL select idModeloE, 'E' as tipo, nombreModelo, marcaModelo, versionModelo, anoModelo, descripcionModelo, motorModelo from modeloElectrico ) as Tabla where nombreModelo = $1",
+      "select * from modelo where nombreModelo = $1",
       [modelo]
     );
+    const preM = await pool.query(
+      "select min(precio) from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
+        modelo +
+        "');"
+    );
     // var idmod = JSON.parse(JSON.stringify(resultModelos.rows[0]["idmodeloc"]));
-    return resultModelos.rows[0];
+    result.push(resultModelos.rows[0], preM.rows[0]);
+    console.log(result);
+    return result;
   } catch (e) {
     console.log(e);
   }
