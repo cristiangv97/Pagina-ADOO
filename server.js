@@ -86,9 +86,14 @@ app.get("/mas-recientes.html", (req, res) => {
 app.post("/descripcion", async (req, res) => {
   console.log("post descirpcion llamada");
   let { modelo } = req.body;
-  infoModelo = await getModelo(modelo);
-  console.log(infoModelo.nombremodelo);
-  res.render("descripcion", { variableSesion, modelo, infoModelo });
+  infoModelo = await getDetallesModelo(modelo);
+  caracterizados = await getModelosCaracterizados(modelo);
+  res.render("descripcion", {
+    variableSesion,
+    modelo,
+    infoModelo,
+    caracterizados,
+  });
 });
 
 app.get("/descripcion", async (req, res) => {
@@ -286,7 +291,9 @@ app.get("/menu-personalizacion", async (req, res) => {
 });
 
 /************************************************ CONFIRMAR COMPRA ************************************************/
-app.post("/confirmar-compra", async (req, res) => {
+//Trabajando en...
+app.post("/confirmar-compra?$1=$2", async (req, res) => {
+  let { modelo } = req.body;
   if (enSesion) {
     res.render("confirmar-compra", { variableSesion });
   } else {
@@ -328,9 +335,7 @@ const getCatalogo = async () => {
     let veh = [];
     const resultVE = await pool.query("select count(*) from modelo;");
     var cantCatalogoE = JSON.parse(JSON.stringify(resultVE.rows[0]["count"]));
-    console.log(
-      "Total de automóviles eléctricos y de combustión: " + cantCatalogoE
-    );
+    console.log("Total de automóviles: " + cantCatalogoE);
 
     // const resultVC = await pool.query("select count(*) from modeloCombustion");
     // var cantCatalogoC = JSON.parse(JSON.stringify(resultVC.rows[0]["count"]));
@@ -365,7 +370,7 @@ const getCatalogo = async () => {
   }
 };
 
-const getModelo = async (modelo) => {
+const getDetallesModelo = async (modelo) => {
   console.log("Inicio de función idModelo");
   try {
     let result = [];
@@ -373,17 +378,26 @@ const getModelo = async (modelo) => {
       "select * from modelo where nombreModelo = $1",
       [modelo]
     );
-    const preM = await pool.query(
-      "select min(precio) from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
-        modelo +
-        "');"
-    );
     // var idmod = JSON.parse(JSON.stringify(resultModelos.rows[0]["idmodeloc"]));
-    result.push(resultModelos.rows[0], preM.rows[0]);
+    result.push(resultModelos.rows[0]);
     console.log(result);
     return result;
   } catch (e) {
     console.log(e);
+  }
+};
+
+const getModelosCaracterizados = async (modelo) => {
+  try {
+    const preM = await pool.query(
+      "select precio,color from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
+        modelo +
+        "');"
+    );
+    console.log(preM.rows);
+    return preM.rows;
+  } catch (error) {
+    log;
   }
 };
 ///////////////////////////////////////

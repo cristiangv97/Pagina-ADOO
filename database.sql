@@ -103,6 +103,7 @@ create table modeloProveedor(
 create table vehiCar(
 	idCarModelo serial primary key not null,
 	precio float not null,
+	color varchar(12) not null,
 	idModelo integer not null,
 	foreign key (idModelo) references modelo(idModelo) on delete cascade
 );
@@ -139,14 +140,14 @@ VALUES (false,'Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L S
 (true,'Mazda 7','Sedán','Sport','2021','Está muy chulo x7 jsjsjs','4L Skyactiv-G');
 --se deben insertar valores en los vehiculos caracterizados,
 --por tanto, la siguiente insercion estaria parcialmente completa
-insert into vehiCar(idModelo,precio) values 
-(1,.1),(1,.2),(1,.3),
-(2,.1),(2,.2),(2,.3),
-(3,.1),(3,.2),(3,.3),
-(4,.1),(4,.2),(4,.3),
-(5,.1),(5,.2),(5,.3),
-(6,.1),(6,.2),(6,.3),
-(7,.1),(7,.2),(7,.3);
+insert into vehiCar(idModelo,precio,color) values 
+(1,.1,'rojo'),(1,.2,'plateado'),(1,.3,'blanco'),
+(2,.1,'rojo'),(2,.2,'plateado'),(2,.3,'blanco'),
+(3,.1,'rojo'),(3,.2,'plateado'),(3,.3,'blanco'),
+(4,.1,'rojo'),(4,.2,'plateado'),(4,.3,'blanco'),
+(5,.1,'rojo'),(5,.2,'plateado'),(5,.3,'blanco'),
+(6,.1,'rojo'),(6,.2,'plateado'),(6,.3,'blanco'),
+(7,.1,'rojo'),(7,.2,'plateado'),(7,.3,'blanco');
 ------------------------------------------
 select idmodelo,nombremodelo from modelo;
 --select min(precio) from vehicarc,vehicare where 
