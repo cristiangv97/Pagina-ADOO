@@ -132,7 +132,7 @@ create table compra(
 );
 -----------------------------------------
 INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave,verificado)
-VALUES ('Usuario','apelMat','apelPat','a@a.com','1234567','verCode');
+VALUES ('Usuario','apelMat','apelPat','a@a.com','1234567','ok');
 INSERT INTO modelo(tipoMotor,nombreModelo,marcaModelo,versionModelo,anoModelo,descripcionModelo,motorModelo)
 VALUES (false,'Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L Skyactiv-G'),
 (false,'Mazda 2','Sedán','Sport','2019','Está muy chulo x2 jsjsjs','2.5L Skyactiv-G'),
@@ -173,3 +173,33 @@ INSERT INTO modelo(marcaModelo,nombreModelo,versionModelo,anoModelo,motorModelo,
 ('Suzuki', 'Swace 1.8 Hybrid', '', 2021, '1.8 (122 Hp) Hybrid CVT', false, 2268.09, 1606, 5, 5, 1.46, 1.79, 2.7, 0.84, 977, 1375, 11.1, 'Independent McPherson. Coil Springs. Anti-roll bar.', 'Independent Double Wishbones. Coil Springs. Anti-roll bar.', 'Disco ventilado', 'Disco', '205/55 R16', 'Magnesio', 72, 'electrico/gasolina', 4, 1798, 103, '01:05', 3.6, ' '),
 ('Volkswagen', 'T-Roc', '', 2020, '1.0 TSI 110HP', true, 2086.36, 1290, 5, 5, 1.573, 1.819, 2.59, 0.76, 943, 1194, 10.8, 'Independent McPherson. Coil Springs. Anti-roll bar.', 'Semi-independent. Coil Springs.', 'Disco ventilado', 'Disco', '215/60 R16', 'Alumino', 81, 'gasolina', 3, 999, 137, null, null, ' '),
 ('Peugeot', '5008', '', 2021, '1.2 PureTech 130', true, 2297.36, 1940, 5, 7, 1.646, 1.844, 2.84, 0.81, 828, 1404, 9.9, 'Independent McPherson. Coil Springs. Anti-roll bar.', 'Independent Cross Arms. Torsion bar. Anti-roll bar.', 'Disco ventilado', 'Disco', '215/65 R17', 'Acero', 96, 'gasolina', 3, 1199, 144, null, null, ' ');
+select idmodelo,nombremodelo from modelo;
+--select min(precio) from vehicarc,vehicare where 
+--vehicarc.idmodeloc=(select idModeloC from modelocombustion where nombremodelo='Mazda 1') 
+--or vehicare.idmodeloe=(select idModeloE from modeloelectrico where nombremodelo='Mazda 1');
+update modelo 
+set kgMMA = 1500, 
+capacidadMaletero = 350, 
+nPuertas = 4, 
+nPlazas = 5, 
+mAltura = 1.6, 
+mAncho = 2.1, 
+mDistanciaEjes = 2.5, 
+coeficienteAerodinamico = 0.4, 
+kmAutonomia = 130, 
+kgPeso = 2000, 
+segAceleracion0a100 = 3.4, 
+susDelantera = 'Suspensión McPherson', 
+susTrasera = 'Suspensión rígida', 
+frenosDelanteros = 'De discos',   
+frenosTraseros = 'De discos', 
+neumaticos = 'Neumático diagonal y radial',  
+materialLlantas = 'Aluminio', 
+kwPotencia = 760.61, 
+combustible = 'Gasolina', 
+nCilindros = 8, 
+cm3Cilindrada = 1984, 
+gkmEmisionCO2 = 121.31, 
+tiempoCarga = '00:30:00', 
+capacidadBateria = 30000
+where idModelo = 1;

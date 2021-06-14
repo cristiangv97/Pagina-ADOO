@@ -195,15 +195,15 @@
                 />
                 <div class="carousel-caption d-none d-md-block">
                   <form
-                    action="confirmar-compra"
+                    action="confirmar-compra?modelocaracterizado=<%=caracterizados[0].idcarmodelo%>"
                     method="POST"
                     id="personalizacion"
                   >
-                    <h5><%=modelo%></h5>
+                    <h5 name="modelo"><%=modelo%></h5>
                     Precio:
-                    <p><%=caracterizados[0].precio%></p>
+                    <p name="precio"><%=caracterizados[0].precio%></p>
                     Color:
-                    <p><%=caracterizados[0].color%></p>
+                    <p name="color"><%=caracterizados[0].color%></p>
                     <button
                       style="width: fit-content"
                       class="btn btn-primary col-12"
@@ -261,40 +261,40 @@
             </em>
           </p> -->
           <p><%=infoModelo[0].descripcionmodelo%></p>
-          <table class="table">
+          <table class="table table-hover">
             <thead>
               <tr>
-                <th scope="col" colspan="2">Especificaciones</th>
+                <th scope="col" colspan="2">Especificaciones técnicas</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Máxima masa autorizada</td>
-                <td><%=infoModelo[0].kgmma%>kg</td>
+                <td>Masa máxima autorizada</td>
+                <td><%=infoModelo[0].kgmma%> kilogramos</td>
               </tr>
               <tr>
                 <td>Capacidad del maletero</td>
-                <td><%=infoModelo[0].capacidadmaletero%>l</td>
+                <td><%=infoModelo[0].capacidadmaletero%> litros</td>
               </tr>
               <tr>
                 <td>Número de puertas</td>
-                <td><%=infoModelo[0].npuertas%></td>
+                <td><%=infoModelo[0].npuertas%> puertas</td>
               </tr>
               <tr>
                 <td>Número de plazas</td>
-                <td><%=infoModelo[0].nplazas%></td>
+                <td><%=infoModelo[0].nplazas%> personas</td>
               </tr>
               <tr>
                 <td>Altura</td>
-                <td><%=infoModelo[0].maltura%>m</td>
+                <td><%=infoModelo[0].maltura%> metros</td>
               </tr>
               <tr>
                 <td>Anchura</td>
-                <td><%=infoModelo[0].mancho%>m</td>
+                <td><%=infoModelo[0].mancho%> metros</td>
               </tr>
               <tr>
                 <td>Distancia entre ejes</td>
-                <td><%=infoModelo[0].mdistanciaejes%>m</td>
+                <td><%=infoModelo[0].mdistanciaejes%> metros</td>
               </tr>
               <tr>
                 <td>Coeficiente aerodinámico</td>
@@ -302,11 +302,11 @@
               </tr>
               <tr>
                 <td>Kilometros de autonomía</td>
-                <td><%=infoModelo[0].kmautonomia%>km</td>
+                <td><%=infoModelo[0].kmautonomia%> kilometros</td>
               </tr>
               <tr>
                 <td>Peso del automóvil</td>
-                <td><%=infoModelo[0].kgpeso%>kg</td>
+                <td><%=infoModelo[0].kgpeso%> kilogramos</td>
               </tr>
               <tr>
                 <td>Aceleración de 0 a 100 km/h</td>
@@ -338,7 +338,7 @@
               </tr>
               <tr>
                 <td>Potencia</td>
-                <td><%=infoModelo[0].kwpotencia%></td>
+                <td><%=infoModelo[0].kwpotencia%> KiloWatts</td>
               </tr>
               <tr>
                 <td>Tipo de combustible</td>
@@ -346,23 +346,23 @@
               </tr>
               <tr>
                 <td>Números de cilindros</td>
-                <td><%=infoModelo[0].ncilindros%></td>
+                <td><%=infoModelo[0].ncilindros%> cilindros</td>
               </tr>
               <tr>
                 <td>Cilindrada</td>
-                <td><%=infoModelo[0].cm3cilindrada%>cm<sup>3</sup></td>
+                <td><%=infoModelo[0].cm3cilindrada%> cm<sup>3</sup></td>
               </tr>
               <tr>
                 <td>Emisiones de dioxido de carbono</td>
-                <td><%=infoModelo[0].gkmemisionco2%>g/km</td>
+                <td><%=infoModelo[0].gkmemisionco2%> gramos/kilometro</td>
               </tr>
               <tr>
                 <td>Tiempo de carga</td>
-                <td><%=infoModelo[0].tiempocarga%></td>
+                <td><%=infoModelo[0].tiempocarga%> minutos</td>
               </tr>
               <tr>
                 <td>Capacidad de la bateria</td>
-                <td><%=infoModelo[0].capacidadbateria%>kw/h</td>
+                <td><%=infoModelo[0].capacidadbateria%> kiloWatt/hora</td>
               </tr>
 
             </tbody>
