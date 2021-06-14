@@ -153,3 +153,5 @@ select idmodelo,nombremodelo from modelo;
 --select min(precio) from vehicarc,vehicare where 
 --vehicarc.idmodeloc=(select idModeloC from modelocombustion where nombremodelo='Mazda 1') 
 --or vehicare.idmodeloe=(select idModeloE from modeloelectrico where nombremodelo='Mazda 1');
+INSERT INTO modelo(tipoMotor,nombreModelo,marcaModelo,versionModelo,anoModelo,descripcionModelo,motorModelo)
+VALUES (false,'Mazda 8','Sedán','Sport','2021','Está muy chulo jsjsjs','3.5L Skyactiv-G');
