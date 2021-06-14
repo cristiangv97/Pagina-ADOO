@@ -397,7 +397,7 @@ const getModelosCaracterizados = async (modelo) => {
     console.log(preM.rows);
     return preM.rows;
   } catch (error) {
-    log;
+    console.log(error);
   }
 };
 ///////////////////////////////////////
