@@ -255,7 +255,7 @@ app.post("/iniciar-sesion.html", async (req, res) => {
     if (myJSON === entradaContrasena) {
       variableSesion = result.rows[0].nombreuc;
       enSesion = true;
-      if (resVer === "not") {
+      if (resVer != "ok") {
         console.log("Verificacion: " + resVer);
         res.render("verificar-correo");
       }
@@ -292,12 +292,13 @@ app.get("/menu-personalizacion", async (req, res) => {
 
 /************************************************ CONFIRMAR COMPRA ************************************************/
 //Trabajando en...
-app.post("/confirmar-compra?$1=$2", async (req, res) => {
-  let { modelo } = req.body;
-  if (enSesion) {
-    res.render("confirmar-compra", { variableSesion });
-  } else {
+app.post("/confirmar-compra", async (req, res) => {
+  if (!enSesion) {
     res.render("iniciar-sesion", { variableSesion });
+  } else {
+    let { modelo, precio, color } = req.body;
+    console.log({ modelo, precio, color });
+    res.render("confirmar-compra", { variableSesion });
   }
 });
 
@@ -390,7 +391,7 @@ const getDetallesModelo = async (modelo) => {
 const getModelosCaracterizados = async (modelo) => {
   try {
     const preM = await pool.query(
-      "select precio,color from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
+      "select idcarmodelo,precio,color from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
         modelo +
         "');"
     );

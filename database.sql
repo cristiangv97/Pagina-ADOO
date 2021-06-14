@@ -129,7 +129,7 @@ create table compra(
 );
 -----------------------------------------
 INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave,verificado)
-VALUES ('Usuario','apelMat','apelPat','a@a.com','1234567','verCode');
+VALUES ('Usuario','apelMat','apelPat','a@a.com','1234567','ok');
 INSERT INTO modelo(tipoMotor,nombreModelo,marcaModelo,versionModelo,anoModelo,descripcionModelo,motorModelo)
 VALUES (false,'Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L Skyactiv-G'),
 (false,'Mazda 2','Sedán','Sport','2019','Está muy chulo x2 jsjsjs','2.5L Skyactiv-G'),

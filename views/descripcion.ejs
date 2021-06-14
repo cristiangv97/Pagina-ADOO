@@ -195,15 +195,15 @@
                 />
                 <div class="carousel-caption d-none d-md-block">
                   <form
-                    action="confirmar-compra"
+                    action="confirmar-compra?modelocaracterizado=<%=caracterizados[0].idcarmodelo%>"
                     method="POST"
                     id="personalizacion"
                   >
-                    <h5><%=modelo%></h5>
+                    <h5 name="modelo"><%=modelo%></h5>
                     Precio:
-                    <p><%=caracterizados[0].precio%></p>
+                    <p name="precio"><%=caracterizados[0].precio%></p>
                     Color:
-                    <p><%=caracterizados[0].color%></p>
+                    <p name="color"><%=caracterizados[0].color%></p>
                     <button
                       style="width: fit-content"
                       class="btn btn-primary col-12"
