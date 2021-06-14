@@ -129,7 +129,21 @@ create table compra(
 );
 -----------------------------------------
 INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave,verificado)
-VALUES ('Usuario','apelMat','apelPat','a@a.com','1234567','ok');
+VALUES ('Usuario','apelMat','apelPat','a@a.com','1234','ok');
+insert into metodoPago(idUsuarioC, nTarjeta, fechaVencimiento)
+values (1,'1234123412341111','11/11/2021'),
+(1,'1234123412342222','11/11/2022'),
+(1,'1234123412343333','11/11/2023'),
+(1,'1234123412344444','11/11/2024');
+insert into usuarioProveedor (telefonoUP,nombreUP,correo,clave,verificado)
+values ('1234567890','Proveedor','p@p.com','1234','ok');
+insert into sucursal (nombreSucursal,direccionSucursal)
+values ('Vallejo','Algun lugar sobre Vallejo'),
+('Lindavista','Algun lugar sobre Lindavista'),
+('Polanco','Algun lugar dentro de polanco'),
+('Chapultepec','Algun lugar cerca de chapultepec'),
+('Tezozomoc','Algun lugar cerca del deportivo Tezozomoc');
+insert into sucursalProveedor (idSucursal,idProveedor) values (1,1),(3,1),(5,1);
 INSERT INTO modelo(tipoMotor,nombreModelo,marcaModelo,versionModelo,anoModelo,descripcionModelo,motorModelo)
 VALUES (false,'Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L Skyactiv-G'),
 (false,'Mazda 2','Sedán','Sport','2019','Está muy chulo x2 jsjsjs','2.5L Skyactiv-G'),
@@ -138,6 +152,7 @@ VALUES (false,'Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L S
 (true,'Mazda 5','Sedán','Sport','2015','Está muy chulo x5 jsjsjs','4L Skyactiv-G'),
 (true,'Mazda 6','Sedán','Sport','2018','Está muy chulo x6 jsjsjs','2.5L Skyactiv-G'),
 (true,'Mazda 7','Sedán','Sport','2021','Está muy chulo x7 jsjsjs','4L Skyactiv-G');
+insert into modeloProveedor (idProveedor,idmodelo) values (1,1),(1,3),(1,5),(1,7);
 --se deben insertar valores en los vehiculos caracterizados,
 --por tanto, la siguiente insercion estaria parcialmente completa
 insert into vehiCar(idModelo,precio,color) values 
@@ -149,33 +164,15 @@ insert into vehiCar(idModelo,precio,color) values
 (6,.1,'rojo'),(6,.2,'plateado'),(6,.3,'blanco'),
 (7,.1,'rojo'),(7,.2,'plateado'),(7,.3,'blanco');
 ------------------------------------------
-select idmodelo,nombremodelo from modelo;
 --select min(precio) from vehicarc,vehicare where 
 --vehicarc.idmodeloc=(select idModeloC from modelocombustion where nombremodelo='Mazda 1') 
 --or vehicare.idmodeloe=(select idModeloE from modeloelectrico where nombremodelo='Mazda 1');
 update modelo 
-set kgMMA = 1500, 
-capacidadMaletero = 350, 
-nPuertas = 4, 
-nPlazas = 5, 
-mAltura = 1.6, 
-mAncho = 2.1, 
-mDistanciaEjes = 2.5, 
-coeficienteAerodinamico = 0.4, 
-kmAutonomia = 130, 
-kgPeso = 2000, 
-segAceleracion0a100 = 3.4, 
-susDelantera = 'Suspensión McPherson', 
-susTrasera = 'Suspensión rígida', 
-frenosDelanteros = 'De discos',   
-frenosTraseros = 'De discos', 
-neumaticos = 'Neumático diagonal y radial',  
-materialLlantas = 'Aluminio', 
-kwPotencia = 760.61, 
-combustible = 'Gasolina', 
-nCilindros = 8, 
-cm3Cilindrada = 1984, 
-gkmEmisionCO2 = 121.31, 
-tiempoCarga = '00:30:00', 
-capacidadBateria = 30000
-where idModelo = 1;
+set kgMMA = 1500, capacidadMaletero = 350, nPuertas = 4, 
+nPlazas = 5, mAltura = 1.6, mAncho = 2.1, mDistanciaEjes = 2.5, 
+coeficienteAerodinamico = 0.4, kmAutonomia = 130, kgPeso = 2000, segAceleracion0a100 = 3.4, 
+susDelantera = 'Suspensión McPherson', susTrasera = 'Suspensión rígida', frenosDelanteros = 'De discos',   
+frenosTraseros = 'De discos', neumaticos = 'Neumático diagonal y radial',  materialLlantas = 'Aluminio', 
+kwPotencia = 760.61, combustible = 'Gasolina', nCilindros = 8, cm3Cilindrada = 1984, 
+gkmEmisionCO2 = 121.31, tiempoCarga = '00:30:00', capacidadBateria = 30000 where idModelo = 1;
+select idmodelo,nombremodelo from modelo;

@@ -253,7 +253,7 @@ app.post("/iniciar-sesion.html", async (req, res) => {
     );
     var resVer = JSON.parse(JSON.stringify(verif.rows[0]["verificado"]));
     if (myJSON === entradaContrasena) {
-      variableSesion = result.rows[0].nombreuc;
+      variableSesion = result.rows[0].correo;
       enSesion = true;
       if (resVer != "ok") {
         console.log("Verificacion: " + resVer);
@@ -296,9 +296,17 @@ app.post("/confirmar-compra", async (req, res) => {
   if (!enSesion) {
     res.render("iniciar-sesion", { variableSesion });
   } else {
-    let { modelo, precio, color } = req.body;
-    console.log({ modelo, precio, color });
-    res.render("confirmar-compra", { variableSesion });
+    let { idcarmodelo } = req.body;
+    console.log(idcarmodelo);
+    var mpago = await getMetodosPago(variableSesion);
+    var sucursal = await getSucursalesProveedor(idcarmodelo);
+
+    res.render("confirmar-compra", {
+      variableSesion,
+      idcarmodelo,
+      mpago,
+      sucursal,
+    });
   }
 });
 
@@ -330,6 +338,32 @@ app.get("/informacion-cuenta.html", async (req, res) => {
 /*****************************************************************************************************************/
 /************************************************ FUNCIONES EXTRA ************************************************/
 /*****************************************************************************************************************/
+
+const getMetodosPago = async (correousuario) => {
+  try {
+    let resultMetodosPago = await pool.query(
+      "select nTarjeta from metodoPago where idusuarioc = (select idusuarioc from usuariocomprador where correo=$1)",
+      [correousuario]
+    );
+    console.log(resultMetodosPago.rows);
+    return resultMetodosPago.rows;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getSucursalesProveedor = async (idcarmodelo) => {
+  try {
+    let sucursales = await pool.query(
+      "select nombresucursal,direccionsucursal from sucursal inner join sucursalproveedor on sucursal.idsucursal = sucursalproveedor.idsucursal inner join usuarioproveedor on sucursalproveedor.idproveedor = usuarioproveedor.idproveedor inner join modeloproveedor on usuarioproveedor.idproveedor = modeloproveedor.idproveedor inner join modelo on modeloproveedor.idmodelo=modelo.idmodelo inner join vehicar on modelo.idmodelo = vehicar.idmodelo where idcarmodelo=$1",
+      [idcarmodelo]
+    );
+    console.log(sucursales.rows);
+    return sucursales.rows;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 const getCatalogo = async () => {
   try {
@@ -398,48 +432,10 @@ const getModelosCaracterizados = async (modelo) => {
     console.log(preM.rows);
     return preM.rows;
   } catch (error) {
-    console.log(error);
+    log;
   }
 };
 ///////////////////////////////////////
-
-app.get("/users/dashboard", (req, res) => {
-  res.render("dashboard", { user: "Conor", pass: "1234" });
-  //alert("Dashboard")
-});
-
-app.post("/users/register", async (req, res) => {
-  let { name, email, password, password2 } = req.body;
-  console.log({ name, email, password, password2 });
-
-  let errors = [];
-
-  if (!name || !email || !password || !password2) {
-    errors.push({ message: "Please enter all fields" });
-  }
-
-  if (password.length < 6) {
-    errors.push({ message: "Password must be at least 6 chars" });
-  }
-
-  if (password != password2) {
-    errors.push({ message: "Passwords don't match" });
-  }
-
-  if (errors.length > 0) {
-    res.render("register", { errors });
-  } else {
-    //Form validation passed
-    let hashedPassword = await bcrypt.hash(password, 10);
-    console.log(hashedPassword);
-    console.log(email);
-    const res = await pool.query("select * from usuario where correo=$1", [
-      "{" + [email] + "}",
-    ]);
-    console.log(res.rows);
-    //pool.end();
-  }
-});
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
