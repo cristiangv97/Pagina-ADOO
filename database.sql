@@ -153,3 +153,29 @@ select idmodelo,nombremodelo from modelo;
 --select min(precio) from vehicarc,vehicare where 
 --vehicarc.idmodeloc=(select idModeloC from modelocombustion where nombremodelo='Mazda 1') 
 --or vehicare.idmodeloe=(select idModeloE from modeloelectrico where nombremodelo='Mazda 1');
+update modelo 
+set kgMMA = 1500, 
+capacidadMaletero = 350, 
+nPuertas = 4, 
+nPlazas = 5, 
+mAltura = 1.6, 
+mAncho = 2.1, 
+mDistanciaEjes = 2.5, 
+coeficienteAerodinamico = 0.4, 
+kmAutonomia = 130, 
+kgPeso = 2000, 
+segAceleracion0a100 = 3.4, 
+susDelantera = 'Suspensión McPherson', 
+susTrasera = 'Suspensión rígida', 
+frenosDelanteros = 'De discos',   
+frenosTraseros = 'De discos', 
+neumaticos = 'Neumático diagonal y radial',  
+materialLlantas = 'Aluminio', 
+kwPotencia = 760.61, 
+combustible = 'Gasolina', 
+nCilindros = 8, 
+cm3Cilindrada = 1984, 
+gkmEmisionCO2 = 121.31, 
+tiempoCarga = '00:30:00', 
+capacidadBateria = 30000
+where idModelo = 1;

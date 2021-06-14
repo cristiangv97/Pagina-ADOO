@@ -254,13 +254,119 @@
       <div class="row m-4">
         <div class="col">
           <h2>Descripción</h2>
-          <p>
-            <em
-              >Etiquetas: Gasolina, 4 puertas, carro para godín, económico,
-              radio fm, turbo, Apple CarPlay</em
-            >
-          </p>
+          <!-- <p>
+            <em>
+              Etiquetas: Gasolina, 4 puertas, carro para godín, económico,
+              radio fm, turbo, Apple CarPlay
+            </em>
+          </p> -->
           <p><%=infoModelo[0].descripcionmodelo%></p>
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col" colspan="2">Especificaciones técnicas</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Masa máxima autorizada</td>
+                <td><%=infoModelo[0].kgmma%> kilogramos</td>
+              </tr>
+              <tr>
+                <td>Capacidad del maletero</td>
+                <td><%=infoModelo[0].capacidadmaletero%> litros</td>
+              </tr>
+              <tr>
+                <td>Número de puertas</td>
+                <td><%=infoModelo[0].npuertas%> puertas</td>
+              </tr>
+              <tr>
+                <td>Número de plazas</td>
+                <td><%=infoModelo[0].nplazas%> personas</td>
+              </tr>
+              <tr>
+                <td>Altura</td>
+                <td><%=infoModelo[0].maltura%> metros</td>
+              </tr>
+              <tr>
+                <td>Anchura</td>
+                <td><%=infoModelo[0].mancho%> metros</td>
+              </tr>
+              <tr>
+                <td>Distancia entre ejes</td>
+                <td><%=infoModelo[0].mdistanciaejes%> metros</td>
+              </tr>
+              <tr>
+                <td>Coeficiente aerodinámico</td>
+                <td><%=infoModelo[0].coeficienteaerodinamico%></td>
+              </tr>
+              <tr>
+                <td>Kilometros de autonomía</td>
+                <td><%=infoModelo[0].kmautonomia%> kilometros</td>
+              </tr>
+              <tr>
+                <td>Peso del automóvil</td>
+                <td><%=infoModelo[0].kgpeso%> kilogramos</td>
+              </tr>
+              <tr>
+                <td>Aceleración de 0 a 100 km/h</td>
+                <td><%=infoModelo[0].segaceleracion0a100%> segundos</td>
+              </tr>
+              <tr>
+                <td>Suspención delantera</td>
+                <td><%=infoModelo[0].susdelantera%></td>
+              </tr>
+              <tr>
+                <td>Suspención trasera</td>
+                <td><%=infoModelo[0].sustrasera%></td>
+              </tr>
+              <tr>
+                <td>Frenos delanteros</td>
+                <td><%=infoModelo[0].frenosdelanteros%></td>
+              </tr>
+              <tr>
+                <td>Frenos traseros</td>
+                <td><%=infoModelo[0].frenostraseros%></td>
+              </tr>
+              <tr>
+                <td>Neumáticos</td>
+                <td><%=infoModelo[0].neumaticos%></td>
+              </tr>
+              <tr>
+                <td>Meterial de llantas</td>
+                <td><%=infoModelo[0].materialllantas%></td>
+              </tr>
+              <tr>
+                <td>Potencia</td>
+                <td><%=infoModelo[0].kwpotencia%> KiloWatts</td>
+              </tr>
+              <tr>
+                <td>Tipo de combustible</td>
+                <td><%=infoModelo[0].combustible%></td>
+              </tr>
+              <tr>
+                <td>Números de cilindros</td>
+                <td><%=infoModelo[0].ncilindros%> cilindros</td>
+              </tr>
+              <tr>
+                <td>Cilindrada</td>
+                <td><%=infoModelo[0].cm3cilindrada%> cm<sup>3</sup></td>
+              </tr>
+              <tr>
+                <td>Emisiones de dioxido de carbono</td>
+                <td><%=infoModelo[0].gkmemisionco2%> gramos/kilometro</td>
+              </tr>
+              <tr>
+                <td>Tiempo de carga</td>
+                <td><%=infoModelo[0].tiempocarga%> minutos</td>
+              </tr>
+              <tr>
+                <td>Capacidad de la bateria</td>
+                <td><%=infoModelo[0].capacidadbateria%> kiloWatt/hora</td>
+              </tr>
+
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
