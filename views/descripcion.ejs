@@ -143,29 +143,22 @@
             data-bs-ride="carousel pause"
           >
             <div class="carousel-indicators">
+              <%  for (let i = 0; i < tamanioCaracterizados; i++) { %>
               <button
                 type="button"
                 data-bs-target="#carouselExampleCaptions"
-                data-bs-slide-to="0"
-                class="active"
-                aria-current="true"
-                aria-label="Slide 1"
+                data-bs-slide-to="<%=i%>"
+                aria-label="Slide <%=i+1%>"
+                <% if (i === 0) { %>
+                  class="active"
+                  aria-current="true"
+                <% } %>  
               ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide-to="1"
-                aria-label="Slide 2"
-              ></button>
-              <button
-                type="button"
-                data-bs-target="#carouselExampleCaptions"
-                data-bs-slide-to="2"
-                aria-label="Slide 3"
-              ></button>
+              <% } %>
             </div>
             <div class="carousel-inner">
-              <div class="carousel-item active">
+              <!--
+              <div class="carousel-item">
                 <img
                   src="../imgs/<%=infoModelo[0].nombremodelo%>-rojo.png"
                   class="d-block w-100"
@@ -183,55 +176,63 @@
                   alt="..."
                 />
                 <div class="carousel-caption d-none d-md-block">
-                  <h5>Modelo A</h5>
+                  <h5>Modelo B</h5>
                   <p>Versión verde.</p>
                 </div>
               </div>
-              <div class="carousel-item">
-                <img
-                  src="../imgs/<%=infoModelo[0].nombremodelo%>.png"
-                  class="d-block w-100"
-                  alt="..."
-                />
-                <div class="carousel-caption d-none d-md-block">
-                  <form
-                    action="confirmar-compra%>"
-                    method="POST"
-                    id="personalizacion"
-                  >
-                    <input
-                      style="display: none"
-                      name="idcarmodelo"
-                      value="<%=caracterizados[0].idcarmodelo%>"
-                    />
-                    <input
-                      style="display: none"
-                      name="modelo"
-                      value="<%=modelo%>"
-                    />
-                    <input
-                      style="display: none"
-                      name="precio"
-                      value="<%=caracterizados[0].precio%>"
-                    />
-                    <h5 name="modelo"><%=modelo%></h5>
-                    Precio:
-                    <p name="precio" id="precio">
-                      <%=caracterizados[0].precio%>
-                    </p>
-                    Color:
-                    <p name="color" id="color"><%=caracterizados[0].color%></p>
-                    <button
-                      style="width: fit-content"
-                      class="btn btn-primary col-12"
-                      type="submit"
+              -->
+              <%  for (let i = 0; i < tamanioCaracterizados; i++) { %>
+                <% if (i === 0) { %>
+                  <div class="carousel-item active">
+                <% } else { %>
+                  <div class="carousel-item">
+                <% } %>
+                  <img
+                    src="../imgs/<%=infoModelo[0].nombremodelo%>.png"
+                    class="d-block w-100"
+                    alt="..."
+                  />
+                  <div class="carousel-caption d-none d-md-block">
+                    <form
+                      action="confirmar-compra%>"
+                      method="POST"
+                      id="personalizacion"
                     >
-                      Comprar ahora
-                    </button>
-                  </form>
+                      <input
+                        style="display: none"
+                        name="idcarmodelo"
+                        value="<%=caracterizados[i].idcarmodelo%>"
+                      />
+                      <input
+                        style="display: none"
+                        name="modelo"
+                        value="<%=modelo%>"
+                      />
+                      <input
+                        style="display: none"
+                        name="precio"
+                        value="<%=caracterizados[i].precio%>"
+                      />
+                      <h5 name="modelo"><%=modelo%></h5>
+                      Precio:
+                      <p name="precio" id="precio">
+                        <%=caracterizados[i].precio%>
+                      </p>
+                      Color:
+                      <p name="color" id="color"><%=caracterizados[i].color%></p>
+                      <button
+                        style="width: fit-content"
+                        class="btn btn-primary col-12"
+                        type="submit"
+                      >
+                        Comprar ahora
+                      </button>
+                    </form>
+                  </div>
                 </div>
-              </div>
+              <% } %>
             </div>
+
             <button
               class="carousel-control-prev"
               type="button"
