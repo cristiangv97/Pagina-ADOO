@@ -204,11 +204,23 @@
                       name="idcarmodelo"
                       value="<%=caracterizados[0].idcarmodelo%>"
                     />
+                    <input
+                      style="display: none"
+                      name="modelo"
+                      value="<%=modelo%>"
+                    />
+                    <input
+                      style="display: none"
+                      name="precio"
+                      value="<%=caracterizados[0].precio%>"
+                    />
                     <h5 name="modelo"><%=modelo%></h5>
                     Precio:
-                    <p name="precio"><%=caracterizados[0].precio%></p>
+                    <p name="precio" id="precio">
+                      <%=caracterizados[0].precio%>
+                    </p>
                     Color:
-                    <p name="color"><%=caracterizados[0].color%></p>
+                    <p name="color" id="color"><%=caracterizados[0].color%></p>
                     <button
                       style="width: fit-content"
                       class="btn btn-primary col-12"

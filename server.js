@@ -296,13 +296,15 @@ app.post("/confirmar-compra", async (req, res) => {
   if (!enSesion) {
     res.render("iniciar-sesion", { variableSesion });
   } else {
-    let { idcarmodelo } = req.body;
+    let { idcarmodelo, modelo, precio } = req.body;
     console.log(idcarmodelo);
     var mpago = await getMetodosPago(variableSesion);
     var sucursal = await getSucursalesProveedor(idcarmodelo);
-
+    console.log(modelo);
     res.render("confirmar-compra", {
       variableSesion,
+      modelo,
+      precio,
       idcarmodelo,
       mpago,
       sucursal,
@@ -380,7 +382,7 @@ const getCatalogo = async () => {
 
     for (let i = 0; i < cantCatalogoE; i++) {
       const consNom = await pool.query(
-        "select nombreModelo from modelo;"
+        "select nombreModelo from modelo order by idmodelo asc;"
         // "select nombreModelo from modeloCombustion"
       );
       var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombremodelo"]));
