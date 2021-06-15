@@ -88,11 +88,13 @@ app.post("/descripcion", async (req, res) => {
   let { modelo } = req.body;
   infoModelo = await getDetallesModelo(modelo);
   caracterizados = await getModelosCaracterizados(modelo);
+  let tamanioCaracterizados = caracterizados.length;
   res.render("descripcion", {
     variableSesion,
     modelo,
     infoModelo,
     caracterizados,
+    tamanioCaracterizados
   });
 });
 
