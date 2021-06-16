@@ -55,6 +55,10 @@ app.get("/agregar-metodo-pago.html", (req, res) => {
   res.render("agregar-metodo-pago", { variableSesion });
 });
 
+app.post("/agregar-metodo-pago", (req, res) => {
+  res.render("agregar-metodo-pago", { variableSesion });
+});
+
 /************************************************ COMPRA FINALIZADA ************************************************/
 app.post("/compra-finalizada.html", async (req, res) => {
   if (enSesion) {
@@ -94,12 +98,39 @@ app.post("/descripcion", async (req, res) => {
     modelo,
     infoModelo,
     caracterizados,
-    tamanioCaracterizados
+    tamanioCaracterizados,
   });
 });
 
 app.get("/descripcion", async (req, res) => {
   res.render("descripcion", { variableSesion });
+});
+
+app.get("/verificar-correo", (req, res) => {
+  res.render("");
+});
+
+app.post("/verificar-correo", async (req, res) => {
+  let { correo, codigoVerificacion } = req.body;
+  const consultaCodigo = await pool.query(
+    "select verificado from usuarioComprador where correo=$1",
+    [correo]
+  );
+  var codigo = consultaCodigo.rows[0]["verificado"];
+  console.log(codigo, codigoVerificacion);
+  if (codigo === codigoVerificacion) {
+    const updateVerificacion = await pool.query(
+      "update usuariocomprador set verificado = 'ok' where correo = '" +
+        correo +
+        "'"
+    );
+    let resCatalogo = [];
+    resCatalogo = await getCatalogo();
+    res.render("index", { variableSesion, resCatalogo });
+  } else {
+    res.render("verificar-correo", { variableSesion });
+  }
+  return codigo;
 });
 
 /************************************************ INDEX ************************************************/
@@ -118,11 +149,11 @@ app.post("/index.html", async (req, res) => {
 });
 
 /************************************************ CREAR CUENTA ************************************************/
-app.get("/crear-cuenta.html", (req, res) => {
+app.get("/crear-cuenta", (req, res) => {
   res.render("crear-cuenta");
 });
 
-app.post("/crear-cuenta.html", async (req, res) => {
+app.post("/crear-cuenta", async (req, res) => {
   //implementación solo para usuario
   let {
     nombre_registro,
@@ -169,7 +200,7 @@ app.post("/crear-cuenta.html", async (req, res) => {
     }
 
     //envia
-    let codigoVer = generateString(6);
+    let codigoVer = generateString(5);
     let transporter = nodemailer.createTransport({
       host: "smtp.gmail.com",
       port: 587,
@@ -216,7 +247,7 @@ app.post("/crear-cuenta.html", async (req, res) => {
       }
     });
 
-    res.render("verificar-correo");
+    res.render("verificar-correo", { variableSesion });
   } else {
     console.log("Usuario ya registrado");
     res.render("crear-cuenta");
@@ -257,9 +288,10 @@ app.post("/iniciar-sesion.html", async (req, res) => {
     if (myJSON === entradaContrasena) {
       variableSesion = result.rows[0].correo;
       enSesion = true;
+      //validacion 001
       if (resVer != "ok") {
         console.log("Verificacion: " + resVer);
-        res.render("verificar-correo");
+        res.render("verificar-correo", { variableSesion });
       }
       console.log("Usuario valido");
       res.render("index", { variableSesion, resCatalogo });
@@ -431,7 +463,7 @@ const getModelosCaracterizados = async (modelo) => {
     const preM = await pool.query(
       "select idcarmodelo,precio,color from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
         modelo +
-        "');"
+        "') order by precio asc;"
     );
     console.log(preM.rows);
     return preM.rows;
