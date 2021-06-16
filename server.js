@@ -52,11 +52,34 @@ app.post("/cerrar-sesion.html", async (req, res) => {
 
 /************************************************ AGREGAR METODO DE PAGO ************************************************/
 app.get("/agregar-metodo-pago.html", (req, res) => {
-  res.render("agregar-metodo-pago", { variableSesion });
+  if (enSesion) {
+    res.render("agregar-metodo-pago", { variableSesion });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
 });
 
-app.post("/agregar-metodo-pago", (req, res) => {
-  res.render("agregar-metodo-pago", { variableSesion });
+app.post("/agregar-metodo-pago", async (req, res) => {
+  //002
+  let { nTarjeta, cSeguridad, fVencimiento, nomP, telP } = req.body;
+  //console.log(correo);
+  if (validarTarjeta(nTarjeta, variableSesion)) {
+    //Aca ejecuta la insercion
+    console.log(nTarjeta, cSeguridad, fVencimiento, nomP, telP, variableSesion);
+    const getID = await pool.query(
+      "select idusuarioc from usuariocomprador where correo=$1",
+      [variableSesion]
+    );
+    const insercion = await pool.query(
+      "insert into metodopago(nTarjeta,fechavencimiento,idusuarioc) values ($1,$2,$3);",
+      [nTarjeta, fVencimiento, getID.rows[0]["idusuarioc"]]
+    );
+    let resCatalogo = [];
+    resCatalogo = await getCatalogo();
+    res.render("index", { variableSesion, resCatalogo });
+  } else {
+    res.render("agregar-metodo-pago", { variableSesion });
+  }
 });
 
 /************************************************ COMPRA FINALIZADA ************************************************/
@@ -104,10 +127,6 @@ app.post("/descripcion", async (req, res) => {
 
 app.get("/descripcion", async (req, res) => {
   res.render("descripcion", { variableSesion });
-});
-
-app.get("/verificar-correo", (req, res) => {
-  res.render("");
 });
 
 app.post("/verificar-correo", async (req, res) => {
@@ -385,6 +404,20 @@ const getMetodosPago = async (correousuario) => {
     return resultMetodosPago.rows;
   } catch (error) {
     console.log(error);
+  }
+};
+
+const validarTarjeta = async (nTarjeta, usuario) => {
+  const validacion = await pool.query(
+    "select ntarjeta from metodopago inner join usuariocomprador on metodopago.idusuarioc = usuariocomprador.idusuarioc where correo='" +
+      usuario +
+      "'"
+  );
+  console.log(validacion.rowCount);
+  if (validacion.rowCount > 0) {
+    return false;
+  } else {
+    return true;
   }
 };
 

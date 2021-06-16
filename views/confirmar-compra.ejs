@@ -148,6 +148,7 @@
             class="form-select form-control-lg"
             id="num-metodo-pago"
             onchange="cambiarTarjeta()"
+            onclick="cambiarTarjeta()"
           >
             <% for (let i=0 ; i < mpago.length ; i++ ) { %>
             <option value="metodo-<%=(i+1)%>">Método de pago <%=(i+1)%></option>
@@ -184,6 +185,7 @@
             class="form-select form-control-lg"
             id="direccion-sucursal"
             onchange="cambiarDireccion()"
+            onclick="cambiarDireccion()"
           >
             <% for (let i=0 ; i < sucursal.length ; i++ ) { %>
             <option value="sucursal-<%=(i+1)%>">
