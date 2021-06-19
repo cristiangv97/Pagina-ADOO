@@ -134,7 +134,7 @@
           <div class="text-center">
             <img
               class="rounded"
-              src="imgs/carro-6.png"
+              src="imgs/<%=modelo%>.png"
               alt="..."
               style="max-width: 100%; height: auto"
             />
@@ -269,16 +269,17 @@
             </div>
 
             <div class="modal-footer">
-              <button
+              <form action="./descripcion" method="POST" id="volverDesc">
+                <input name="modelo" id="modelo" style="display: none;" value="<%=modelo%>">
+                <button
                 type="button"
                 class="btn btn-primary"
-                data-bs-dismiss="modal"
-              >
+                data-bs-dismiss="modal">
                 No cancelar
-              </button>
-              <a href="./descripcion" class="btn btn-danger"
-                >Sí cancelar</a
-              >
+                </button>
+                <button class="btn btn-danger" type="submit"
+                  >Sí cancelar</button>
+              </form>
             </div>
           </div>
         </div>
