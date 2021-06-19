@@ -494,7 +494,7 @@ const getDetallesModelo = async (modelo) => {
 const getModelosCaracterizados = async (modelo) => {
   try {
     const preM = await pool.query(
-      "select idcarmodelo,precio,color from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
+      "select idcarmodelo,precio,color,stock,descripcion from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
         modelo +
         "') order by precio asc;"
     );

@@ -107,13 +107,16 @@ create table vehiCar(
 	idCarModelo serial primary key not null,
 	precio float not null,
 	color varchar(12) not null,
+	stock integer not null,
+	descripcion varchar(150) not null,
 	idModelo integer not null,
 	foreign key (idModelo) references modelo(idModelo) on delete cascade
 );
 --tabla que contiene a cada vehiculo individual con su ns
 create table vehiculo(
-	nsVehiculo varchar(40) primary key not null,
+	nsVehiculo varchar(17) primary key not null,
 	idCarModelo integer not null,
+	disponibilidad boolean not null set default true,
 	foreign key (idCarModelo) references vehiCar(idCarModelo)
 );
 create table compra(
@@ -158,14 +161,17 @@ VALUES (false,'Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L S
 insert into modeloProveedor (idProveedor,idmodelo) values (1,1),(1,3),(1,5),(1,7);
 --se deben insertar valores en los vehiculos caracterizados,
 --por tanto, la siguiente insercion estaria parcialmente completa
-insert into vehiCar(idModelo,precio,color) values 
-(1,.1,'rojo'),(1,.2,'plateado'),(1,.3,'blanco'),
-(2,.1,'rojo'),(2,.2,'plateado'),(2,.3,'blanco'),
-(3,.1,'rojo'),(3,.2,'plateado'),(3,.3,'blanco'),
-(4,.1,'rojo'),(4,.2,'plateado'),(4,.3,'blanco'),
-(5,.1,'rojo'),(5,.2,'plateado'),(5,.3,'blanco'),
-(6,.1,'rojo'),(6,.2,'plateado'),(6,.3,'blanco'),
-(7,.1,'rojo'),(7,.2,'plateado'),(7,.3,'blanco');
+insert into vehiCar(idModelo,precio,color,stock,descripcion) values 
+(1,.1,'rojo',10,'desc'),(1,.2,'plateado',5,'desc'),(1,.3,'blanco',1,'desc'),
+(2,.1,'rojo',10,'desc'),(2,.2,'plateado',5,'desc'),(2,.3,'blanco',1,'desc'),
+(3,.1,'rojo',10,'desc'),(3,.2,'plateado',5,'desc'),(3,.3,'blanco',0,'desc'),
+(4,.1,'rojo',10,'desc'),(4,.2,'plateado',5,'desc'),(4,.3,'blanco',1,'desc'),
+(5,.1,'rojo',10,'desc'),(5,.2,'plateado',5,'desc'),(5,.3,'blanco',1,'desc'),
+(6,.1,'rojo',10,'desc'),(6,.2,'plateado',5,'desc'),(6,.3,'blanco',1,'desc'),
+(7,.1,'rojo',10,'desc'),(7,.2,'plateado',5,'desc'),(7,.3,'blanco',1,'desc');
+--vehiculos individuales
+insert into vehiculo(nsVehiculo,idCarModelo) values
+(12341234512345612,1),(12341234512345624,1),(12341234512345636,1)
 ------------------------------------------
 INSERT INTO modelo(marcaModelo,nombreModelo,versionModelo,anoModelo,motorModelo,tipoMotor,kgMMA,capacidadMaletero,nPuertas,nPlazas,mAltura,mAncho,mDistanciaEjes,coeficienteAerodinamico,kmAutonomia,kgPeso,segAceleracion0a100,susDelantera,susTrasera,frenosDelanteros,frenosTraseros,neumaticos,materialLlantas,kwPotencia,combustible,nCilindros,cm3Cilindrada,gkmEmisionCO2,tiempoCarga,capacidadBateria,descripcionModelo) Values
 ('Ford', 'Ranger', 'Double Cab 4x4', 2016, '2.2 TDCi 160HP', true, 3985.26, 965, 4, 5, 1.815, 1.86, 3.22, 0.75, 1126, 2177, 11.8, 'Coil springs.', 'Beam axle.', 'Disco ventilado (302 mm)', 'Tambor (295 mm)', '255/70 R16', 'Alumino', 118, 'diesel', 4, 2198, 185, null, null, ' '),

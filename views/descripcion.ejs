@@ -220,6 +220,7 @@
                       </p>
                       Color:
                       <p name="color" id="color"><%=caracterizados[i].color%></p>
+                      <%if(caracterizados[i].stock > 0){%>
                       <button
                         style="width: fit-content"
                         class="btn btn-primary col-12"
@@ -227,6 +228,17 @@
                       >
                         Comprar ahora
                       </button>
+                      <%}else{%>
+                        <button
+                        style="width: fit-content"
+                        class="btn btn-primary col-12"
+                        type="submit"
+                        disabled
+                      >
+                        Comprar ahora
+                      </button>
+                      <p style="size: 3px; color: red;">Caracterizacion no disponible</p>
+                        <%}%>
                     </form>
                   </div>
                 </div>
