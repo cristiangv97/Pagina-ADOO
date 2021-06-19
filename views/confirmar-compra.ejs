@@ -236,13 +236,18 @@
           >
           </div>
           -->
-          <button
+          <form action="./compra-finalizada.html" method="POST">
+            <input style="display: none;" name="variableSesion" id="variableSesion" value="<%=variableSesion%>">
+            <input style="display: none;" name="modelo" id="modelo" value="<%=modelo%>">
+            <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
+            <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
+            <button
             class="btnConfirmarCompra btn btn-primary btn-continuar"
             type="submit"
-          >
-            <h4>Finalizar Compra</h4>
-          </button>
-        
+            >
+              <h4>Finalizar Compra</h4>
+            </button>
+          </form>
       </div>
 
       <!-- Modal de cancelar compra -->
