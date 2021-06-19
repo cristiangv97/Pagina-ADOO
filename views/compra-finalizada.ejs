@@ -81,7 +81,10 @@
       <a class=" btn btn-primary btn-continuar" href="index.html" role="button"><h3>Continuar</h3></a>
     </div>
     <div class="col-md-12 pt-2">
-      <a class=" " href="consultar-compras.html" role="button"><h3>Consultar compras</h3></a>
+      <form action="./consultar-compras.html" method="POST">
+        <input style="display: none;" name="variableSesion" id="variableSesion" value="<%=variableSesion%>">
+        <button class="btn btn-secondary w-75" type="submit" role="button"><h3>Consultar compras</h3></button>
+      </form>
     </div>
   </div>
 
