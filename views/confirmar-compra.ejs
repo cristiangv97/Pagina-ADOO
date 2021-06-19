@@ -129,7 +129,9 @@
       <div class="row">
         <h1 class="text-center display-3">Confirmar compra</h1>
       </div>
+      <form action="confirmar-compra/validar" method="POST/ ">
       <div class="row m-3">
+
         <div class="col-lg-7">
           <div class="text-center">
             <img
@@ -167,7 +169,17 @@
                 id="tarjeta-<%=i%>"
                 value="<%=mpago[i]['ntarjeta'][12] + mpago[i]['ntarjeta'][13] + mpago[i]['ntarjeta'][14] + mpago[i]['ntarjeta'][15]%>"
               />
+              <input
+                style="display: none"
+                id="opcion-<%=i%>"
+                value="<%=mpago[i]['ntarjeta']%>"
+              />
               <%}%>
+              <input
+                style="display: none"
+                id="elegido"
+                value=""
+              />
             </div>
           </fieldset>
           <% } else{ %>
@@ -206,6 +218,11 @@
                 value="<%=sucursal[i]['direccionsucursal']%>"
               />
               <%}%>
+              <input
+                style="display: none"
+                id="entrega"
+                value=""
+                />
             </div>
           </fieldset>
         </div>
@@ -244,7 +261,7 @@
           </button>
         
       </div>
-
+      </form>
       <!-- Modal de cancelar compra -->
 
       <div

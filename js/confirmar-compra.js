@@ -7,6 +7,9 @@ function cambiarTarjeta() {
   var metodoPago = document.getElementById("num-metodo-pago").value[7];
   document.getElementById("display-metodo-pago").innerHTML =
     "**** **** **** " + term[metodoPago - 1];
+  document.getElementById("elegido").innerHTML = document.getElementById(
+    "opcion-" + (metodoPago - 1) + ""
+  ).value;
 }
 
 function cambiarDireccion() {
@@ -19,4 +22,6 @@ function cambiarDireccion() {
     document.getElementById("direccion-sucursal").value[9];
   document.getElementById("display-direccion").innerHTML =
     term[direccionSucursal - 1];
+  document.getElementById("entrega").innerHTML =
+    document.getElementById("display-direccion").value;
 }

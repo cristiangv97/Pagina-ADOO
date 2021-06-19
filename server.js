@@ -128,7 +128,7 @@ app.post("/descripcion", async (req, res) => {
 app.get("/descripcion", async (req, res) => {
   res.render("descripcion", { variableSesion });
 });
-
+/**********************************VERIFICAR CORREO *************************************/
 app.post("/verificar-correo", async (req, res) => {
   let { correo, codigoVerificacion } = req.body;
   const consultaCodigo = await pool.query(
@@ -364,6 +364,25 @@ app.post("/confirmar-compra", async (req, res) => {
     });
   }
 });
+app.post("/confirmar-compra/validar", async (req, res) => {
+  if (!enSesion) {
+    res.render("iniciar-sesion", { variableSesion });
+  } else {
+    let { elegido, modelo, precio } = req.body;
+    console.log(idcarmodelo);
+    var mpago = await getMetodosPago(variableSesion);
+    var sucursal = await getSucursalesProveedor(idcarmodelo);
+    console.log(modelo);
+    res.render("confirmar-compra", {
+      variableSesion,
+      modelo,
+      precio,
+      idcarmodelo,
+      mpago,
+      sucursal,
+    });
+  }
+});
 
 app.get("/confirmar-compra", async (req, res) => {
   if (enSesion) {
@@ -424,7 +443,7 @@ const validarTarjeta = async (nTarjeta, usuario) => {
 const getSucursalesProveedor = async (idcarmodelo) => {
   try {
     let sucursales = await pool.query(
-      "select nombresucursal,direccionsucursal from sucursal inner join sucursalproveedor on sucursal.idsucursal = sucursalproveedor.idsucursal inner join usuarioproveedor on sucursalproveedor.idproveedor = usuarioproveedor.idproveedor inner join modeloproveedor on usuarioproveedor.idproveedor = modeloproveedor.idproveedor inner join modelo on modeloproveedor.idmodelo=modelo.idmodelo inner join vehicar on modelo.idmodelo = vehicar.idmodelo where idcarmodelo=$1",
+      "select nombresucursal,direccionsucursal from sucursal inner join sucursalproveedor on sucursal.idsucursal = sucursalproveedor.idsucursal inner join usuarioproveedor on sucursalproveedor.idproveedor = usuarioproveedor.idproveedor inner join modelo on usuarioproveedor.idproveedor = modelo.idproveedor inner join vehicar on modelo.idmodelo = vehicar.idmodelo where idcarmodelo=$1",
       [idcarmodelo]
     );
     console.log(sucursales.rows);
