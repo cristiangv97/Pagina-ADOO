@@ -122,7 +122,7 @@ create table vehiculo(
 );
 create table compra(
 	idCompra serial primary key not null,
-	fechaEntrega date not null,
+	fechaEntrega date,
 	fechaCompra date not null,
 	estatusCompra varchar(30) not null,
 	idUsuarioC integer not null,

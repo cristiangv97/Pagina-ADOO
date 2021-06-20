@@ -83,15 +83,34 @@ app.post("/agregar-metodo-pago", async (req, res) => {
 });
 
 /************************************************ COMPRA FINALIZADA ************************************************/
-app.post("/compra-finalizada.html", async (req, res) => {
+app.post("/compra-finalizada", async (req, res) => {
   if (enSesion) {
+    //003
+    //subida de pedido a la base de datos
+    let { sesion, modeloAuto, precio, ntarjeta } = req.body;
+    console.log(sesion, modeloAuto, precio, ntarjeta);
+    const idUsuario = await pool.query(
+      "select idusuarioc from usuarioComprador where correo=$1",
+      [sesion]
+    );
+    const idproveedor = await pool.query(
+      "select idproveedor from modelo where nombremodelo=$1",
+      [modeloAuto]
+    );
+    /*
+    const nsVehiculo = await pool.query(
+      "select nsvehiculo from vehiculo where idcarmodelo=(select idcarmodelo from vehicar where precio=$1 and idmodelo=(select idmodelo form modelo where nombremodelo=$2))",
+      [precio, modeloAuto]
+    );
+    */
+    //redireccion
     res.render("compra-finalizada", { variableSesion });
   } else {
     res.render("iniciar-sesion", { variableSesion });
   }
 });
 
-app.get("/compra-finalizada.html", async (req, res) => {
+app.get("/compra-finalizada", async (req, res) => {
   if (enSesion) {
     res.render("compra-finalizada", { variableSesion });
   } else {
@@ -344,31 +363,12 @@ app.get("/menu-personalizacion", async (req, res) => {
 });
 
 /************************************************ CONFIRMAR COMPRA ************************************************/
-//Trabajando en...
+
 app.post("/confirmar-compra", async (req, res) => {
   if (!enSesion) {
     res.render("iniciar-sesion", { variableSesion });
   } else {
     let { idcarmodelo, modelo, precio } = req.body;
-    console.log(idcarmodelo);
-    var mpago = await getMetodosPago(variableSesion);
-    var sucursal = await getSucursalesProveedor(idcarmodelo);
-    console.log(modelo);
-    res.render("confirmar-compra", {
-      variableSesion,
-      modelo,
-      precio,
-      idcarmodelo,
-      mpago,
-      sucursal,
-    });
-  }
-});
-app.post("/confirmar-compra/validar", async (req, res) => {
-  if (!enSesion) {
-    res.render("iniciar-sesion", { variableSesion });
-  } else {
-    let { elegido, modelo, precio } = req.body;
     console.log(idcarmodelo);
     var mpago = await getMetodosPago(variableSesion);
     var sucursal = await getSucursalesProveedor(idcarmodelo);

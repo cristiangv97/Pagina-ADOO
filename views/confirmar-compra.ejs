@@ -94,14 +94,14 @@
               <li class="nav-item">
                 <a
                   class="nav-link bg-secondary btn active btn-nav"
-                  href="iniciar-sesion.html"
+                  href="/iniciar-sesion"
                   >Iniciar Sesion</a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link bg-primary btn active btn-nav"
-                  href="crear-cuenta.html"
+                  href="/crear-cuenta"
                   >Registrarse</a
                 >
               </li>
@@ -112,7 +112,7 @@
         </div>
       </nav>
     </div>
-
+    <form action="./compra-finalizada" method="POST">
     <div class="container">
       <div class="input-group p-2">
         <input
@@ -129,7 +129,7 @@
       <div class="row">
         <h1 class="text-center display-3">Confirmar compra</h1>
       </div>
-      <form action="confirmar-compra/validar" method="POST/ ">
+      
       <div class="row m-3">
 
         <div class="col-lg-7">
@@ -169,17 +169,14 @@
                 id="tarjeta-<%=i%>"
                 value="<%=mpago[i]['ntarjeta'][12] + mpago[i]['ntarjeta'][13] + mpago[i]['ntarjeta'][14] + mpago[i]['ntarjeta'][15]%>"
               />
+              
+              <!--En este se guardan las tarjetas en la cuenta para trabajar con sus valores-->
               <input
                 style="display: none"
-                id="opcion-<%=i%>"
+                id="seleccion-<%=i%>"
                 value="<%=mpago[i]['ntarjeta']%>"
               />
               <%}%>
-              <input
-                style="display: none"
-                id="elegido"
-                value=""
-              />
             </div>
           </fieldset>
           <% } else{ %>
@@ -208,7 +205,7 @@
           <fieldset disabled>
             <div class="form-group">
               <label for="disabledDireccion">Direccion</label>
-              <select id="disabledDireccion" class="form-control">
+              <select name="disabledDireccion" id="disabledDireccion" class="form-control">
                 <option id="display-direccion">Seleccione una sucursal</option>
               </select>
               <% for (let i=0 ; i < sucursal.length ; i++ ) { %>
@@ -218,11 +215,6 @@
                 value="<%=sucursal[i]['direccionsucursal']%>"
               />
               <%}%>
-              <input
-                style="display: none"
-                id="entrega"
-                value=""
-                />
             </div>
           </fieldset>
         </div>
@@ -230,6 +222,7 @@
       <div class="row text-center">
         <h1 class="text-center display-5">Precio final: <%=precio%></h1>
       </div>
+
       <div class="row text-center">
         <div class="col-lg-6 col-md-12 p-4">
           <!-- <a class=" btn btn-primary btn-continuar" href="#" role="button"><h3>Cancelar compra</h3></a> -->
@@ -253,20 +246,21 @@
           >
           </div>
           -->
-          <form action="./compra-finalizada.html" method="POST">
-            <input style="display: none;" name="variableSesion" id="variableSesion" value="<%=variableSesion%>">
-            <input style="display: none;" name="modelo" id="modelo" value="<%=modelo%>">
+          
+            <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
+            <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
             <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
             <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
+            <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
             <button
             class="btnConfirmarCompra btn btn-primary btn-continuar"
             type="submit"
             >
               <h4>Finalizar Compra</h4>
             </button>
-          </form>
+          
       </div>
-      </form>
+      
       <!-- Modal de cancelar compra -->
 
       <div
@@ -307,5 +301,6 @@
         </div>
       </div>
     </div>
+    </form>
   </body>
 </html>
