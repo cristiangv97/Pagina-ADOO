@@ -467,10 +467,52 @@ app.post("/iniciar-sesion", async (req, res) => {
       });
     }
   } else {
+
+    const result = await pool.query(
+      "select * from usuarioproveedor where correo=$1",
+      [entradaCorreo]
+    );
+  
+    console.log("Contador de resultados: " + result.rowCount);
+
+    if (result.rowCount > 0) {
+
+      var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
+      const resCatalogo = await getCatalogo();
+      //console.log("getCatalogo()= " + resCatalogo);
+      console.log("Clave: " + myJSON);
+      // console.log("This is gen"+entradaCorreoGen);
+      //Validar que el usuario este verificado
+      const verif = await pool.query(
+        "select verificado from usuarioproveedor where correo=$1",
+        [entradaCorreo]
+      );
+      var resVer = JSON.parse(JSON.stringify(verif.rows[0]["verificado"]));
+      if (myJSON === entradaContrasena) {
+        variableSesion = result.rows[0].correo;
+        enSesion = true;
+        //validacion 001
+        if (resVer != "ok") {
+          console.log("Verificacion: " + resVer);
+          res.render("verificar-correo", { variableSesion });
+        }
+        console.log("Usuario valido");
+        res.render("index", { variableSesion, resCatalogo });
+      } else {
+        console.log("El usuario no existe");
+        res.render("iniciar-sesion", {
+          variableSesion: "Correo o contraseña no válidos.",
+        });
+      } 
+  }
+
+  else {
     console.log("El usuario no existe");
     res.render("iniciar-sesion", {
       variableSesion: "Correo o contraseña no válidos.",
     });
+  }
+
   }
 
   //pool.end();
@@ -551,21 +593,34 @@ app.get("/informacion-cuenta", async (req, res) => {
     var dataUser = await pool.query(
       "select * from usuariocomprador where correo='" + variableSesion + "'"
     );
-    var cuentas = await pool.query(
-      "select * from metodopago where idusuarioc=(select idusuarioc from usuariocomprador where correo='" +
-        variableSesion +
-        "')"
-    );
-    datosCuenta = dataUser.rows[0];
-    tarjetasCuenta = cuentas.rows;
-    res.render("informacion-cuenta", {
-      variableSesion,
-      datosCuenta,
-      tarjetasCuenta,
-    });
-  } else {
-    res.render("iniciar-sesion", { variableSesion });
-  }
+    if (dataUser.rowCount > 0) { // usuario comprador 
+        var cuentas = await pool.query(
+          "select * from metodopago where idusuarioc=(select idusuarioc from usuariocomprador where correo='" +
+            variableSesion +
+            "')"
+        );
+        datosCuenta = dataUser.rows[0];
+        tarjetasCuenta = cuentas.rows;
+        res.render("informacion-cuenta", {
+          variableSesion,
+          datosCuenta,
+          tarjetasCuenta,
+        });
+      } else { // usuario proveedor
+        var dataUser = await pool.query(
+          "select * from usuarioproveedor where correo='" + variableSesion + "';"
+        );
+        datosCuenta = dataUser.rows[0];
+        console.log(datosCuenta);
+        res.render("informacion-cuenta-proveedor", {
+          variableSesion,
+          datosCuenta
+        });
+      }
+    }
+    else { 
+      res.render("iniciar-sesion", { variableSesion });
+    }
 });
 /************************************************ ELIMINAR METODO PAGO ************************************************/
 app.post("/eliminar-mpago", async (req, res) => {
