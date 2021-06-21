@@ -34,7 +34,7 @@ app.get("/", async (req, res) => {
 });
 
 /************************************************ CERRAR SESION ************************************************/
-app.get("/cerrar-sesion.html", async (req, res) => {
+app.get("/cerrar-sesion", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   variableSesion = null;
@@ -42,7 +42,7 @@ app.get("/cerrar-sesion.html", async (req, res) => {
   res.render("index", { variableSesion, resCatalogo });
 });
 
-app.post("/cerrar-sesion.html", async (req, res) => {
+app.post("/cerrar-sesion", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   variableSesion = null;
@@ -51,7 +51,7 @@ app.post("/cerrar-sesion.html", async (req, res) => {
 });
 
 /************************************************ AGREGAR METODO DE PAGO ************************************************/
-app.get("/agregar-metodo-pago.html", (req, res) => {
+app.get("/agregar-metodo-pago", (req, res) => {
   if (enSesion) {
     res.render("agregar-metodo-pago", { variableSesion });
   } else {
@@ -143,12 +143,12 @@ app.get("/compra-finalizada", async (req, res) => {
 });
 
 /************************************************ MAS VENDIDOS ************************************************/
-app.get("/mas-vendidos.html", (req, res) => {
+app.get("/mas-vendidos", (req, res) => {
   res.render("mas-vendidos");
 });
 
 /************************************************ MAS RECIENTES ************************************************/
-app.get("/mas-recientes.html", (req, res) => {
+app.get("/mas-recientes", (req, res) => {
   res.render("mas-recientes");
 });
 
@@ -196,13 +196,13 @@ app.post("/verificar-correo", async (req, res) => {
 });
 
 /************************************************ INDEX ************************************************/
-app.get("/index.html", async (req, res) => {
+app.get("/index", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   res.render("index", { variableSesion, resCatalogo });
 });
 
-app.post("/index.html", async (req, res) => {
+app.post("/index", async (req, res) => {
   console.log("Llamaste a post del index");
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
@@ -317,11 +317,11 @@ app.post("/crear-cuenta", async (req, res) => {
 });
 
 /************************************************ INICIAR SESION ************************************************/
-app.get("/iniciar-sesion.html", (req, res) => {
+app.get("/iniciar-sesion", (req, res) => {
   res.render("iniciar-sesion", { variableSesion });
 });
 
-app.post("/iniciar-sesion.html", async (req, res) => {
+app.post("/iniciar-sesion", async (req, res) => {
   let { entradaCorreo, entradaContrasena } = req.body;
   console.log({ entradaCorreo, entradaContrasena });
 
@@ -410,7 +410,7 @@ app.post("/confirmar-compra", async (req, res) => {
   if (!enSesion) {
     res.render("iniciar-sesion", { variableSesion });
   } else {
-    let { idcarmodelo, modelo, precio } = req.body;
+    let { idcarmodelo, modelo, precio, displaydir } = req.body;
     console.log(idcarmodelo);
     var mpago = await getMetodosPago(variableSesion);
     var sucursal = await getSucursalesProveedor(idcarmodelo);
@@ -489,6 +489,28 @@ app.post("/eliminar-mpago", async (req, res) => {
       datosCuenta,
       tarjetasCuenta,
     });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
+/************************************************ CONSULTAR Y CANCELAR PEDIDO ************************************/
+app.get("/consultar-compras", async (req, res) => {
+  if (enSesion) {
+    let compras = await pool.query(
+      "select * from compra inner join usuarioproveedor on compra.idproveedor=usuarioproveedor.idproveedor inner join  where idusuarioc = (select idusuarioc from usuariocomprador where correo = '" +
+        variableSesion +
+        "')"
+    );
+    var resultadoCompras = compras.rows;
+    console.log(resultadoCompras);
+    res.render("consultar-compras", { variableSesion, resultadoCompras });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
+app.post("/consultar-compras/cancelar", async (req, res) => {
+  if (enSesion) {
+    res.render("consultar-compras", { variableSesion });
   } else {
     res.render("iniciar-sesion", { variableSesion });
   }

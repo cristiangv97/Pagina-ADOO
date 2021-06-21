@@ -22,6 +22,5 @@ function cambiarDireccion() {
   }
   var direccionSucursal =
     document.getElementById("direccion-sucursal").value[9];
-  document.getElementById("display-direccion").innerHTML =
-    term[direccionSucursal - 1];
+  document.getElementById("displaydir").innerHTML = term[direccionSucursal - 1];
 }

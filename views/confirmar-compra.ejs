@@ -33,7 +33,7 @@
     <div class="container-fluid" id="barra-de-navegacion">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"> Isurus Ictu </a>
+          <a class="navbar-brand" href="index"> Isurus Ictu </a>
           <button
             class="navbar-toggler ms-auto"
             type="button"
@@ -49,13 +49,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mt-1 text-center">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Catálogo completo</a>
+                <a class="nav-link" href="index">Catálogo completo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mas-vendidos.html">Más vendidos</a>
+                <a class="nav-link" href="mas-vendidos">Más vendidos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mas-recientes.html">Más recientes</a>
+                <a class="nav-link" href="mas-recientes">Más recientes</a>
               </li>
               <!-- Checamos si la sesion ha sido declarada como iniciada -->
               <% if (variableSesion) { %>
@@ -72,17 +72,17 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="btnDropDown">
                     <li>
-                      <a class="dropdown-item" href="informacion-cuenta.html"
+                      <a class="dropdown-item" href="informacion-cuenta"
                         >Cuenta</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="consultar-compras.html"
+                      <a class="dropdown-item" href="consultar-compras"
                         >Compras</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="./cerrar-sesion.html"
+                      <a class="dropdown-item" href="./cerrar-sesion"
                         >Cerrar sesión</a
                       >
                     </li>
@@ -123,7 +123,7 @@
             aria-describedby="search-addon"
           />
           <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
-          <a href="./buscar-vehiculo.html" class="btn btn-primary">Buscar</a>
+          <a href="./buscar-vehiculo" class="btn btn-primary">Buscar</a>
         </div>
 
         <div class="row">
@@ -183,7 +183,7 @@
             <h3>Registre un metodo de pago para este usuario</h3>
             <% } %>
             <a
-              href="agregar-metodo-pago.html"
+              href="agregar-metodo-pago"
               class="btn btn-secondary btn-lg mt-3"
               role="button"
               aria-pressed="true"
@@ -206,7 +206,7 @@
               <div class="form-group">
                 <label for="disabledDireccion">Direccion</label>
                 <select name="disabledDireccion" id="disabledDireccion" class="form-control">
-                  <option id="display-direccion">Seleccione una sucursal</option>
+                  <option id="displaydir">Seleccione una sucursal</option>
                 </select>
                 <% for (let i=0 ; i < sucursal.length ; i++ ) { %>
                 <input
@@ -226,7 +226,7 @@
           <!--
           <a
             class="btnConfirmarCompra btn btn-primary btn-continuar"
-            href="compra-finalizada.html"
+            href="compra-finalizada"
             role="button"
             ><h3>Finalizar compra</h3></a
           >

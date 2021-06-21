@@ -127,12 +127,14 @@ create table compra(
 	estatusCompra varchar(30) default 'Por confirmar' not null,
 	idUsuarioC integer not null,
 	idProveedor integer not null,
+	idSucursal integer not null,
 	nsVehiculo varchar(40) not null,
 	nTarjeta varchar(16) not null,
 	foreign key (idUsuarioC) references usuarioComprador(idUsuarioC) on delete cascade,
 	foreign key (idProveedor) references usuarioProveedor(idProveedor),
 	foreign key (nsVehiculo) references vehiculo(nsVehiculo),
-	foreign key (nTarjeta) references metodoPago(nTarjeta)
+	foreign key (nTarjeta) references metodoPago(nTarjeta),
+	foreign key (idSucursal) references sucursal(idSucursal)
 );
 -----------------------------------------
 INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave,verificado)

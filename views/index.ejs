@@ -32,7 +32,7 @@
     <div class="container-fluid" id="barra-de-navegacion">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index.html"> Isurus Ictu </a>
+          <a class="navbar-brand" href="index"> Isurus Ictu </a>
           <button
             class="navbar-toggler ms-auto"
             type="button"
@@ -48,13 +48,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mt-1 text-center">
               <li class="nav-item">
-                <a class="nav-link" href="index.html">Catálogo completo</a>
+                <a class="nav-link" href="index">Catálogo completo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mas-vendidos.html">Más vendidos</a>
+                <a class="nav-link" href="mas-vendidos">Más vendidos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mas-recientes.html">Más recientes</a>
+                <a class="nav-link" href="mas-recientes">Más recientes</a>
               </li>
               <!-- Checamos si la sesion ha sido declarada como iniciada -->
               <% if (variableSesion) { %>
@@ -76,12 +76,12 @@
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="consultar-compras.html"
+                      <a class="dropdown-item" href="consultar-compras"
                         >Compras</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="./cerrar-sesion.html"
+                      <a class="dropdown-item" href="./cerrar-sesion"
                         >Cerrar sesión</a
                       >
                     </li>
@@ -93,14 +93,14 @@
               <li class="nav-item">
                 <a
                   class="nav-link bg-secondary btn active btn-nav"
-                  href="iniciar-sesion.html"
+                  href="iniciar-sesion"
                   >Iniciar Sesion</a
                 >
               </li>
               <li class="nav-item">
                 <a
                   class="nav-link bg-primary btn active btn-nav"
-                  href="crear-cuenta.html"
+                  href="crear-cuenta"
                   >Registrarse</a
                 >
               </li>
@@ -122,7 +122,7 @@
           aria-describedby="search-addon"
         />
         <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
-        <a href="./buscar-vehiculo.html" class="btn btn-primary">Buscar</a>
+        <a href="./buscar-vehiculo" class="btn btn-primary">Buscar</a>
       </div>
 
       <!-- TITULO DE CATALOGOS COMPLETO-->
@@ -159,7 +159,7 @@
                     <h5 class="card-title"><%=resCatalogo[i]%></h5>
                     <p class="card-text">Desde <%=resCatalogo[i+1];%> pesos</p>
 
-                    <!--<a href="descripcion.html" class="btn btn-primary col-12"
+                    <!--<a href="descripcion" class="btn btn-primary col-12"
                       >Comprar</a
                     >-->
                     <button class="btn btn-primary col-12" type="submit">

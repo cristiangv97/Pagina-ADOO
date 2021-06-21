@@ -1,96 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Compra finalizada</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/personal.css" />
 
-  <!-- Bootstrap CSS -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/personal.css">
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+  </head>
+  <body style="background-color: #c8c7c7">
+    <!-- NAVBAR -->
+    <div class="container-fluid" id="barra-de-navegacion">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="index"> Isurus Ictu </a>
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-</head>
-<body style="background-color: #c8c7c7">
-<!-- NAVBAR -->
-<div class="container-fluid" id="barra-de-navegacion">
-  <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="index.html">
-        Isurus Ictu
-      </a>
-      <button class="navbar-toggler ms-auto"
-              type="button"
-              data-bs-toggle="collapse"
-              data-bs-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mt-1 text-center">
+              <li class="nav-item">
+                <a class="nav-link" href="index">Catálogo completo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="mas-vendidos">Más vendidos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="mas-recientes">Más recientes</a>
+              </li>
+              <!-- Checamos si la sesion ha sido declarada como iniciada -->
+              <% if (variableSesion) { %>
+              <li class="nav-item">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-primary dropdown-toggle col-12"
+                    type="button"
+                    id="btnDropDown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <%=variableSesion%>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                    <li>
+                      <a class="dropdown-item" href="informacion-cuenta"
+                        >Cuenta</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="consultar-compras"
+                        >Compras</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="./index">Cerrar sesión</a>
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <!-- En caso contrario mandamos este bloque -->
+              <% } else {%>
+              <li class="nav-item">
+                <a
+                  class="nav-link bg-secondary btn active btn-nav"
+                  href="iniciar-sesion"
+                  >Iniciar Sesion</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link bg-primary btn active btn-nav"
+                  href="crear-cuenta"
+                  >Registrarse</a
+                >
+              </li>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav ms-auto mt-1 text-center">
-          <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
-          <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
-          <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
-          <!-- Checamos si la sesion ha sido declarada como iniciada -->
-          <% if (variableSesion) { %>
-          <li class="nav-item">
-            <div class="dropdown">
-              <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDown" data-bs-toggle="dropdown" aria-expanded="false"><%=variableSesion%></button>
-              <ul class="dropdown-menu" aria-labelledby="btnDropDown">
-                <li><a class="dropdown-item" href="informacion-cuenta.html">Cuenta</a></li>
-                <li><a class="dropdown-item" href="consultar-compras.html">Compras</a></li>
-                <li><a class="dropdown-item" href="./index.html">Cerrar sesión</a></li>
-              </ul>
-            </div>
-          </li>
-          <!-- En caso contrario mandamos este bloque -->
-          <% } else {%>
-            <li class="nav-item"><a class="nav-link bg-secondary btn active btn-nav" href="iniciar-sesion.html">Iniciar Sesion</a></li>
-            <li class="nav-item"><a class="nav-link bg-primary btn active btn-nav" href="crear-cuenta.html">Registrarse</a></li>
+              <% } %>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
 
-          <% } %>
-        </ul>
+    <div class="container">
+      <div class="input-group p-2">
+        <input
+          type="search"
+          class="form-control rounded"
+          placeholder="Buscar"
+          aria-label="Buscar"
+          aria-describedby="search-addon"
+        />
+        <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
+        <a href="./buscar-vehiculo" class="btn btn-primary">Buscar</a>
+      </div>
+
+      <div class="row mt-5">
+        <h1 class="text-center display-3">Compra finalizada</h1>
+      </div>
+      <div class="row mt-5">
+        <h1 class="text-center display-5">
+          Tu compra ha sido procesada con exito
+        </h1>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-12 pt-2">
+          <a class="btn btn-primary btn-continuar" href="index" role="button"
+            ><h3>Continuar</h3></a
+          >
+        </div>
+        <div class="col-md-12 pt-2">
+          <form action="./consultar-compras" method="POST">
+            <input
+              style="display: none"
+              name="variableSesion"
+              id="variableSesion"
+              value="<%=variableSesion%>"
+            />
+            <button class="btn btn-secondary w-75" type="submit" role="button">
+              <h3>Consultar compras</h3>
+            </button>
+          </form>
+        </div>
       </div>
     </div>
-  </nav>
-</div>
-
-<div class="container">
-  <div class="input-group p-2">
-    <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Buscar"
-           aria-describedby="search-addon" />
-    <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
-    <a href="./buscar-vehiculo.html" class="btn btn-primary">Buscar</a>
-  </div>
-
-
-
-  <div class="row mt-5">
-    <h1  class="text-center display-3">Compra finalizada</h1>
-  </div>
-  <div class="row mt-5">
-    <h1 class="text-center display-5">Tu compra ha sido procesada con exito</h1>
-  </div>
-  <div class="row text-center">
-    <div class="col-md-12 pt-2">
-      <a class=" btn btn-primary btn-continuar" href="index.html" role="button"><h3>Continuar</h3></a>
-    </div>
-    <div class="col-md-12 pt-2">
-      <form action="./consultar-compras.html" method="POST">
-        <input style="display: none;" name="variableSesion" id="variableSesion" value="<%=variableSesion%>">
-        <button class="btn btn-secondary w-75" type="submit" role="button"><h3>Consultar compras</h3></button>
-      </form>
-    </div>
-  </div>
-
-
-
-
-</div>
-</body>
+  </body>
 </html>

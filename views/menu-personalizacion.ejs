@@ -1,124 +1,215 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Menú de personalización del vehículo</title>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
 
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/personal.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/personal.css" />
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
+      referrerpolicy="no-referrer"
+    ></script>
     <script src="js/bootstrap.bundle.min.js"></script>
 
     <script src="js/personalizacion-vehiculo.js"></script>
     <script src="../js/sesion.js"></script>
-</head>
+  </head>
 
-<body style="background-color: #c8c7c7">
-<!-- NAVBAR -->
-<div class="container-fluid" id="barra-de-navegacion">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
+  <body style="background-color: #c8c7c7">
+    <!-- NAVBAR -->
+    <div class="container-fluid" id="barra-de-navegacion">
+      <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                Isurus Ictu
-            </a>
-            <button class="navbar-toggler ms-auto"
+          <a class="navbar-brand" href="index"> Isurus Ictu </a>
+          <button
+            class="navbar-toggler ms-auto"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto mt-1 text-center">
+              <li class="nav-item">
+                <a class="nav-link" href="index">Catálogo completo</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="mas-vendidos">Más vendidos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="mas-recientes">Más recientes</a>
+              </li>
+              <!-- Checamos si la sesion ha sido declarada como iniciada -->
+              <% if (variableSesion) { %>
+              <li class="nav-item">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-primary dropdown-toggle col-12"
                     type="button"
-                    data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent"
-                    aria-controls="navbarSupportedContent"
+                    id="btnDropDown"
+                    data-bs-toggle="dropdown"
                     aria-expanded="false"
-                    aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav ms-auto mt-1 text-center">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Catálogo completo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mas-vendidos.html">Más vendidos</a></li>
-                    <li class="nav-item"><a class="nav-link" href="mas-recientes.html">Más recientes</a></li>
-                    <!-- Checamos si la sesion ha sido declarada como iniciada -->
-                    <% if (variableSesion) { %>
-                    <li class="nav-item">
-                        <div class="dropdown">
-                            <button class="btn btn-primary dropdown-toggle col-12" type="button" id="btnDropDown" data-bs-toggle="dropdown" aria-expanded="false"><%=variableSesion%></button>
-                            <ul class="dropdown-menu" aria-labelledby="btnDropDown">
-                                <li><a class="dropdown-item" href="informacion-cuenta.html">Cuenta</a></li>
-                                <li><a class="dropdown-item" href="consultar-compras.html">Compras</a></li>
-                                <li><a class="dropdown-item" href="./cerrar-sesion.html">Cerrar sesión</a></li>
-                            </ul>
-                        </div>
+                  >
+                    <%=variableSesion%>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                    <li>
+                      <a class="dropdown-item" href="informacion-cuenta"
+                        >Cuenta</a
+                      >
                     </li>
-                    <!-- En caso contrario mandamos este bloque -->
-                    <% } else {%>
-                        <li class="nav-item"><a class="nav-link bg-secondary btn active btn-nav" href="iniciar-sesion.html">Iniciar Sesion</a></li>
-                        <li class="nav-item"><a class="nav-link bg-primary btn active btn-nav" href="crear-cuenta.html">Registrarse</a></li>
+                    <li>
+                      <a class="dropdown-item" href="consultar-compras"
+                        >Compras</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="./cerrar-sesion"
+                        >Cerrar sesión</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <!-- En caso contrario mandamos este bloque -->
+              <% } else {%>
+              <li class="nav-item">
+                <a
+                  class="nav-link bg-secondary btn active btn-nav"
+                  href="iniciar-sesion"
+                  >Iniciar Sesion</a
+                >
+              </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link bg-primary btn active btn-nav"
+                  href="crear-cuenta"
+                  >Registrarse</a
+                >
+              </li>
 
-                    <% } %>
-                </ul>
-            </div>
+              <% } %>
+            </ul>
+          </div>
         </div>
-    </nav>
-</div>
-
-<div class="container">
-    <div class="input-group p-2">
-        <input type="search" class="form-control rounded" placeholder="Buscar" aria-label="Buscar"
-               aria-describedby="search-addon" />
-        <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
-        <a href="./buscar-vehiculo.html" class="btn btn-primary">Buscar</a>
+      </nav>
     </div>
 
+    <div class="container">
+      <div class="input-group p-2">
+        <input
+          type="search"
+          class="form-control rounded"
+          placeholder="Buscar"
+          aria-label="Buscar"
+          aria-describedby="search-addon"
+        />
+        <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
+        <a href="./buscar-vehiculo" class="btn btn-primary">Buscar</a>
+      </div>
 
+      <!--    INICIO MENU DE PERSONALIZACION  -->
 
-        <!--    INICIO MENU DE PERSONALIZACION  -->
-
-    <form action="confirmar-compra.html" method="POST" id="personalizacion">
+      <form action="confirmar-compra" method="POST" id="personalizacion">
         <div class="row">
-            <h1  class="text-center display-3"> Personalización </h1>
+          <h1 class="text-center display-3">Personalización</h1>
         </div>
-        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel pause">
-            <div class="carousel-indicators">
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
-              <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-              <div class="carousel-item active">
-                <img src="../imgs/carro-6-rojo.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Modelo A</h5>
-                    <p>Versión roja.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="../imgs/carro-6-verde.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Modelo A</h5>
-                    <p>Versión verde.</p>
-                </div>
-              </div>
-              <div class="carousel-item">
-                <img src="../imgs/carro-6.png" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block">
-                    <h5>Modelo A</h5>
-                    <p>Versión blanca.</p>
-                </div>
-              </div>
-            </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Anterior</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="visually-hidden">Siguiente</span>
-            </button>
+        <div
+          id="carouselExampleCaptions"
+          class="carousel slide"
+          data-bs-ride="carousel pause"
+        >
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Slide 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="1"
+              aria-label="Slide 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#carouselExampleCaptions"
+              data-bs-slide-to="2"
+              aria-label="Slide 3"
+            ></button>
           </div>
-    </form>
-</div>
-</body>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="../imgs/carro-6-rojo.png"
+                class="d-block w-100"
+                alt="..."
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Modelo A</h5>
+                <p>Versión roja.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="../imgs/carro-6-verde.png"
+                class="d-block w-100"
+                alt="..."
+              />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Modelo A</h5>
+                <p>Versión verde.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="../imgs/carro-6.png" class="d-block w-100" alt="..." />
+              <div class="carousel-caption d-none d-md-block">
+                <h5>Modelo A</h5>
+                <p>Versión blanca.</p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </body>
 </html>
