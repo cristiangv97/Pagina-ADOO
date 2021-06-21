@@ -241,12 +241,13 @@ app.post("/crear-cuenta", async (req, res) => {
     confirmarContrasena,
   } = req.body;
 
-  if (nombre_registroPro === undefined) { //usuario comprador
+  if (nombre_registroPro === undefined) {
+    //usuario comprador
     const result = await pool.query(
       "select * from usuarioComprador where correo=$1",
       [correo]
     );
-  
+
     //buen código del stack overflow
     Object.size = function (obj) {
       var size = 0,
@@ -256,11 +257,11 @@ app.post("/crear-cuenta", async (req, res) => {
       }
       return size;
     };
-  
+
     //calculamos el tamaño
     let tamanio = Object.size(result.rows);
     console.log(tamanio);
-  
+
     //si  encuentra un correo igual el tamaño != 0
     if (tamanio === 0) {
       //generación del código
@@ -273,10 +274,10 @@ app.post("/crear-cuenta", async (req, res) => {
             Math.floor(Math.random() * charactersLength)
           );
         }
-  
+
         return result;
       }
-  
+
       //envia
       let codigoVer = generateString(5);
       let transporter = nodemailer.createTransport({
@@ -294,7 +295,7 @@ app.post("/crear-cuenta", async (req, res) => {
         subject: "Código de verificación",
         text: "Su código de verificación es " + codigoVer,
       };
-  
+
       console.log("Registrando usuario");
       const result = await pool.query(
         "INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave,verificado) VALUES ($1, $3, $2, $4, $5, $6)",
@@ -307,7 +308,7 @@ app.post("/crear-cuenta", async (req, res) => {
           codigoVer,
         ]
       );
-  
+
       //subir el codigo de confirmacion a la base para despues
       //utilizarlo en la pantallad de verificacion y como parametro a validar
       //en el inicio de sesion
@@ -315,7 +316,7 @@ app.post("/crear-cuenta", async (req, res) => {
         "update usuarioComprador set verificado = '$1' where correo='$2'",
         [codigoVer, correo]
       );
-  
+
       transporter.sendMail(mailOptions, function (err, data) {
         if (err) {
           console.log("RIP");
@@ -324,19 +325,19 @@ app.post("/crear-cuenta", async (req, res) => {
           console.log("Si se mandó");
         }
       });
-  
+
       res.render("verificar-correo", { variableSesion });
     } else {
       console.log("Usuario ya registrado");
       res.render("crear-cuenta");
     }
-  }
-  else { //usuario proveedor
-      const result = await pool.query(
+  } else {
+    //usuario proveedor
+    const result = await pool.query(
       "select * from usuarioproveedor where correo=$1",
       [correoPro]
     );
-  
+
     console.log(result);
 
     //buen código del stack overflow
@@ -348,11 +349,11 @@ app.post("/crear-cuenta", async (req, res) => {
       }
       return size;
     };
-  
+
     //calculamos el tamaño
     let tamanio = Object.size(result.rows);
     console.log(tamanio);
-  
+
     //si  encuentra un correo igual el tamaño != 0
     if (tamanio === 0) {
       //generación del código
@@ -365,10 +366,10 @@ app.post("/crear-cuenta", async (req, res) => {
             Math.floor(Math.random() * charactersLength)
           );
         }
-  
+
         return result;
       }
-  
+
       //envia
       let codigoVer = generateString(5);
       let transporter = nodemailer.createTransport({
@@ -386,18 +387,13 @@ app.post("/crear-cuenta", async (req, res) => {
         subject: "Código de verificación",
         text: "Su código de verificación es " + codigoVer,
       };
-  
+
       console.log("Registrando usuario");
       const result = await pool.query(
         "INSERT INTO usuarioproveedor (telefonoup,nombreup,correo,clave) VALUES ($1, $2, $3, $4)",
-        [
-          numPro,
-          nombre_registroPro,
-          correoPro,
-          contrasenaPro
-        ]
+        [numPro, nombre_registroPro, correoPro, contrasenaPro]
       );
-  
+
       //subir el codigo de confirmacion a la base para despues
       //utilizarlo en la pantallad de verificacion y como parametro a validar
       //en el inicio de sesion
@@ -405,7 +401,7 @@ app.post("/crear-cuenta", async (req, res) => {
         "update usuarioproveedor set verificado = '$1' where correo='$2'",
         [codigoVer, correoPro]
       );
-  
+
       transporter.sendMail(mailOptions, function (err, data) {
         if (err) {
           console.log("RIP");
@@ -414,7 +410,7 @@ app.post("/crear-cuenta", async (req, res) => {
           console.log("Si se mandó");
         }
       });
-  
+
       res.render("verificar-correo", { variableSesion });
     } else {
       console.log("Usuario ya registrado");
@@ -553,6 +549,26 @@ app.post("/modificar-datos-de-usuario", async (req, res) => {
     res.render("iniciar-sesion", { variableSesion });
   }
 });
+
+/************************************************ MODIFICAR DATOS DE LA CUENTA PROVEEDOR ************************************************/
+app.get("/modificar-datos-de-proveedor", async (req, res) => {
+  if (enSesion) {
+    console.log(datosCuenta);
+    res.render("modificar-datos-de-proveedor", { variableSesion, datosCuenta });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
+
+app.post("/modificar-datos-de-proveedor", async (req, res) => {
+  if (enSesion) {
+    console.log(datosCuenta);
+    //res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
+    res.render("iniciar-sesion", { variableSesion });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
 /************************************************ CONFIRMAR COMPRA ************************************************/
 
 app.post("/confirmar-compra", async (req, res) => {
@@ -657,9 +673,10 @@ app.post("/eliminar-mpago", async (req, res) => {
 });
 /************************************************ CONSULTAR Y CANCELAR PEDIDO ************************************/
 app.get("/consultar-compras", async (req, res) => {
+  //006
   if (enSesion) {
-    let compras = await pool.query(
-      "select * from compra inner join usuarioproveedor on compra.idproveedor=usuarioproveedor.idproveedor inner join  where idusuarioc = (select idusuarioc from usuariocomprador where correo = '" +
+    var compras = await pool.query(
+      "select * from compra inner join usuarioproveedor on compra.idproveedor=usuarioproveedor.idproveedor inner join sucursal on compra.idsucursal = sucursal.idsucursal inner join vehiculo on compra.nsvehiculo = vehiculo.nsvehiculo inner join vehicar on vehiculo.idcarmodelo = vehicar.idcarmodelo inner join modelo on vehicar.idmodelo = modelo.idmodelo where idusuarioc = (select idusuarioc from usuariocomprador where correo = '" +
         variableSesion +
         "')"
     );
@@ -671,11 +688,14 @@ app.get("/consultar-compras", async (req, res) => {
   }
 });
 app.post("/consultar-compras/cancelar", async (req, res) => {
+  let { idcompra } = req.body;
+  console.log(idcompra);
+  /*
   if (enSesion) {
     res.render("consultar-compras", { variableSesion });
   } else {
     res.render("iniciar-sesion", { variableSesion });
-  }
+  }*/
 });
 
 /*****************************************************************************************************************/
