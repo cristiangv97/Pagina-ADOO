@@ -12,6 +12,10 @@ function cambiarTarjeta() {
   //ntarjeta y valores desde seleccion-1
   document.getElementById("ntarjeta").value = select[metodoPago - 1];
   //alert("Tarjeta seleccionada" + document.getElementById("ntarjeta").value);
+  let button = document.querySelector(
+    ".btnConfirmarCompra btn btn-primary btn-continuar"
+  );
+  document.getElementById("botonFinalizar").disabled = false;
 }
 
 function cambiarDireccion() {
@@ -22,5 +26,7 @@ function cambiarDireccion() {
   }
   var direccionSucursal =
     document.getElementById("direccion-sucursal").value[9];
-  document.getElementById("displaydir").innerHTML = term[direccionSucursal - 1];
+  document.getElementById("display-direccion").innerHTML =
+    term[direccionSucursal - 1];
+  document.getElementById("place").value = term[direccionSucursal - 1];
 }

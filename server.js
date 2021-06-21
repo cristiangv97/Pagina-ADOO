@@ -87,17 +87,19 @@ app.post("/compra-finalizada", async (req, res) => {
   if (enSesion) {
     //003
     //subida de pedido a la base de datos
-    let { sesion, modeloAuto, precio, ntarjeta, fecha } = req.body;
-    console.log(sesion, modeloAuto, precio, ntarjeta, fecha);
+    let { sesion, modeloAuto, precio, ntarjeta, fecha, place } = req.body;
     try {
+      console.log(sesion, modeloAuto, precio, ntarjeta, fecha, place);
       const idUsuario = await pool.query(
         "select idusuarioc from usuarioComprador where correo=$1",
         [sesion]
       );
+
       const idproveedor = await pool.query(
         "select idproveedor from modelo where nombremodelo=$1",
         [modeloAuto]
       );
+
       const nsVehiculo = await pool.query(
         "select nsvehiculo from vehiculo where idcarmodelo = (select idcarmodelo from vehicar where precio = " +
           precio +
@@ -106,7 +108,7 @@ app.post("/compra-finalizada", async (req, res) => {
           "'))"
       );
       const subida = await pool.query(
-        "insert into compra(idusuarioc,idproveedor,nsvehiculo,ntarjeta,fechacompra,estatuscompra) values (" +
+        "insert into compra(idusuarioc,idproveedor,nsvehiculo,ntarjeta,fechacompra,estatuscompra,idSucursal) values (" +
           idUsuario.rows[0]["idusuarioc"] +
           ", " +
           idproveedor.rows[0]["idproveedor"] +
@@ -116,12 +118,21 @@ app.post("/compra-finalizada", async (req, res) => {
           ntarjeta +
           "', '" +
           fecha +
-          "', 'Por confirmar')"
+          "', 'Por confirmar', ( select idsucursal from sucursal where direccionsucursal = '" +
+          place +
+          "'))"
       );
       const nodisp = await pool.query(
-        "delete from vehiculo where nsvehiculo = '" +
+        "update vehiculo set disponibilidad = 'f' where nsvehiculo = '" +
           nsVehiculo.rows[0]["nsvehiculo"] +
           "'"
+      );
+      const actStock = await pool.query(
+        "update vehicar set stock = (select stock from vehicar where idcarmodelo = (select idcarmodelo from vehiculo where nsvehiculo = '" +
+          nsVehiculo.rows[0]["nsvehiculo"] +
+          "'))-1 where idcarmodelo = (select idcarmodelo from vehiculo where nsvehiculo = '" +
+          nsVehiculo.rows[0]["nsvehiculo"] +
+          "')"
       );
     } catch (error) {
       console.log(error);
@@ -410,7 +421,7 @@ app.post("/confirmar-compra", async (req, res) => {
   if (!enSesion) {
     res.render("iniciar-sesion", { variableSesion });
   } else {
-    let { idcarmodelo, modelo, precio, displaydir } = req.body;
+    let { idcarmodelo, modelo, precio } = req.body;
     console.log(idcarmodelo);
     var mpago = await getMetodosPago(variableSesion);
     var sucursal = await getSucursalesProveedor(idcarmodelo);

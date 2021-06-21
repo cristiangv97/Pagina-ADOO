@@ -33,7 +33,7 @@
     <div class="container-fluid" id="barra-de-navegacion">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index"> Isurus Ictu </a>
+          <a class="navbar-brand" href="index.html"> Isurus Ictu </a>
           <button
             class="navbar-toggler ms-auto"
             type="button"
@@ -49,13 +49,13 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mt-1 text-center">
               <li class="nav-item">
-                <a class="nav-link" href="index">Catálogo completo</a>
+                <a class="nav-link" href="index.html">Catálogo completo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mas-vendidos">Más vendidos</a>
+                <a class="nav-link" href="mas-vendidos.html">Más vendidos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mas-recientes">Más recientes</a>
+                <a class="nav-link" href="mas-recientes.html">Más recientes</a>
               </li>
               <!-- Checamos si la sesion ha sido declarada como iniciada -->
               <% if (variableSesion) { %>
@@ -72,17 +72,17 @@
                   </button>
                   <ul class="dropdown-menu" aria-labelledby="btnDropDown">
                     <li>
-                      <a class="dropdown-item" href="informacion-cuenta"
+                      <a class="dropdown-item" href="informacion-cuenta.html"
                         >Cuenta</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="consultar-compras"
+                      <a class="dropdown-item" href="consultar-compras.html"
                         >Compras</a
                       >
                     </li>
                     <li>
-                      <a class="dropdown-item" href="./cerrar-sesion"
+                      <a class="dropdown-item" href="./cerrar-sesion.html"
                         >Cerrar sesión</a
                       >
                     </li>
@@ -123,7 +123,7 @@
             aria-describedby="search-addon"
           />
           <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
-          <a href="./buscar-vehiculo" class="btn btn-primary">Buscar</a>
+          <a href="./buscar-vehiculo.html" class="btn btn-primary">Buscar</a>
         </div>
 
         <div class="row">
@@ -206,7 +206,7 @@
               <div class="form-group">
                 <label for="disabledDireccion">Direccion</label>
                 <select name="disabledDireccion" id="disabledDireccion" class="form-control">
-                  <option id="displaydir">Seleccione una sucursal</option>
+                  <option id="display-direccion">Seleccione una sucursal</option>
                 </select>
                 <% for (let i=0 ; i < sucursal.length ; i++ ) { %>
                 <input
@@ -226,7 +226,7 @@
           <!--
           <a
             class="btnConfirmarCompra btn btn-primary btn-continuar"
-            href="compra-finalizada"
+            href="compra-finalizada.html"
             role="button"
             ><h3>Finalizar compra</h3></a
           >
@@ -238,6 +238,7 @@
             <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
             <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
             <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
+            <input style="display: none;" name="place" id="place" value="lugar">
             <%var today = new Date();%>
             <%var dd = String(today.getDate()).padStart(2, '0');%>
             <%var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!%>
@@ -254,15 +255,12 @@
             </button>
           </div>
           <div class="col-lg-6 col-md-12 p-4">
-            
-              <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
-              <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
-              <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
-              <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
-              <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
               <button
+              disabled
               class="btnConfirmarCompra btn btn-primary btn-continuar"
               type="submit"
+              id="botonFinalizar"
+              name="botonFinalizar"
               >
                 <h4>Finalizar Compra</h4>
               </button>

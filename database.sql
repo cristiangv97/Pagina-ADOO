@@ -118,6 +118,7 @@ create table vehiCar(
 create table vehiculo(
 	nsVehiculo varchar(17) primary key not null,
 	idCarModelo integer not null,
+	disponibilidad boolean default true not null,
 	foreign key (idCarModelo) references vehiCar(idCarModelo)
 );
 create table compra(
