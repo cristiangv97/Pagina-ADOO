@@ -237,15 +237,6 @@
             </button>
           </div>
           <div class="col-lg-6 col-md-12 p-4">
-            <!--
-            <a
-              class="btnConfirmarCompra btn btn-primary btn-continuar"
-              href="compra-finalizada.html"
-              role="button"
-              ><h3>Finalizar compra</h3></a
-            >
-            </div>
-            -->
             
               <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
               <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
@@ -258,49 +249,49 @@
               >
                 <h4>Finalizar Compra</h4>
               </button>
-            
+          </div>
         </div>
+      </div>
     </form>
         
         <!-- Modal de cancelar compra -->
 
-        <div
-          class="modal fade"
-          id="cancelarCompra"
-          tabindex="-1"
-          aria-labelledby="botonCancelarCompra"
-          aria-hidden="true"
-        >
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h3 class="modal-title" id="modalCancelarCompraLabel">
-                  ¿Está seguro que desea cancelar la compra?
-                </h3>
-              </div>
+    <div
+      class="modal fade"
+      id="cancelarCompra"
+      tabindex="-1"
+      aria-labelledby="botonCancelarCompra"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title" id="modalCancelarCompraLabel">
+              ¿Está seguro que desea cancelar la compra?
+            </h3>
+          </div>
 
-              <div class="modal-body">
-                <p>
-                  Si cancela la compra, todas las perzonalizaciones se perderán.
-                </p>
-              </div>
+          <div class="modal-body">
+            <p>
+              Si cancela la compra, todas las perzonalizaciones se perderán.
+            </p>
+          </div>
 
-              <div class="modal-footer">
-                <form action="./descripcion" method="POST" id="volverDesc">
-                  <input name="modelo" id="modelo" style="display: none;" value="<%=modelo%>">
-                  <button
-                  type="button"
-                  class="btn btn-primary"
-                  data-bs-dismiss="modal">
-                  No cancelar
-                  </button>
-                  <button class="btn btn-danger" type="submit"
-                    >Sí cancelar</button>
-                </form>
-              </div>
-            </div>
+          <div class="modal-footer">
+            <form action="./descripcion" method="POST" id="volverDesc">
+              <input name="modelo" id="modelo" style="display: none;" value="<%=modelo%>">
+              <button
+              type="button"
+              class="btn btn-primary"
+              data-bs-dismiss="modal">
+              No cancelar
+              </button>
+              <button class="btn btn-danger" type="submit"
+                >Sí cancelar</button>
+            </form>
           </div>
         </div>
       </div>
+    </div>
   </body>
 </html>
