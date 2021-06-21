@@ -113,194 +113,194 @@
       </nav>
     </div>
     <form action="./compra-finalizada" method="POST">
-    <div class="container">
-      <div class="input-group p-2">
-        <input
-          type="search"
-          class="form-control rounded"
-          placeholder="Buscar"
-          aria-label="Buscar"
-          aria-describedby="search-addon"
-        />
-        <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
-        <a href="./buscar-vehiculo.html" class="btn btn-primary">Buscar</a>
-      </div>
-
-      <div class="row">
-        <h1 class="text-center display-3">Confirmar compra</h1>
-      </div>
-      
-      <div class="row m-3">
-
-        <div class="col-lg-7">
-          <div class="text-center">
-            <img
-              class="rounded"
-              src="imgs/<%=modelo%>.png"
-              alt="..."
-              style="max-width: 100%; height: auto"
-            />
-          </div>
-          <h2><%=modelo%></h2>
+      <div class="container">
+        <div class="input-group p-2">
+          <input
+            type="search"
+            class="form-control rounded"
+            placeholder="Buscar"
+            aria-label="Buscar"
+            aria-describedby="search-addon"
+          />
+          <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
+          <a href="./buscar-vehiculo.html" class="btn btn-primary">Buscar</a>
         </div>
-        <div class="col-lg-5">
-          <h3 class="m-3">Método de pago</h3>
-          <% if(mpago.length>0) { %>
-          <select
-            class="form-select form-control-lg"
-            id="num-metodo-pago"
-            onchange="cambiarTarjeta()"
-            onclick="cambiarTarjeta()"
-          >
-            <% for (let i=0 ; i < mpago.length ; i++ ) { %>
-            <option value="metodo-<%=(i+1)%>">Método de pago <%=(i+1)%></option>
-            <%}%>
-          </select>
-          <fieldset disabled>
-            <div class="form-group">
-              <label for="disabledTarjeta">Numero de tarjeta</label>
-              <select id="disabledTarjeta" class="form-control">
-                <option id="display-metodo-pago">**** **** **** XXXX</option>
-              </select>
-              <!--despliegue invisible del valor para los campos adaptables-->
-              <% for (let i=0 ; i < mpago.length ; i++ ) { %>
-              <input
-                style="display: none"
-                id="tarjeta-<%=i%>"
-                value="<%=mpago[i]['ntarjeta'][12] + mpago[i]['ntarjeta'][13] + mpago[i]['ntarjeta'][14] + mpago[i]['ntarjeta'][15]%>"
+
+        <div class="row">
+          <h1 class="text-center display-3">Confirmar compra</h1>
+        </div>
+        
+        <div class="row m-3">
+
+          <div class="col-lg-7">
+            <div class="text-center">
+              <img
+                class="rounded"
+                src="imgs/<%=modelo%>.png"
+                alt="..."
+                style="max-width: 100%; height: auto"
               />
-              
-              <!--En este se guardan las tarjetas en la cuenta para trabajar con sus valores-->
-              <input
-                style="display: none"
-                id="seleccion-<%=i%>"
-                value="<%=mpago[i]['ntarjeta']%>"
-              />
-              <%}%>
             </div>
-          </fieldset>
-          <% } else{ %>
-          <h3>Registre un metodo de pago para este usuario</h3>
-          <% } %>
-          <a
-            href="agregar-metodo-pago.html"
-            class="btn btn-secondary btn-lg mt-3"
-            role="button"
-            aria-pressed="true"
-            ><u>Agregar metodo de pago</u></a
-          >
-          <h3 class="m-3">Sucursal a recoger</h3>
-          <select
-            class="form-select form-control-lg"
-            id="direccion-sucursal"
-            onchange="cambiarDireccion()"
-            onclick="cambiarDireccion()"
-          >
-            <% for (let i=0 ; i < sucursal.length ; i++ ) { %>
-            <option value="sucursal-<%=(i+1)%>">
-              Sucursal <%=sucursal[i]['nombresucursal']%>
-            </option>
-            <%}%>
-          </select>
-          <fieldset disabled>
-            <div class="form-group">
-              <label for="disabledDireccion">Direccion</label>
-              <select name="disabledDireccion" id="disabledDireccion" class="form-control">
-                <option id="display-direccion">Seleccione una sucursal</option>
-              </select>
-              <% for (let i=0 ; i < sucursal.length ; i++ ) { %>
-              <input
-                style="display: none"
-                id="direccion-<%=i%>"
-                value="<%=sucursal[i]['direccionsucursal']%>"
-              />
-              <%}%>
-            </div>
-          </fieldset>
-        </div>
-      </div>
-      <div class="row text-center">
-        <h1 class="text-center display-5">Precio final: <%=precio%></h1>
-      </div>
-
-      <div class="row text-center">
-        <div class="col-lg-6 col-md-12 p-4">
-          <!-- <a class=" btn btn-primary btn-continuar" href="#" role="button"><h3>Cancelar compra</h3></a> -->
-          <!-- Boton del modal -->
-          <button
-            type="button"
-            class="btnConfirmarCompra btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target="#cancelarCompra"
-          >
-            <h3>Cancelar compra</h3>
-          </button>
-        </div>
-        <div class="col-lg-6 col-md-12 p-4">
-          <!--
-          <a
-            class="btnConfirmarCompra btn btn-primary btn-continuar"
-            href="compra-finalizada.html"
-            role="button"
-            ><h3>Finalizar compra</h3></a
-          >
+            <h2><%=modelo%></h2>
           </div>
-          -->
-          
-            <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
-            <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
-            <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
-            <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
-            <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
-            <button
-            class="btnConfirmarCompra btn btn-primary btn-continuar"
-            type="submit"
+          <div class="col-lg-5">
+            <h3 class="m-3">Método de pago</h3>
+            <% if(mpago.length>0) { %>
+            <select
+              class="form-select form-control-lg"
+              id="num-metodo-pago"
+              onchange="cambiarTarjeta()"
+              onclick="cambiarTarjeta()"
             >
-              <h4>Finalizar Compra</h4>
+              <% for (let i=0 ; i < mpago.length ; i++ ) { %>
+              <option value="metodo-<%=(i+1)%>">Método de pago <%=(i+1)%></option>
+              <%}%>
+            </select>
+            <fieldset disabled>
+              <div class="form-group">
+                <label for="disabledTarjeta">Numero de tarjeta</label>
+                <select id="disabledTarjeta" class="form-control">
+                  <option id="display-metodo-pago">**** **** **** XXXX</option>
+                </select>
+                <!--despliegue invisible del valor para los campos adaptables-->
+                <% for (let i=0 ; i < mpago.length ; i++ ) { %>
+                <input
+                  style="display: none"
+                  id="tarjeta-<%=i%>"
+                  value="<%=mpago[i]['ntarjeta'][12] + mpago[i]['ntarjeta'][13] + mpago[i]['ntarjeta'][14] + mpago[i]['ntarjeta'][15]%>"
+                />
+                
+                <!--En este se guardan las tarjetas en la cuenta para trabajar con sus valores-->
+                <input
+                  style="display: none"
+                  id="seleccion-<%=i%>"
+                  value="<%=mpago[i]['ntarjeta']%>"
+                />
+                <%}%>
+              </div>
+            </fieldset>
+            <% } else{ %>
+            <h3>Registre un metodo de pago para este usuario</h3>
+            <% } %>
+            <a
+              href="agregar-metodo-pago.html"
+              class="btn btn-secondary btn-lg mt-3"
+              role="button"
+              aria-pressed="true"
+              ><u>Agregar metodo de pago</u></a
+            >
+            <h3 class="m-3">Sucursal a recoger</h3>
+            <select
+              class="form-select form-control-lg"
+              id="direccion-sucursal"
+              onchange="cambiarDireccion()"
+              onclick="cambiarDireccion()"
+            >
+              <% for (let i=0 ; i < sucursal.length ; i++ ) { %>
+              <option value="sucursal-<%=(i+1)%>">
+                Sucursal <%=sucursal[i]['nombresucursal']%>
+              </option>
+              <%}%>
+            </select>
+            <fieldset disabled>
+              <div class="form-group">
+                <label for="disabledDireccion">Direccion</label>
+                <select name="disabledDireccion" id="disabledDireccion" class="form-control">
+                  <option id="display-direccion">Seleccione una sucursal</option>
+                </select>
+                <% for (let i=0 ; i < sucursal.length ; i++ ) { %>
+                <input
+                  style="display: none"
+                  id="direccion-<%=i%>"
+                  value="<%=sucursal[i]['direccionsucursal']%>"
+                />
+                <%}%>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="row text-center">
+          <h1 class="text-center display-5">Precio final: <%=precio%></h1>
+        </div>
+
+        <div class="row text-center">
+          <div class="col-lg-6 col-md-12 p-4">
+            <!-- <a class=" btn btn-primary btn-continuar" href="#" role="button"><h3>Cancelar compra</h3></a> -->
+            <!-- Boton del modal -->
+            <button
+              type="button"
+              class="btnConfirmarCompra btn btn-primary"
+              data-bs-toggle="modal"
+              data-bs-target="#cancelarCompra"
+            >
+              <h3>Cancelar compra</h3>
             </button>
-          
-      </div>
-      
-      <!-- Modal de cancelar compra -->
-
-      <div
-        class="modal fade"
-        id="cancelarCompra"
-        tabindex="-1"
-        aria-labelledby="botonCancelarCompra"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h3 class="modal-title" id="modalCancelarCompraLabel">
-                ¿Está seguro que desea cancelar la compra?
-              </h3>
+          </div>
+          <div class="col-lg-6 col-md-12 p-4">
+            <!--
+            <a
+              class="btnConfirmarCompra btn btn-primary btn-continuar"
+              href="compra-finalizada.html"
+              role="button"
+              ><h3>Finalizar compra</h3></a
+            >
             </div>
+            -->
+            
+              <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
+              <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
+              <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
+              <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
+              <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
+              <button
+              class="btnConfirmarCompra btn btn-primary btn-continuar"
+              type="submit"
+              >
+                <h4>Finalizar Compra</h4>
+              </button>
+            
+        </div>
+    </form>
+        
+        <!-- Modal de cancelar compra -->
 
-            <div class="modal-body">
-              <p>
-                Si cancela la compra, todas las perzonalizaciones se perderán.
-              </p>
-            </div>
+        <div
+          class="modal fade"
+          id="cancelarCompra"
+          tabindex="-1"
+          aria-labelledby="botonCancelarCompra"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h3 class="modal-title" id="modalCancelarCompraLabel">
+                  ¿Está seguro que desea cancelar la compra?
+                </h3>
+              </div>
 
-            <div class="modal-footer">
-              <form action="./descripcion" method="POST" id="volverDesc">
-                <input name="modelo" id="modelo" style="display: none;" value="<%=modelo%>">
-                <button
-                type="button"
-                class="btn btn-primary"
-                data-bs-dismiss="modal">
-                No cancelar
-                </button>
-                <button class="btn btn-danger" type="submit"
-                  >Sí cancelar</button>
-              </form>
+              <div class="modal-body">
+                <p>
+                  Si cancela la compra, todas las perzonalizaciones se perderán.
+                </p>
+              </div>
+
+              <div class="modal-footer">
+                <form action="./descripcion" method="POST" id="volverDesc">
+                  <input name="modelo" id="modelo" style="display: none;" value="<%=modelo%>">
+                  <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-dismiss="modal">
+                  No cancelar
+                  </button>
+                  <button class="btn btn-danger" type="submit"
+                    >Sí cancelar</button>
+                </form>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    </form>
   </body>
 </html>
