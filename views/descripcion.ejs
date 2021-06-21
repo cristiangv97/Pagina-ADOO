@@ -23,6 +23,18 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+
+    <style>
+      form {
+        opacity: 0.5;
+      }
+
+      form:hover {
+        background-color: #1e2125;
+        border-radius: 10px;
+        opacity: 1.0;
+      }
+    </style>
   </head>
   <body style="background-color: #c8c7c7">
     <!-- NAVBAR -->
@@ -141,6 +153,8 @@
             id="carouselExampleCaptions"
             class="carousel slide"
             data-bs-ride="carousel pause"
+            onmouseover="aparecer(<%=tamanioCaracterizados%>)"
+            onmouseout="desaparecer(<%=tamanioCaracterizados%>)"
           >
             <div class="carousel-indicators">
               <%  for (let i = 0; i < tamanioCaracterizados; i++) { %>
@@ -152,7 +166,7 @@
                 <% if (i === 0) { %>
                   class="active"
                   aria-current="true"
-                <% } %>  
+                <% } %>
               ></button>
               <% } %>
             </div>
@@ -194,9 +208,11 @@
                   />
                   <div class="carousel-caption d-none d-md-block">
                     <form
-                      action="confirmar-compra%>"
+                      action="confirmar-compra"
                       method="POST"
-                      id="personalizacion"
+                      id="personalizacion-<%=i%>"
+                      class="pt-3 px-3 pb-1 col-12"
+
                     >
                       <input
                         style="display: none"
@@ -223,7 +239,7 @@
                       <%if(caracterizados[i].stock > 0){%>
                       <button
                         style="width: fit-content"
-                        class="btn btn-primary col-12"
+                        class="btn btn-primary col-12 mb-3"
                         type="submit"
                       >
                         Comprar ahora
@@ -399,5 +415,22 @@
         </div>
       </div>
     </div>
+      <script>
+        function aparecer(cantidad){
+          // console.log("Called a with no. " + cantidad);
+          for (let i = 0; i < cantidad; i++){
+            let formulario = document.getElementById("personalizacion-"+i);
+            // console.log("Called d with personalizacion" + i + formulario);
+            formulario.setAttribute("style", "display: block;");
+          }
+        }
+        function desaparecer(cantidad){
+          for (let i = 0; i < cantidad; i++){
+            let formulario = document.getElementById("personalizacion-"+i);
+            // console.log("Called d with " + formulario);
+            formulario.setAttribute("style", "display: none;");
+          }
+        }
+      </script>
   </body>
 </html>
