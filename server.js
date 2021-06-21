@@ -597,21 +597,34 @@ app.get("/informacion-cuenta", async (req, res) => {
     var dataUser = await pool.query(
       "select * from usuariocomprador where correo='" + variableSesion + "'"
     );
-    var cuentas = await pool.query(
-      "select * from metodopago where idusuarioc=(select idusuarioc from usuariocomprador where correo='" +
-        variableSesion +
-        "')"
-    );
-    datosCuenta = dataUser.rows[0];
-    tarjetasCuenta = cuentas.rows;
-    res.render("informacion-cuenta", {
-      variableSesion,
-      datosCuenta,
-      tarjetasCuenta,
-    });
-  } else {
-    res.render("iniciar-sesion", { variableSesion });
-  }
+    if (dataUser.rowCount > 0) { // usuario comprador 
+        var cuentas = await pool.query(
+          "select * from metodopago where idusuarioc=(select idusuarioc from usuariocomprador where correo='" +
+            variableSesion +
+            "')"
+        );
+        datosCuenta = dataUser.rows[0];
+        tarjetasCuenta = cuentas.rows;
+        res.render("informacion-cuenta", {
+          variableSesion,
+          datosCuenta,
+          tarjetasCuenta,
+        });
+      } else { // usuario proveedor
+        var dataUser = await pool.query(
+          "select * from usuarioproveedor where correo='" + variableSesion + "';"
+        );
+        datosCuenta = dataUser.rows[0];
+        console.log(datosCuenta);
+        res.render("informacion-cuenta-proveedor", {
+          variableSesion,
+          datosCuenta
+        });
+      }
+    }
+    else { 
+      res.render("iniciar-sesion", { variableSesion });
+    }
 });
 /************************************************ ELIMINAR METODO PAGO ************************************************/
 app.post("/eliminar-mpago", async (req, res) => {
