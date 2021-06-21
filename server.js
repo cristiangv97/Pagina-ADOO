@@ -552,6 +552,26 @@ app.post("/modificar-datos-de-usuario", async (req, res) => {
     res.render("iniciar-sesion", { variableSesion });
   }
 });
+
+/************************************************ MODIFICAR DATOS DE LA CUENTA PROVEEDOR ************************************************/
+app.get("/modificar-datos-de-proveedor", async (req, res) => {
+  if (enSesion) {
+    console.log(datosCuenta);
+    res.render("modificar-datos-de-proveedor", { variableSesion, datosCuenta });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
+
+app.post("/modificar-datos-de-proveedor", async (req, res) => {
+  if (enSesion) {
+    console.log(datosCuenta);
+    //res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
+    res.render("iniciar-sesion", { variableSesion });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
 /************************************************ CONFIRMAR COMPRA ************************************************/
 
 app.post("/confirmar-compra", async (req, res) => {

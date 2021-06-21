@@ -97,46 +97,41 @@
         <h3 class="p-2 text-center">Modificar datos de usuario</h3>
         <form
           class="form-control form-control-lg"
-          id="formulario-modificar-usuario"
-          action="modificar-datos-de-usuario"
+          id="formulario-modificar-proveedor"
+          action="modificar-datos-de-proveedor"
           method="POST"
         >
           <h2 class="p-2 text-center">DATOS DE SESIÓN</h2>
 
-          <div class="mb-3">
-            <label for="nombre" class="form-label">Nombre</label>
-            <input
-              type="text"
-              class="form-control"
-              id="nombre"
-              value="<%=datosCuenta['nombreuc']%>"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="apellidop" class="form-label">Apellido Paterno</label>
-            <input
-              type="text"
-              class="form-control"
-              id="apelP"
-              value="<%=datosCuenta['apellidopatuc']%>"
-            />
-            <label for="apellidom" class="form-label">Apellido Materno</label>
-            <input
-              type="text"
-              class="form-control"
-              id="apelM"
-              value="<%=datosCuenta['apellidomatuc']%>"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="correo" class="form-label">Correo electrónico</label>
-            <input
-              type="text"
-              class="form-control"
-              id="correo"
-              value="<%=datosCuenta['correo']%>"
-            />
-          </div>
+         <div class="mb-3">
+          <label for="nombreEmpresa" class="form-label">Raz&oacute;n Social / Nombre empresa</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nombreEmpresa"
+            value="<%=datosCuenta['nombreup']%>"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="correo" class="form-label">Correo electrónico</label>
+          <input
+            type="text"
+            class="form-control"
+            id="correo"
+            value="<%=variableSesion%>"
+            placeholder="jperez@gmail.com"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="numTelefono" class="form-label">N&uacute;mero de telefono</label>
+          <input
+            type="text"
+            class="form-control"
+            id="numTelefono"
+            value="<%=datosCuenta['telefonoup']%>"
+            placeholder="0987654321"
+          />
+        </div>
           <div class="mb-3">
             <label for="nueva-contraseña" class="form-label"
               >Nueva contraseña</label
@@ -160,7 +155,7 @@
 
           <div class="mb-3">
             <label for="actual-contraseña" class="form-label"
-              >Contraseña actual</label
+              >Actual contraseña</label
             >
             <input
               type="password"
