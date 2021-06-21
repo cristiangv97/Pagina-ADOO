@@ -213,6 +213,14 @@ app.get("/index", async (req, res) => {
   res.render("index", { variableSesion, resCatalogo });
 });
 
+app.post("/buscar", async (req, res) => {
+  let { busqueda } = req.body;
+  console.log(busqueda);
+  let resCatalogo = [];
+  resCatalogo = await getBusqueda(busqueda);
+  res.render("index", { variableSesion, resCatalogo });
+});
+
 app.post("/index", async (req, res) => {
   console.log("Llamaste a post del index");
   let resCatalogo = [];
@@ -467,16 +475,14 @@ app.post("/iniciar-sesion", async (req, res) => {
       });
     }
   } else {
-
     const result = await pool.query(
       "select * from usuarioproveedor where correo=$1",
       [entradaCorreo]
     );
-  
+
     console.log("Contador de resultados: " + result.rowCount);
 
     if (result.rowCount > 0) {
-
       var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
       const resCatalogo = await getCatalogo();
       //console.log("getCatalogo()= " + resCatalogo);
@@ -503,16 +509,13 @@ app.post("/iniciar-sesion", async (req, res) => {
         res.render("iniciar-sesion", {
           variableSesion: "Correo o contraseña no válidos.",
         });
-      } 
-  }
-
-  else {
-    console.log("El usuario no existe");
-    res.render("iniciar-sesion", {
-      variableSesion: "Correo o contraseña no válidos.",
-    });
-  }
-
+      }
+    } else {
+      console.log("El usuario no existe");
+      res.render("iniciar-sesion", {
+        variableSesion: "Correo o contraseña no válidos.",
+      });
+    }
   }
 
   //pool.end();
@@ -593,34 +596,35 @@ app.get("/informacion-cuenta", async (req, res) => {
     var dataUser = await pool.query(
       "select * from usuariocomprador where correo='" + variableSesion + "'"
     );
-    if (dataUser.rowCount > 0) { // usuario comprador 
-        var cuentas = await pool.query(
-          "select * from metodopago where idusuarioc=(select idusuarioc from usuariocomprador where correo='" +
-            variableSesion +
-            "')"
-        );
-        datosCuenta = dataUser.rows[0];
-        tarjetasCuenta = cuentas.rows;
-        res.render("informacion-cuenta", {
-          variableSesion,
-          datosCuenta,
-          tarjetasCuenta,
-        });
-      } else { // usuario proveedor
-        var dataUser = await pool.query(
-          "select * from usuarioproveedor where correo='" + variableSesion + "';"
-        );
-        datosCuenta = dataUser.rows[0];
-        console.log(datosCuenta);
-        res.render("informacion-cuenta-proveedor", {
-          variableSesion,
-          datosCuenta
-        });
-      }
+    if (dataUser.rowCount > 0) {
+      // usuario comprador
+      var cuentas = await pool.query(
+        "select * from metodopago where idusuarioc=(select idusuarioc from usuariocomprador where correo='" +
+          variableSesion +
+          "')"
+      );
+      datosCuenta = dataUser.rows[0];
+      tarjetasCuenta = cuentas.rows;
+      res.render("informacion-cuenta", {
+        variableSesion,
+        datosCuenta,
+        tarjetasCuenta,
+      });
+    } else {
+      // usuario proveedor
+      var dataUser = await pool.query(
+        "select * from usuarioproveedor where correo='" + variableSesion + "';"
+      );
+      datosCuenta = dataUser.rows[0];
+      console.log(datosCuenta);
+      res.render("informacion-cuenta-proveedor", {
+        variableSesion,
+        datosCuenta,
+      });
     }
-    else { 
-      res.render("iniciar-sesion", { variableSesion });
-    }
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
 });
 /************************************************ ELIMINAR METODO PAGO ************************************************/
 app.post("/eliminar-mpago", async (req, res) => {
@@ -668,14 +672,40 @@ app.get("/consultar-compras", async (req, res) => {
   }
 });
 app.post("/consultar-compras/cancelar", async (req, res) => {
-  let { idcompra } = req.body;
-  console.log(idcompra);
-  /*
   if (enSesion) {
-    res.render("consultar-compras", { variableSesion });
+    let { compra } = req.body;
+    console.log(compra);
+
+    //cambio de estado
+    const sidisp = await pool.query(
+      "update vehiculo set disponibilidad = 't' where nsvehiculo = (select nsvehiculo from compra where idcompra = " +
+        compra +
+        ")"
+    );
+    //actualizacion de stock
+    const actStock = await pool.query(
+      "update vehicar set stock = (select stock from vehicar where idcarmodelo = (select idcarmodelo from vehiculo where nsvehiculo = (select nsvehiculo from compra where idcompra = " +
+        compra +
+        ")))-1 where idcarmodelo = (select idcarmodelo from vehiculo where nsvehiculo = (select nsvehiculo from compra where idcompra = " +
+        compra +
+        "))"
+    );
+    //eliminacion de la compra
+    const deleteCompra = await pool.query(
+      "delete from compra where idcompra = " + compra + ""
+    );
+
+    //actualizacion de pagina
+    var compras = await pool.query(
+      "select * from compra inner join usuarioproveedor on compra.idproveedor=usuarioproveedor.idproveedor inner join sucursal on compra.idsucursal = sucursal.idsucursal inner join vehiculo on compra.nsvehiculo = vehiculo.nsvehiculo inner join vehicar on vehiculo.idcarmodelo = vehicar.idcarmodelo inner join modelo on vehicar.idmodelo = modelo.idmodelo where idusuarioc = (select idusuarioc from usuariocomprador where correo = '" +
+        variableSesion +
+        "')"
+    );
+    var resultadoCompras = compras.rows;
+    res.render("consultar-compras", { variableSesion, resultadoCompras });
   } else {
     res.render("iniciar-sesion", { variableSesion });
-  }*/
+  }
 });
 
 /*****************************************************************************************************************/
@@ -738,6 +768,51 @@ const getCatalogo = async () => {
     for (let i = 0; i < cantCatalogoE; i++) {
       const consNom = await pool.query(
         "select nombreModelo from modelo order by idmodelo asc;"
+        // "select nombreModelo from modeloCombustion"
+      );
+      var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombremodelo"]));
+      const preM = await pool.query(
+        "select min(precio) from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
+          nombre +
+          "');"
+      );
+      var precio = JSON.parse(JSON.stringify(preM.rows[0]["min"]));
+
+      //console.log("Nombres:" + nombre);
+      // Orden de los automóviles es, primero combustión y después eléctricos.
+      veh.push(nombre, precio);
+    }
+
+    // console.log("La cuenta del catalogo fue de " + cantCatalogo);
+    //console.log("La cuenta del catalogo fue de " + veh.length.toString());
+    //console.log("Nombre: " + veh[0]);
+    return veh;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const getBusqueda = async (busqueda) => {
+  //007
+  try {
+    let veh = [];
+    const resultVE = await pool.query(
+      "select count(*) from modelo where nombreModelo=" + busqueda + ";"
+    );
+    var cantCatalogoE = JSON.parse(JSON.stringify(resultVE.rows[0]["count"]));
+    console.log("Total de automóviles: " + cantCatalogoE);
+
+    // const resultVC = await pool.query("select count(*) from modeloCombustion");
+    // var cantCatalogoC = JSON.parse(JSON.stringify(resultVC.rows[0]["count"]));
+    // console.log("Combustión: " + cantCatalogoC);
+
+    // var cantCatalogo = cantCatalogoC + cantCatalogoE;
+
+    for (let i = 0; i < cantCatalogoE; i++) {
+      const consNom = await pool.query(
+        "select nombreModelo from modelo where nombreModelo=" +
+          busqueda +
+          " order by idmodelo asc;"
         // "select nombreModelo from modeloCombustion"
       );
       var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombremodelo"]));
