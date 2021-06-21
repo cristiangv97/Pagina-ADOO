@@ -222,50 +222,52 @@
         <div class="row text-center">
           <h1 class="text-center display-5">Precio final: <%=precio%></h1>
         </div>
-        <div class="col-lg-6 col-md-12 p-4">
-          <!--
-          <a
-            class="btnConfirmarCompra btn btn-primary btn-continuar"
-            href="compra-finalizada"
-            role="button"
-            ><h3>Finalizar compra</h3></a
-          >
-          </div>
-          -->
-          
-            <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
-            <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
-            <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
-            <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
-            <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
-            <%var today = new Date();%>
-            <%var dd = String(today.getDate()).padStart(2, '0');%>
-            <%var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!%>
-            <%var yyyy = today.getFullYear();%>
-            <%today = dd + '-' + mm + '-' + yyyy;%>
-            <input style="display: none;" name="fecha" id="fecha" value="<%=today%>">
-            <button
-              type="button"
-              class="btnConfirmarCompra btn btn-primary"
-              data-bs-toggle="modal"
-              data-bs-target="#cancelarCompra"
+        <div class="row">
+          <div class="col-lg-6 col p-4">
+            <!--
+            <a
+              class="btnConfirmarCompra btn btn-primary btn-continuar"
+              href="compra-finalizada"
+              role="button"
+              ><h3>Finalizar compra</h3></a
             >
-              <h3>Cancelar compra</h3>
-            </button>
-          </div>
-          <div class="col-lg-6 col-md-12 p-4">
+            </div>
+            -->
             
               <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
               <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
               <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
               <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
               <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
+              <%var today = new Date();%>
+              <%var dd = String(today.getDate()).padStart(2, '0');%>
+              <%var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!%>
+              <%var yyyy = today.getFullYear();%>
+              <%today = dd + '-' + mm + '-' + yyyy;%>
+              <input style="display: none;" name="fecha" id="fecha" value="<%=today%>">
               <button
-              class="btnConfirmarCompra btn btn-primary btn-continuar"
-              type="submit"
+                type="button"
+                class="btnConfirmarCompra btn btn-primary"
+                data-bs-toggle="modal"
+                data-bs-target="#cancelarCompra"
               >
-                <h4>Finalizar Compra</h4>
+                <h4>Cancelar compra</h4>
               </button>
+            </div>
+            <div class="col-lg-6 col p-4">
+              
+                <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
+                <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
+                <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
+                <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
+                <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
+                <button
+                class="btnConfirmarCompra btn btn-primary btn-continuar"
+                type="submit"
+                >
+                  <h4>Finalizar Compra</h4>
+                </button>
+            </div>
           </div>
         </div>
       </div>
