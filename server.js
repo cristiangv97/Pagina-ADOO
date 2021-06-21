@@ -87,22 +87,46 @@ app.post("/compra-finalizada", async (req, res) => {
   if (enSesion) {
     //003
     //subida de pedido a la base de datos
-    let { sesion, modeloAuto, precio, ntarjeta } = req.body;
-    console.log(sesion, modeloAuto, precio, ntarjeta);
-    const idUsuario = await pool.query(
-      "select idusuarioc from usuarioComprador where correo=$1",
-      [sesion]
-    );
-    const idproveedor = await pool.query(
-      "select idproveedor from modelo where nombremodelo=$1",
-      [modeloAuto]
-    );
-    /*
-    const nsVehiculo = await pool.query(
-      "select nsvehiculo from vehiculo where idcarmodelo=(select idcarmodelo from vehicar where precio=$1 and idmodelo=(select idmodelo form modelo where nombremodelo=$2))",
-      [precio, modeloAuto]
-    );
-    */
+    let { sesion, modeloAuto, precio, ntarjeta, fecha } = req.body;
+    console.log(sesion, modeloAuto, precio, ntarjeta, fecha);
+    try {
+      const idUsuario = await pool.query(
+        "select idusuarioc from usuarioComprador where correo=$1",
+        [sesion]
+      );
+      const idproveedor = await pool.query(
+        "select idproveedor from modelo where nombremodelo=$1",
+        [modeloAuto]
+      );
+      const nsVehiculo = await pool.query(
+        "select nsvehiculo from vehiculo where idcarmodelo = (select idcarmodelo from vehicar where precio = " +
+          precio +
+          " and idmodelo = (select idmodelo from modelo where nombremodelo = '" +
+          modeloAuto +
+          "'))"
+      );
+      const subida = await pool.query(
+        "insert into compra(idusuarioc,idproveedor,nsvehiculo,ntarjeta,fechacompra,estatuscompra) values (" +
+          idUsuario.rows[0]["idusuarioc"] +
+          ", " +
+          idproveedor.rows[0]["idproveedor"] +
+          ", '" +
+          nsVehiculo.rows[0]["nsvehiculo"] +
+          "', '" +
+          ntarjeta +
+          "', '" +
+          fecha +
+          "', 'Por confirmar')"
+      );
+      const nodisp = await pool.query(
+        "delete from vehiculo where nsvehiculo = '" +
+          nsVehiculo.rows[0]["nsvehiculo"] +
+          "'"
+      );
+    } catch (error) {
+      console.log(error);
+    }
+
     //redireccion
     res.render("compra-finalizada", { variableSesion });
   } else {
@@ -362,6 +386,24 @@ app.get("/menu-personalizacion", async (req, res) => {
   }
 });
 
+/************************************************ MODIFICAR DATOS DE LA CUENTA ************************************************/
+app.get("/modificar-datos-de-usuario", async (req, res) => {
+  if (enSesion) {
+    console.log(datosCuenta);
+    res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
+//005
+app.post("/modificar-datos-de-usuario", async (req, res) => {
+  if (enSesion) {
+    console.log(datosCuenta);
+    //res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
 /************************************************ CONFIRMAR COMPRA ************************************************/
 
 app.post("/confirmar-compra", async (req, res) => {
@@ -393,17 +435,60 @@ app.get("/confirmar-compra", async (req, res) => {
 });
 
 /************************************************ INORMACION CUENTA ************************************************/
-app.post("/informacion-cuenta.html", async (req, res) => {
+app.post("/informacion-cuenta", async (req, res) => {
   if (enSesion) {
     res.render("informacion-cuenta", { variableSesion });
   } else {
     res.render("iniciar-sesion", { variableSesion });
   }
 });
-
-app.get("/informacion-cuenta.html", async (req, res) => {
+//004
+app.get("/informacion-cuenta", async (req, res) => {
   if (enSesion) {
-    res.render("informacion-cuenta", { variableSesion });
+    var dataUser = await pool.query(
+      "select * from usuariocomprador where correo='" + variableSesion + "'"
+    );
+    var cuentas = await pool.query(
+      "select * from metodopago where idusuarioc=(select idusuarioc from usuariocomprador where correo='" +
+        variableSesion +
+        "')"
+    );
+    datosCuenta = dataUser.rows[0];
+    tarjetasCuenta = cuentas.rows;
+    res.render("informacion-cuenta", {
+      variableSesion,
+      datosCuenta,
+      tarjetasCuenta,
+    });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
+/************************************************ ELIMINAR METODO PAGO ************************************************/
+app.post("/eliminar-mpago", async (req, res) => {
+  //005
+  if (enSesion) {
+    let { tarjeta } = req.body;
+    console.log(tarjeta);
+    var delCard = await pool.query(
+      "delete from metodopago where ntarjeta = '" + tarjeta + "'"
+    );
+    //proceso para recargar la pagina
+    var dataUser = await pool.query(
+      "select * from usuariocomprador where correo='" + variableSesion + "'"
+    );
+    var cuentas = await pool.query(
+      "select * from metodopago where idusuarioc=(select idusuarioc from usuariocomprador where correo='" +
+        variableSesion +
+        "')"
+    );
+    datosCuenta = dataUser.rows[0];
+    tarjetasCuenta = cuentas.rows;
+    res.render("informacion-cuenta", {
+      variableSesion,
+      datosCuenta,
+      tarjetasCuenta,
+    });
   } else {
     res.render("iniciar-sesion", { variableSesion });
   }

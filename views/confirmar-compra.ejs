@@ -252,6 +252,12 @@
             <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
             <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
             <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
+            <%var today = new Date();%>
+            <%var dd = String(today.getDate()).padStart(2, '0');%>
+            <%var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!%>
+            <%var yyyy = today.getFullYear();%>
+            <%today = dd + '-' + mm + '-' + yyyy;%>
+            <input style="display: none;" name="fecha" id="fecha" value="<%=today%>">
             <button
             class="btnConfirmarCompra btn btn-primary btn-continuar"
             type="submit"
