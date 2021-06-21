@@ -471,10 +471,52 @@ app.post("/iniciar-sesion", async (req, res) => {
       });
     }
   } else {
+
+    const result = await pool.query(
+      "select * from usuarioproveedor where correo=$1",
+      [entradaCorreo]
+    );
+  
+    console.log("Contador de resultados: " + result.rowCount);
+
+    if (result.rowCount > 0) {
+
+      var myJSON = JSON.parse(JSON.stringify(result.rows[0]["clave"]));
+      const resCatalogo = await getCatalogo();
+      //console.log("getCatalogo()= " + resCatalogo);
+      console.log("Clave: " + myJSON);
+      // console.log("This is gen"+entradaCorreoGen);
+      //Validar que el usuario este verificado
+      const verif = await pool.query(
+        "select verificado from usuarioproveedor where correo=$1",
+        [entradaCorreo]
+      );
+      var resVer = JSON.parse(JSON.stringify(verif.rows[0]["verificado"]));
+      if (myJSON === entradaContrasena) {
+        variableSesion = result.rows[0].correo;
+        enSesion = true;
+        //validacion 001
+        if (resVer != "ok") {
+          console.log("Verificacion: " + resVer);
+          res.render("verificar-correo", { variableSesion });
+        }
+        console.log("Usuario valido");
+        res.render("index", { variableSesion, resCatalogo });
+      } else {
+        console.log("El usuario no existe");
+        res.render("iniciar-sesion", {
+          variableSesion: "Correo o contraseña no válidos.",
+        });
+      } 
+  }
+
+  else {
     console.log("El usuario no existe");
     res.render("iniciar-sesion", {
       variableSesion: "Correo o contraseña no válidos.",
     });
+  }
+
   }
 
   //pool.end();
