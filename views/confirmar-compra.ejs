@@ -239,6 +239,8 @@
                 <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
                 <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
                 <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
+                
+                  <input style="display: none;" name="place" id="place" value="lugar">
                 <%var today = new Date();%>
                 <%var dd = String(today.getDate()).padStart(2, '0');%>
                 <%var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!%>
@@ -255,15 +257,11 @@
                 </button>
               </div>
               <div class="col-lg-6 col-md-12 p-4">
-                
-                  <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
-                  <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
-                  <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
-                  <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
-                  <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
                   <button
+                  disabled
                   class="btnConfirmarCompra btn btn-primary btn-continuar"
                   type="submit"
+                  id="botonFinalizar"
                   >
                     <h3>Finalizar Compra</h3>
                   </button>
