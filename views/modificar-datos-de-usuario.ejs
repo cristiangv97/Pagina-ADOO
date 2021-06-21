@@ -23,6 +23,31 @@
       referrerpolicy="no-referrer"
     ></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    \
+    <script>
+      function done() {
+        if (
+          document.getElementById("newpass").value ===
+            document.getElementById("newpassconf").value &&
+          document.getElementById("passactual").value ===
+            document.getElementById("clave").value
+        ) {
+          document.getElementById("botonDone").disabled = false;
+        } else {
+          document.getElementById("botonDone").disabled = true;
+        }
+      }
+      alert(
+        "P1:" +
+          document.getElementById("newpass").value +
+          ", P2:" +
+          document.getElementById("newpassconf").value +
+          " Actual: " +
+          document.getElementById("clave").value +
+          "Insertada:" +
+          document.getElementById("clave").value
+      );
+    </script>
   </head>
 
   <body style="background-color: #c8c7c7">
@@ -106,6 +131,7 @@
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
             <input
+              disabled
               type="text"
               class="form-control"
               id="nombre"
@@ -115,6 +141,7 @@
           <div class="mb-3">
             <label for="apellidop" class="form-label">Apellido Paterno</label>
             <input
+              disabled
               type="text"
               class="form-control"
               id="apelP"
@@ -122,6 +149,7 @@
             />
             <label for="apellidom" class="form-label">Apellido Materno</label>
             <input
+              disabled
               type="text"
               class="form-control"
               id="apelM"
@@ -131,6 +159,7 @@
           <div class="mb-3">
             <label for="correo" class="form-label">Correo electrónico</label>
             <input
+              disabled
               type="text"
               class="form-control"
               id="correo"
@@ -141,16 +170,23 @@
             <label for="nueva-contraseña" class="form-label"
               >Nueva contraseña</label
             >
-            <input type="password" class="form-control" id="nueva-contraseña" />
+            <input
+              type="password"
+              class="form-control"
+              id="newpass"
+              name="newpass"
+              onkeyup="done()"
+            />
           </div>
           <div class="mb-3">
-            <label for="confirmar-contraseña" class="form-label"
+            <label for="newpassconf" class="form-label"
               >Confirmar contraseña</label
             >
             <input
               type="password"
               class="form-control"
-              id="confirmar-contraseña"
+              id="newpassconf"
+              onkeyup="done()"
             />
           </div>
 
@@ -163,17 +199,26 @@
               >Contraseña actual</label
             >
             <input
+              style="display: none"
+              name="clave"
+              id="clave"
+              value="<%=datosCuenta['clave']%>"
+            />
+            <input
               type="password"
               class="form-control"
-              id="actual-contraseña"
+              id="passactual"
+              onkeyup="done()"
               required
             />
           </div>
 
           <div class="text-center">
             <input
+              disabled
               class="btn btn-primary col-12 my-3"
               type="submit"
+              id="botonDone"
               value="Realizar Cambios"
             />
             <!--
@@ -227,7 +272,15 @@
                   >
                     No borrar
                   </button>
-                  <a href="./index" class="btn btn-danger">Sí borrar</a>
+                  <form action="eliminar-cuenta" method="post">
+                    <input
+                    style="display: none"
+                    name="cuenta"
+                    id="cuenta"
+                    value="<%=datosCuenta['correo']%>"
+                  />
+                  <input type="submit" class="btn btn-danger">Sí borrar</input>  
+                  </form>
                 </div>
               </div>
             </div>

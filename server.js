@@ -536,6 +536,7 @@ app.get("/menu-personalizacion", async (req, res) => {
 
 /************************************************ MODIFICAR DATOS DE LA CUENTA ************************************************/
 app.get("/modificar-datos-de-usuario", async (req, res) => {
+  //008
   if (enSesion) {
     console.log(datosCuenta);
     res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
@@ -606,6 +607,21 @@ app.get("/confirmar-compra", async (req, res) => {
 app.post("/informacion-cuenta", async (req, res) => {
   if (enSesion) {
     res.render("informacion-cuenta", { variableSesion });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
+
+app.post("/eliminar-cuenta", async (req, res) => {
+  if (enSesion) {
+    let { cuenta } = req.body;
+    const borrar = await pool.query(
+      "delete from usuariocomprador where correo= '" + cuenta + "'"
+    );
+    variableSesion = null;
+    let resCatalogo = [];
+    resCatalogo = await getCatalogo();
+    res.render("index", { variableSesion, resCatalogo });
   } else {
     res.render("iniciar-sesion", { variableSesion });
   }
