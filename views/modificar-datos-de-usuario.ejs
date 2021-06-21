@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Informació de cuenta</title>
+    <title>Modificar datos de usuario</title>
 
     <meta
       name="viewport"
@@ -16,13 +16,13 @@
       integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../css/personal.css" />
+    <link rel="stylesheet" href="css/personal.css" />
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js"
       referrerpolicy="no-referrer"
     ></script>
-    <script src="../js/bootstrap.bundle.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
   </head>
 
   <body style="background-color: #c8c7c7">
@@ -94,20 +94,18 @@
 
     <div class="container">
       <div class="col p-5 mx-auto col-lg-6 col-sm-10 m-3">
-        <h3 class="p-2 text-center">Información de cuenta</h3>
-        <!--Este form tiene como accion la modificacion de los datos de la cuenta-->
+        <h3 class="p-2 text-center">Modificar datos de usuario</h3>
         <form
           class="form-control form-control-lg"
-          id="formulario-info-cuenta"
+          id="formulario-modificar-usuario"
           action="modificar-datos-de-usuario"
-          method="GET"
+          method="POST"
         >
-          <h5 class="p-2 text-center">DATOS DE SESIÓN</h5>
+          <h2 class="p-2 text-center">DATOS DE SESIÓN</h2>
 
           <div class="mb-3">
             <label for="nombre" class="form-label">Nombre</label>
             <input
-              disabled
               type="text"
               class="form-control"
               id="nombre"
@@ -115,101 +113,129 @@
             />
           </div>
           <div class="mb-3">
-            <label for="apellido" class="form-label">Apellidos</label>
+            <label for="apellidop" class="form-label">Apellido Paterno</label>
             <input
-              disabled
               type="text"
               class="form-control"
-              id="nombre"
-              value="<%=datosCuenta['apellidopatuc']%> <%=datosCuenta['apellidomatuc']%>"
-              placeholder="Pérez Sanches"
+              id="apelP"
+              value="<%=datosCuenta['apellidopatuc']%>"
+            />
+            <label for="apellidom" class="form-label">Apellido Materno</label>
+            <input
+              type="text"
+              class="form-control"
+              id="apelM"
+              value="<%=datosCuenta['apellidomatuc']%>"
             />
           </div>
           <div class="mb-3">
             <label for="correo" class="form-label">Correo electrónico</label>
             <input
-              disabled
               type="text"
               class="form-control"
               id="correo"
-              value="<%=variableSesion%>"
-              placeholder="jperez@gmail.com"
+              value="<%=datosCuenta['correo']%>"
+            />
+          </div>
+          <div class="mb-3">
+            <label for="nueva-contraseña" class="form-label"
+              >Nueva contraseña</label
+            >
+            <input type="password" class="form-control" id="nueva-contraseña" />
+          </div>
+          <div class="mb-3">
+            <label for="confirmar-contraseña" class="form-label"
+              >Confirmar contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="confirmar-contraseña"
             />
           </div>
 
+          <h6 class="p-4 text-center">
+            Para guardar cambios, ingrese su contraseña actual
+          </h6>
+
           <div class="mb-3">
+            <label for="actual-contraseña" class="form-label"
+              >Actual contraseña</label
+            >
+            <input
+              type="password"
+              class="form-control"
+              id="actual-contraseña"
+              required
+            />
+          </div>
+
+          <div class="text-center">
             <input
               class="btn btn-primary col-12 my-3"
               type="submit"
-              value="Modificar información"
+              value="Realizar Cambios"
             />
-            <!-- <a
-              href="../modificar-datos-de-usuario"
-              class="btn btn-primary col-12 my-3"
-              role="button"
-              >Modificar información</a
-            >
-           -->
-          </div>
-        </form>
-        <!--Este form tiene como accion la eliminacion del metodo de pago-->
-
-        <h5 class="p-4 text-center">MÉTODOS DE PAGO</h5>
-        <form action="agregar-metodo-pago" method="GET">
-          <input
-            class="btn btn-primary col-12 my-3"
-            type="submit"
-            value="Agregar Nuevo Metodo de Pago"
-          />
-        </form>
-        <% for (let i = 0; i < tarjetasCuenta.length ; i++){%>
-        <form action="eliminar-mpago" method="POST">
-          <div class="mb-3">
-            <label for="numero-tarjeta" class="form-label"
-              >Número de tarjeta</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="numero-tarjeta"
-              disabled
-              value="**** **** **** <%=tarjetasCuenta[i]['ntarjeta'][12]%><%=tarjetasCuenta[i]['ntarjeta'][13]%><%=tarjetasCuenta[i]['ntarjeta'][14]%><%=tarjetasCuenta[i]['ntarjeta'][15]%>"
-            />
-            <input
-              style="display: none"
-              name="tarjeta"
-              id="tarjeta-<%=i%>"
-              value="<%=tarjetasCuenta[i]['ntarjeta']%>"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="fecha-vencimiento" class="form-label"
-              >Fecha de vencimiento</label
-            >
-            <input
-              type="text"
-              class="form-control"
-              id="fecha-vencimiento"
-              value="<%=tarjetasCuenta[i]['fechavencimiento']%>"
-              disabled
-            />
-          </div>
-          <input
-            class="btn btn-primary col-12 my-3"
-            type="submit"
-            value="Eliminar metodo pago"
-          />
-        </form>
-        <%}%>
-        <!--<div class="text-center">
+            <!--
             <a
-              href="agregar-metodo-pago"
+              href="informacion-cuenta"
               class="btn btn-primary col-12 my-3"
               role="button"
-              >Eliminar método de pago</a
+              >Guardar cambios</a
             >
-          </div>-->
+            -->
+            <button
+              type="button"
+              class="btnEliminarCuenta btn btn-danger"
+              data-bs-toggle="modal"
+              data-bs-target="#eliminarCuenta"
+            >
+              Eliminar cuenta
+            </button>
+          </div>
+
+          <!-- Modal para confirmación de eliminación de cuenta -->
+        </form>
+        <form action="eliminar-cuenta" method="POST">
+          <div
+            class="modal fade"
+            id="eliminarCuenta"
+            tabindex="-1"
+            aria-labelledby="botonEliminarCuenta"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h2 class="modal-title" id="modalCancelarCompraLabel">
+                    ¿Está seguro que desea eliminar su cuenta?
+                  </h2>
+                </div>
+
+                <div class="modal-body">
+                  <p>
+                    Si elimina su cuenta, toda su información será borrada de
+                    forma permanente.
+                  </p>
+                </div>
+
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    data-bs-dismiss="modal"
+                  >
+                    No borrar
+                  </button>
+                  <a href="./index" class="btn btn-danger">Sí borrar</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
+
+    <!--</div> -->
   </body>
 </html>

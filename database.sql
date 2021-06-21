@@ -124,7 +124,7 @@ create table compra(
 	idCompra serial primary key not null,
 	fechaEntrega date,
 	fechaCompra date not null,
-	estatusCompra varchar(30) not null,
+	estatusCompra varchar(30) default 'Por confirmar' not null,
 	idUsuarioC integer not null,
 	idProveedor integer not null,
 	nsVehiculo varchar(40) not null,

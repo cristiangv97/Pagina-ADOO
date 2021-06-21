@@ -222,11 +222,28 @@
         <div class="row text-center">
           <h1 class="text-center display-5">Precio final: <%=precio%></h1>
         </div>
-
-        <div class="row text-center">
-          <div class="col-lg-6 col-md-12 p-4">
-            <!-- <a class=" btn btn-primary btn-continuar" href="#" role="button"><h3>Cancelar compra</h3></a> -->
-            <!-- Boton del modal -->
+        <div class="col-lg-6 col-md-12 p-4">
+          <!--
+          <a
+            class="btnConfirmarCompra btn btn-primary btn-continuar"
+            href="compra-finalizada.html"
+            role="button"
+            ><h3>Finalizar compra</h3></a
+          >
+          </div>
+          -->
+          
+            <input style="display: none;" name="sesion" id="sesion" value="<%=variableSesion%>">
+            <input style="display: none;" name="modeloAuto" id="modeloAuto" value="<%=modelo%>">
+            <input style="display: none;" name="precio" id="precio" value="<%=precio%>">
+            <input style="display: none;" name="idcarmodelo" id="idcarmodelo" value="<%=idcarmodelo%>">
+            <input style="display: none;" name="ntarjeta" id="ntarjeta" value="123">
+            <%var today = new Date();%>
+            <%var dd = String(today.getDate()).padStart(2, '0');%>
+            <%var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!%>
+            <%var yyyy = today.getFullYear();%>
+            <%today = dd + '-' + mm + '-' + yyyy;%>
+            <input style="display: none;" name="fecha" id="fecha" value="<%=today%>">
             <button
               type="button"
               class="btnConfirmarCompra btn btn-primary"
