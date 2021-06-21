@@ -73,11 +73,11 @@ function formularioProveedor(){
       "    <div class='form-row'>\n" +
       "      <div class='mb-3 input-field'>\n" +
       "        <label for='correoPro'>Correo electronico*</label>\n" +
-      "        <input type='text' id='correoPro' class='form-control' data-validetta='required,email' data-vd-message-required='Debes llenar el campo de Correo electronico'>\n" +
+      "        <input type='text' id='correoPro' name='correoPro' class='form-control' data-validetta='required,email' data-vd-message-required='Debes llenar el campo de Correo electronico'>\n" +
       "      </div>\n" +
       "      <div class='mb-3 input-field'>\n" +
       "        <label for='numPro'>Telefono*</label>\n" +
-      "        <input type='text' id='numPro' class='form-control' data-validetta='number,required,minLength[10],maxLength[10]' data-vd-message-required='Debes llenar el campo de Telefono'>\n" +
+      "        <input type='text' id='numPro' name='numPro' class='form-control' data-validetta='number,required,minLength[10],maxLength[10]' data-vd-message-required='Debes llenar el campo de Telefono'>\n" +
       "      </div>\n" +
       "      <div class='mb-3 input-field'>\n" +
       "        <label for='contrasenaPro'>Contraseña*</label>\n" +
@@ -85,7 +85,7 @@ function formularioProveedor(){
       "      </div>\n" +
       "      <div class='mb-3 input-field'>\n" +
       "        <label for='confContrasenaPro'>Confirmar contraseña*</label>\n" +
-      "        <input type='password' id='confContrasenaPro' class='form-control' data-validetta='equalTo[contrasenaPro],required' data-vd-message-required='Debes llenar el campo de Confirmar contraseña'>\n" +
+      "        <input type='password' id='confContrasenaPro' name='confContrasenaPro' class='form-control' data-validetta='equalTo[contrasenaPro],required' data-vd-message-required='Debes llenar el campo de Confirmar contraseña'>\n" +
       "      </div>\n" +
       "    </div>\n" +
       "    </div>\n" +
