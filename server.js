@@ -227,8 +227,12 @@ app.get("/crear-cuenta", (req, res) => {
 });
 
 app.post("/crear-cuenta", async (req, res) => {
-  //implementación solo para usuario
   let {
+    nombre_registroPro,
+    correoPro,
+    numPro,
+    contrasenaPro,
+    confContrasenaPro,
     nombre_registro,
     apellidoPaterno,
     apellidoMaterno,
@@ -237,93 +241,185 @@ app.post("/crear-cuenta", async (req, res) => {
     confirmarContrasena,
   } = req.body;
 
-  const result = await pool.query(
-    "select * from usuarioComprador where correo=$1",
-    ["{" + [correo] + "}"]
-  );
-
-  //buen código del stack overflow
-  Object.size = function (obj) {
-    var size = 0,
-      key;
-    for (key in obj) {
-      if (obj.hasOwnProperty(key)) size++;
-    }
-    return size;
-  };
-
-  //calculamos el tamaño
-  let tamanio = Object.size(result.rows);
-  console.log(tamanio);
-
-  //si  encuentra un correo igual el tamaño != 0
-  if (tamanio === 0) {
-    //generación del código
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-    function generateString(length) {
-      let result = " ";
-      const charactersLength = characters.length;
-      for (let i = 0; i < length; i++) {
-        result += characters.charAt(
-          Math.floor(Math.random() * charactersLength)
-        );
-      }
-
-      return result;
-    }
-
-    //envia
-    let codigoVer = generateString(5);
-    let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: "isurusictu@gmail.com",
-        pass: "12345678Mm*",
-      },
-    });
-    let mailOptions = {
-      from: "isurusictu@gmail.com",
-      to: correo,
-      subject: "Código de verificación",
-      text: "Su código de verificación es " + codigoVer,
-    };
-
-    console.log("Registrando usuario");
+  if (nombre_registroPro === undefined) { //usuario comprador
     const result = await pool.query(
-      "INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave,verificado) VALUES ($1, $3, $2, $4, $5, $6)",
-      [
-        nombre_registro,
-        apellidoPaterno,
-        apellidoMaterno,
-        correo,
-        contrasena,
-        codigoVer,
-      ]
+      "select * from usuarioComprador where correo=$1",
+      [correo]
     );
-
-    //subir el codigo de confirmacion a la base para despues
-    //utilizarlo en la pantallad de verificacion y como parametro a validar
-    //en el inicio de sesion
-    const ver = pool.query(
-      "update usuarioComprador set verificado = '$1' where correo='$2'",
-      [codigoVer, correo]
-    );
-
-    transporter.sendMail(mailOptions, function (err, data) {
-      if (err) {
-        console.log("RIP");
-        console.log(err);
-      } else {
-        console.log("Si se mandó");
+  
+    //buen código del stack overflow
+    Object.size = function (obj) {
+      var size = 0,
+        key;
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
       }
-    });
+      return size;
+    };
+  
+    //calculamos el tamaño
+    let tamanio = Object.size(result.rows);
+    console.log(tamanio);
+  
+    //si  encuentra un correo igual el tamaño != 0
+    if (tamanio === 0) {
+      //generación del código
+      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      function generateString(length) {
+        let result = " ";
+        const charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(
+            Math.floor(Math.random() * charactersLength)
+          );
+        }
+  
+        return result;
+      }
+  
+      //envia
+      let codigoVer = generateString(5);
+      let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: "isurusictu@gmail.com",
+          pass: "12345678Mm*",
+        },
+      });
+      let mailOptions = {
+        from: "isurusictu@gmail.com",
+        to: correo,
+        subject: "Código de verificación",
+        text: "Su código de verificación es " + codigoVer,
+      };
+  
+      console.log("Registrando usuario");
+      const result = await pool.query(
+        "INSERT INTO usuarioComprador (nombreUC,apellidoMAtUC,apellidoPAtUC,correo, clave,verificado) VALUES ($1, $3, $2, $4, $5, $6)",
+        [
+          nombre_registro,
+          apellidoPaterno,
+          apellidoMaterno,
+          correo,
+          contrasena,
+          codigoVer,
+        ]
+      );
+  
+      //subir el codigo de confirmacion a la base para despues
+      //utilizarlo en la pantallad de verificacion y como parametro a validar
+      //en el inicio de sesion
+      const ver = pool.query(
+        "update usuarioComprador set verificado = '$1' where correo='$2'",
+        [codigoVer, correo]
+      );
+  
+      transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+          console.log("RIP");
+          console.log(err);
+        } else {
+          console.log("Si se mandó");
+        }
+      });
+  
+      res.render("verificar-correo", { variableSesion });
+    } else {
+      console.log("Usuario ya registrado");
+      res.render("crear-cuenta");
+    }
+  }
+  else { //usuario proveedor
+      const result = await pool.query(
+      "select * from usuarioproveedor where correo=$1",
+      [correoPro]
+    );
+  
+    console.log(result);
 
-    res.render("verificar-correo", { variableSesion });
-  } else {
-    console.log("Usuario ya registrado");
-    res.render("crear-cuenta");
+    //buen código del stack overflow
+    Object.size = function (obj) {
+      var size = 0,
+        key;
+      for (key in obj) {
+        if (obj.hasOwnProperty(key)) size++;
+      }
+      return size;
+    };
+  
+    //calculamos el tamaño
+    let tamanio = Object.size(result.rows);
+    console.log(tamanio);
+  
+    //si  encuentra un correo igual el tamaño != 0
+    if (tamanio === 0) {
+      //generación del código
+      const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+      function generateString(length) {
+        let result = " ";
+        const charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(
+            Math.floor(Math.random() * charactersLength)
+          );
+        }
+  
+        return result;
+      }
+  
+      //envia
+      let codigoVer = generateString(5);
+      let transporter = nodemailer.createTransport({
+        host: "smtp.gmail.com",
+        port: 587,
+        secure: false, // true for 465, false for other ports
+        auth: {
+          user: "isurusictu@gmail.com",
+          pass: "12345678Mm*",
+        },
+      });
+      let mailOptions = {
+        from: "isurusictu@gmail.com",
+        to: correoPro,
+        subject: "Código de verificación",
+        text: "Su código de verificación es " + codigoVer,
+      };
+  
+      console.log("Registrando usuario");
+      const result = await pool.query(
+        "INSERT INTO usuarioproveedor (telefonoup,nombreup,correo,clave) VALUES ($1, $2, $3, $4)",
+        [
+          numPro,
+          nombre_registroPro,
+          correoPro,
+          contrasenaPro
+        ]
+      );
+  
+      //subir el codigo de confirmacion a la base para despues
+      //utilizarlo en la pantallad de verificacion y como parametro a validar
+      //en el inicio de sesion
+      const ver = pool.query(
+        "update usuarioproveedor set verificado = '$1' where correo='$2'",
+        [codigoVer, correoPro]
+      );
+  
+      transporter.sendMail(mailOptions, function (err, data) {
+        if (err) {
+          console.log("RIP");
+          console.log(err);
+        } else {
+          console.log("Si se mandó");
+        }
+      });
+  
+      res.render("verificar-correo", { variableSesion });
+    } else {
+      console.log("Usuario ya registrado");
+      res.render("crear-cuenta");
+    }
   }
 });
 
