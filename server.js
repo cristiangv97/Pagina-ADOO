@@ -626,6 +626,21 @@ app.post("/modificar-datos-de-proveedor", async (req, res) => {
     res.render("iniciar-sesion", { variableSesion });
   }
 });
+
+app.post("/eliminar-cuenta-proveedor", async (req, res) => {
+  console.log("quiero eliminar");
+  if (enSesion) {
+    const borrar = await pool.query(
+      "delete from usuarioproveedor where correo= '" + variableSesion + "'"
+    );
+    variableSesion = null;
+    let resCatalogo = [];
+    resCatalogo = await getCatalogo();
+    res.render("index", { variableSesion, resCatalogo });
+  } else {
+    res.render("iniciar-sesion", { variableSesion });
+  }
+});
 /************************************************ CONFIRMAR COMPRA ************************************************/
 
 app.post("/confirmar-compra", async (req, res) => {
