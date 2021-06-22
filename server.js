@@ -592,8 +592,51 @@ app.get("/modificar-datos-de-proveedor", async (req, res) => {
 app.post("/modificar-datos-de-proveedor", async (req, res) => {
   if (enSesion) {
     console.log(datosCuenta);
+    console.log("hola");
+    let {newpass} = req.body;
+    console.log(newpass);
+    console.log(datosCuenta['telefonoup']);
+    console.log(datosCuenta['nombreup']);
+    const cambiaPass = await pool.query(
+      "update usuarioproveedor set clave = $1 where correo = $2",
+      [
+        newpass,
+        variableSesion
+      ]
+    );
+    /*
+    const cambiaTel = await pool.query(
+      "update usuarioproveedor set telefonoup = $1 where correo = $2",
+      [
+        atosCuenta['telefonoup'],
+        variableSesion
+      ]
+    );
+    const cambiaRS = await pool.query(
+      "update usuarioproveedor set nombreup = $1 where correo = $2",
+      [
+        datosCuenta['nombreup'],
+        variableSesion
+      ]
+    );
+    */
     //res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
+    res.render("modificar-datos-de-proveedor", { variableSesion });
+  } else {
     res.render("iniciar-sesion", { variableSesion });
+  }
+});
+
+app.post("/eliminar-cuenta-proveedor", async (req, res) => {
+  console.log("quiero eliminar");
+  if (enSesion) {
+    const borrar = await pool.query(
+      "delete from usuarioproveedor where correo= '" + variableSesion + "'"
+    );
+    variableSesion = null;
+    let resCatalogo = [];
+    resCatalogo = await getCatalogo();
+    res.render("index", { variableSesion, resCatalogo });
   } else {
     res.render("iniciar-sesion", { variableSesion });
   }
