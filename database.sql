@@ -163,23 +163,14 @@ insert into sucursalProveedor (idSucursal,idProveedor) values
 (2,2),(4,2),(6,2),
 (7,3),(8,3);
 INSERT INTO modelo(idProveedor,tipoMotor,nombreModelo,marcaModelo,versionModelo,anoModelo,descripcionModelo,motorModelo) VALUES 
-(1,false,'Mazda 1','Sedán','Sport','2021','Está muy chulo jsjsjs','2.5L Skyactiv-G'),
-(2,false,'Mazda 2','Sedán','Sport','2019','Está muy chulo x2 jsjsjs','2.5L Skyactiv-G'),
-(1,true,'Mazda 3','Sedán','Eco','2017','Está muy chulo x3 jsjsjs','4L Skyactiv-T'),
-(2,false,'Mazda 4','Sedán','Sport','2020','Está muy chulo x4 jsjsjs','2.5L Skyactiv-G'),
+(1,false,'BT-50','Mazda','Automático','2021','Mazda BT-50 reúne características que pocas veces las podemos encontrar al mismo tiempo en un solo auto. Potencia, diseño, funcionalidad, equipamiento y seguridad son algunas de las virtudes que describen a la perfección esta pick up que, por excelencia, es ideal para quienes requieren un todoterreno para el trabajo, como también un compañero cómodo, seguro y elegante para cada viaje.','2.2L MZ-CD'),
+(2,false,'Hatchback','Mazda 2','Sport','2021','Está muy chulo jsjsjs','1.5L Skyactiv-G'),
+(1,true,'Mazda 3','Sedán','Grand Touring','2021','Mazda3 es el primer modelo que adopta una versión evolucionada del diseño KODO e incorpora una expresión dinámica. El efecto de movimiento que recorre toda la longitud de su marco le da un aspecto más potente al crear una expresión de calidad premium.','4L Skyactiv-T'),
+(2,false,'Mazda 4','Sedán','Eco','2020','Está muy chulo x4 jsjsjs','2.5L Skyactiv-G'),
 (1,true,'Mazda 5','Sedán','Sport','2015','Está muy chulo x5 jsjsjs','4L Skyactiv-G'),
-(2,true,'Mazda 6','Sedán','Sport','2018','Está muy chulo x6 jsjsjs','2.5L Skyactiv-G'),
+(2,true,'Mazda 6','Sedán','SUV','2018','Está muy chulo x6 jsjsjs','2.5L Skyactiv-G'),
 (1,true,'Mazda 7','Sedán','Sport','2021','Está muy chulo x7 jsjsjs','4L Skyactiv-G');
---se deben insertar valores en los vehiculos caracterizados,
---por tanto, la siguiente insercion estaria parcialmente completa
-insert into vehiCar(idModelo,precio,color,descripcion) values 
-(1,.1,'rojo','desc'),(1,.2,'plateado','desc'),(1,.3,'blanco','desc'),
-(2,.1,'rojo','desc'),(2,.2,'plateado','desc'),(2,.3,'blanco','desc'),
-(3,.1,'rojo','desc'),(3,.2,'plateado','desc'),(3,.3,'blanco','desc'),
-(4,.1,'rojo','desc'),(4,.2,'plateado','desc'),(4,.3,'blanco','desc'),
-(5,.1,'rojo','desc'),(5,.2,'plateado','desc'),(5,.3,'blanco','desc'),
-(6,.1,'rojo','desc'),(6,.2,'plateado','desc'),(6,.3,'blanco','desc'),
-(7,.1,'rojo','desc'),(7,.2,'plateado','desc'),(7,.3,'blanco','desc');
+
 --vehiculos individuales
 insert into vehiculo(nsVehiculo,idCarModelo) values
 (12341234512345011,1),(12341234512345012,1),(12341234512345013,1),
@@ -235,7 +226,38 @@ INSERT INTO modelo(idProveedor,marcaModelo,nombreModelo,versionModelo,anoModelo,
 (1,'Suzuki', 'Swace 1.8 Hybrid', '', 2021, '1.8 (122 Hp) Hybrid CVT', false, 2268.09, 1606, 5, 5, 1.46, 1.79, 2.7, 0.84, 977, 1375, 11.1, 'Independent McPherson. Coil Springs. Anti-roll bar.', 'Independent Double Wishbones. Coil Springs. Anti-roll bar.', 'Disco ventilado', 'Disco', '205/55 R16', 'Magnesio', 72, 'electrico/gasolina', 4, 1798, 103, '01:05', 3.6, ' '),
 (2,'Volkswagen', 'T-Roc', '', 2020, '1.0 TSI 110HP', true, 2086.36, 1290, 5, 5, 1.573, 1.819, 2.59, 0.76, 943, 1194, 10.8, 'Independent McPherson. Coil Springs. Anti-roll bar.', 'Semi-independent. Coil Springs.', 'Disco ventilado', 'Disco', '215/60 R16', 'Alumino', 81, 'gasolina', 3, 999, 137, null, null, ' '),
 (3,'Peugeot', '5008', '', 2021, '1.2 PureTech 130', true, 2297.36, 1940, 5, 7, 1.646, 1.844, 2.84, 0.81, 828, 1404, 9.9, 'Independent McPherson. Coil Springs. Anti-roll bar.', 'Independent Cross Arms. Torsion bar. Anti-roll bar.', 'Disco ventilado', 'Disco', '215/65 R17', 'Acero', 96, 'gasolina', 3, 1199, 144, null, null, ' ');
-select idmodelo,nombremodelo from modelo;
+--se deben insertar valores en los vehiculos caracterizados,
+--por tanto, la siguiente insercion estaria parcialmente completa
+insert into vehiCar(idModelo,precio,color,descripcion) values 
+(1,208900.000,'rojo','desc'),(1,224900.000,'plateado','desc'),(1,234900.000,'blanco','desc'),
+(2,323900.000,'rojo','desc'),(2,330900.000,'plateado','desc'),(2,353900.000,'blanco','desc'),
+(3,384900.000,'rojo','desc'),(3,404900.000,'plateado','desc'),(3,454900.000,'blanco','desc'),
+(4,372434.000,'rojo','desc'),(4,338203.000,'plateado','desc'),(4,367609.000,'blanco','desc'),
+(5,382367.000,'rojo','desc'),(5,461948.000,'plateado','desc'),(5,322907.000,'blanco','desc'),
+(6,599978.000,'rojo','desc'),(6,573832.000,'plateado','desc'),(6,642545.000,'blanco','desc'),
+(7,640631.000,'rojo','desc'),(7,626914.000,'plateado','desc'),(7,622614.000,'blanco','desc'),
+(8,335288.000,'rojo','desc'),(8,381218.000,'plateado','desc'),(8,489586.000,'blanco','desc'),
+(9,697026.000,'rojo','desc'),(9,576791.000,'plateado','desc'),(9,381956.000,'blanco','desc'),
+(10,390101.000,'rojo','desc'),(10,597378.000,'plateado','desc'),(10,630467.000,'blanco','desc'),
+(11,323903.000,'rojo','desc'),(11,397989.000,'plateado','desc'),(11,315700.000,'blanco','desc'),
+(12,631309.000,'rojo','desc'),(12,691672.000,'plateado','desc'),(12,582939.000,'blanco','desc'),
+(13,426053.000,'rojo','desc'),(13,458878.000,'plateado','desc'),(13,477423.000,'blanco','desc'),
+(14,514796.000,'rojo','desc'),(14,467244.000,'plateado','desc'),(14,586490.000,'blanco','desc'),
+(15,617694.000,'rojo','desc'),(15,531173.000,'plateado','desc'),(15,659010.000,'blanco','desc'),
+(16,455434.000,'rojo','desc'),(16,460382.000,'plateado','desc'),(16,340896.000,'blanco','desc'),
+(17,322944.000,'rojo','desc'),(17,383635.000,'plateado','desc'),(17,367926.000,'blanco','desc'),
+(18,677597.000,'rojo','desc'),(18,692643.000,'plateado','desc'),(18,505655.000,'blanco','desc'),
+(19,355670.000,'rojo','desc'),(19,345805.000,'plateado','desc'),(19,333738.000,'blanco','desc'),
+(20,563444.000,'rojo','desc'),(20,654332.000,'plateado','desc'),(20,677482.000,'blanco','desc'),
+(21,531612.000,'rojo','desc'),(21,640090.000,'plateado','desc'),(21,578721.000,'blanco','desc'),
+(22,572192.000,'rojo','desc'),(22,656408.000,'plateado','desc'),(22,622847.000,'blanco','desc'),
+(23,423476.000,'rojo','desc'),(23,435151.000,'plateado','desc'),(23,493199.000,'blanco','desc'),
+(24,327519.000,'rojo','desc'),(24,665552.000,'plateado','desc'),(24,667142.000,'blanco','desc'),
+(25,566312.000,'rojo','desc'),(25,466801.000,'plateado','desc'),(25,557841.000,'blanco','desc'),
+(26,366364.000,'rojo','desc'),(26,320589.000,'plateado','desc'),(26,581656.000,'blanco','desc'),
+(27,674182.000,'rojo','desc'),(27,688037.000,'plateado','desc'),(27,642747.000,'blanco','desc');
+
+--select idmodelo,nombremodelo from modelo;
 --select min(precio) from vehicarc,vehicare where 
 --vehicarc.idmodeloc=(select idModeloC from modelocombustion where nombremodelo='Mazda 1') 
 --or vehicare.idmodeloe=(select idModeloE from modeloelectrico where nombremodelo='Mazda 1');
