@@ -536,9 +536,8 @@ app.get("/menu-personalizacion", async (req, res) => {
 
 /************************************************ MODIFICAR DATOS DE LA CUENTA ************************************************/
 app.get("/modificar-datos-de-usuario", async (req, res) => {
-  //008
+  //009
   if (enSesion) {
-    console.log(datosCuenta);
     res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
   } else {
     res.render("iniciar-sesion", { variableSesion });
@@ -547,8 +546,31 @@ app.get("/modificar-datos-de-usuario", async (req, res) => {
 //005
 app.post("/modificar-datos-de-usuario", async (req, res) => {
   if (enSesion) {
-    console.log(datosCuenta);
-    //res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
+    let { newpass } = req.body;
+    console.log(datosCuenta["correo"], newpass);
+    const updatePass = await pool.query(
+      "update usuariocomprador set clave = '" +
+        newpass +
+        "' where correo='" +
+        datosCuenta["correo"] +
+        "'"
+    );
+    //proceso para recargar la pagina
+    var dataUser = await pool.query(
+      "select * from usuariocomprador where correo='" + variableSesion + "'"
+    );
+    var cuentas = await pool.query(
+      "select * from metodopago where idusuarioc=(select idusuarioc from usuariocomprador where correo='" +
+        variableSesion +
+        "')"
+    );
+    datosCuenta = dataUser.rows[0];
+    tarjetasCuenta = cuentas.rows;
+    res.render("informacion-cuenta", {
+      variableSesion,
+      datosCuenta,
+      tarjetasCuenta,
+    });
   } else {
     res.render("iniciar-sesion", { variableSesion });
   }
@@ -611,7 +633,7 @@ app.post("/informacion-cuenta", async (req, res) => {
     res.render("iniciar-sesion", { variableSesion });
   }
 });
-
+//008
 app.post("/eliminar-cuenta", async (req, res) => {
   if (enSesion) {
     let { cuenta } = req.body;
@@ -664,7 +686,7 @@ app.get("/informacion-cuenta", async (req, res) => {
 });
 /************************************************ ELIMINAR METODO PAGO ************************************************/
 app.post("/eliminar-mpago", async (req, res) => {
-  //005
+  //010
   if (enSesion) {
     let { tarjeta } = req.body;
     console.log(tarjeta);
