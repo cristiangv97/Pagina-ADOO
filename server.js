@@ -547,8 +547,18 @@ app.get("/modificar-datos-de-usuario", async (req, res) => {
 //005
 app.post("/modificar-datos-de-usuario", async (req, res) => {
   if (enSesion) {
-    console.log(datosCuenta);
-    //res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
+    let {
+      correo,
+      newpass
+    } = req.body;
+    console.log(variableSesion);
+    console.log(newpass);
+    //let q = "update usuariocomprador set clave = "$1" where correo = '$2'";
+    const result = await pool.query(
+      "update usuariocomprador set clave = $1 where correo = $2",
+      [newpass,variableSesion]
+    );
+    res.render("modificar-datos-de-usuario", { variableSesion, datosCuenta });
   } else {
     res.render("iniciar-sesion", { variableSesion });
   }
@@ -613,6 +623,7 @@ app.post("/informacion-cuenta", async (req, res) => {
 });
 
 app.post("/eliminar-cuenta", async (req, res) => {
+  console.log("quiero eliminar");
   if (enSesion) {
     let { cuenta } = req.body;
     const borrar = await pool.query(
