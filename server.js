@@ -888,40 +888,26 @@ const getBusqueda = async (busqueda) => {
   try {
     let veh = [];
     const resultVE = await pool.query(
-      "select count(*) from modelo where nombreModelo=" + busqueda + ";"
+      "select count(*) from modelo where nombreModelo like '" + busqueda + "%';"
     );
     var cantCatalogoE = JSON.parse(JSON.stringify(resultVE.rows[0]["count"]));
     console.log("Total de automóviles: " + cantCatalogoE);
 
-    // const resultVC = await pool.query("select count(*) from modeloCombustion");
-    // var cantCatalogoC = JSON.parse(JSON.stringify(resultVC.rows[0]["count"]));
-    // console.log("Combustión: " + cantCatalogoC);
-
-    // var cantCatalogo = cantCatalogoC + cantCatalogoE;
-
     for (let i = 0; i < cantCatalogoE; i++) {
       const consNom = await pool.query(
-        "select nombreModelo from modelo where nombreModelo=" +
+        "select nombreModelo from modelo where nombreModelo like '" +
           busqueda +
-          " order by idmodelo asc;"
-        // "select nombreModelo from modeloCombustion"
+          "%' order by idmodelo asc;"
       );
       var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombremodelo"]));
       const preM = await pool.query(
-        "select min(precio) from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
+        "select min(precio) from vehicar where idmodelo=(select idModelo from modelo where nombremodelo like '" +
           nombre +
-          "');"
+          "%');"
       );
       var precio = JSON.parse(JSON.stringify(preM.rows[0]["min"]));
-
-      //console.log("Nombres:" + nombre);
-      // Orden de los automóviles es, primero combustión y después eléctricos.
       veh.push(nombre, precio);
     }
-
-    // console.log("La cuenta del catalogo fue de " + cantCatalogo);
-    //console.log("La cuenta del catalogo fue de " + veh.length.toString());
-    //console.log("Nombre: " + veh[0]);
     return veh;
   } catch (e) {
     console.log(e);
