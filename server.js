@@ -165,6 +165,7 @@ app.post("/descripcion", async (req, res) => {
   infoModelo = await getDetallesModelo(modelo);
   caracterizados = await getModelosCaracterizados(modelo);
   let tamanioCaracterizados = caracterizados.length;
+  console.log(infoModelo);
   res.render("descripcion", {
     variableSesion,
     modelo,
