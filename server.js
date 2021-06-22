@@ -289,18 +289,18 @@ app.post("/crear-cuenta", async (req, res) => {
       }
 
       //envia
-      let codigoVer = generateString(5);
+      let codigoVer = generateString(6);
       let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "isurusictu@gmail.com",
+          user: "no.reply.isurusictu@gmail.com",
           pass: "12345678Mm*",
         },
       });
       let mailOptions = {
-        from: "isurusictu@gmail.com",
+        from: "no.reply.isurusictu@gmail.com",
         to: correo,
         subject: "Código de verificación",
         text: "Su código de verificación es " + codigoVer,
@@ -381,18 +381,18 @@ app.post("/crear-cuenta", async (req, res) => {
       }
 
       //envia
-      let codigoVer = generateString(5);
+      let codigoVer = generateString(6);
       let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "isurusictu@gmail.com",
+          user: "no.reply.isurusictu@gmail.com",
           pass: "12345678Mm*",
         },
       });
       let mailOptions = {
-        from: "isurusictu@gmail.com",
+        from: "no.reply.isurusictu@gmail.com",
         to: correoPro,
         subject: "Código de verificación",
         text: "Su código de verificación es " + codigoVer,
@@ -637,6 +637,7 @@ app.post("/informacion-cuenta", async (req, res) => {
 });
 //008
 app.post("/eliminar-cuenta", async (req, res) => {
+  console.log("quiero eliminar");
   if (enSesion) {
     let { cuenta } = req.body;
     const borrar = await pool.query(
