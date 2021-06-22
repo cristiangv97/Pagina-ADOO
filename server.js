@@ -287,7 +287,7 @@ app.post("/crear-cuenta", async (req, res) => {
       }
 
       //envia
-      let codigoVer = generateString(5);
+      let codigoVer = generateString(6);
       let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -379,7 +379,7 @@ app.post("/crear-cuenta", async (req, res) => {
       }
 
       //envia
-      let codigoVer = generateString(5);
+      let codigoVer = generateString(6);
       let transporter = nodemailer.createTransport({
         host: "smtp.gmail.com",
         port: 587,
@@ -553,7 +553,6 @@ app.post("/modificar-datos-de-usuario", async (req, res) => {
     } = req.body;
     console.log(variableSesion);
     console.log(newpass);
-    //let q = "update usuariocomprador set clave = "$1" where correo = '$2'";
     const result = await pool.query(
       "update usuariocomprador set clave = $1 where correo = $2",
       [newpass,variableSesion]
