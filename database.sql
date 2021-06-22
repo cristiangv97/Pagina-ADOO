@@ -170,40 +170,6 @@ INSERT INTO modelo(idProveedor,tipoMotor,nombreModelo,marcaModelo,versionModelo,
 (1,true,'Mazda 5','Sedán','Sport','2015','Está muy chulo x5 jsjsjs','4L Skyactiv-G'),
 (2,true,'Mazda 6','Sedán','SUV','2018','Está muy chulo x6 jsjsjs','2.5L Skyactiv-G'),
 (1,true,'Mazda 7','Sedán','Sport','2021','Está muy chulo x7 jsjsjs','4L Skyactiv-G');
-
---vehiculos individuales
-insert into vehiculo(nsVehiculo,idCarModelo) values
-(12341234512345011,1),(12341234512345012,1),(12341234512345013,1),
-(12341234512345021,2),(12341234512345022,2),(12341234512345023,2),
-(12341234512345031,3),(12341234512345032,3),(12341234512345033,3),
-(12341234512345041,4),(12341234512345042,4),(12341234512345043,4),
-(12341234512345051,5),(12341234512345052,5),(12341234512345053,5),
-(12341234512345061,6),(12341234512345062,6),(12341234512345063,6),
-(12341234512345071,7),(12341234512345072,7),(12341234512345073,7),
-(12341234512345081,8),(12341234512345082,8),
-(12341234512345091,9),(12341234512345092,9),
-(12341234512345101,10),(12341234512345102,10),
-(12341234512345111,11),(12341234512345112,11),
-(12341234512345121,12),(12341234512345122,12),
-(12341234512345131,13),(12341234512345132,13),
-(12341234512345141,14),(12341234512345142,14),
-(12341234512345151,15),(12341234512345152,15);
---actualiza el stock de acuerdo a los vehiculos individuales que haya en la tabla vehiculo
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 1) where idCarModelo = 1;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 2) where idCarModelo = 2;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 3) where idCarModelo = 3;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 4) where idCarModelo = 4;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 5) where idCarModelo = 5;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 6) where idCarModelo = 6;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 7) where idCarModelo = 7;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 8) where idCarModelo = 8;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 9) where idCarModelo = 9;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 10) where idCarModelo = 10;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 11) where idCarModelo = 11;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 12) where idCarModelo = 12;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 13) where idCarModelo = 13;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 14) where idCarModelo = 14;
-update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 15) where idCarModelo = 15;
 ------------------------------------------
 INSERT INTO modelo(idProveedor,marcaModelo,nombreModelo,versionModelo,anoModelo,motorModelo,tipoMotor,kgMMA,capacidadMaletero,nPuertas,nPlazas,mAltura,mAncho,mDistanciaEjes,coeficienteAerodinamico,kmAutonomia,kgPeso,segAceleracion0a100,susDelantera,susTrasera,frenosDelanteros,frenosTraseros,neumaticos,materialLlantas,kwPotencia,combustible,nCilindros,cm3Cilindrada,gkmEmisionCO2,tiempoCarga,capacidadBateria,descripcionModelo) Values
 (2,'Ford', 'Ranger', 'Double Cab 4x4', 2016, '2.2 TDCi 160HP', true, 3985.26, 965, 4, 5, 1.815, 1.86, 3.22, 0.75, 1126, 2177, 11.8, 'Coil springs.', 'Beam axle.', 'Disco ventilado (302 mm)', 'Tambor (295 mm)', '255/70 R16', 'Alumino', 118, 'diesel', 4, 2198, 185, null, null, ' '),
@@ -256,7 +222,39 @@ insert into vehiCar(idModelo,precio,color,descripcion) values
 (25,566312.000,'rojo','desc'),(25,466801.000,'plateado','desc'),(25,557841.000,'blanco','desc'),
 (26,366364.000,'rojo','desc'),(26,320589.000,'plateado','desc'),(26,581656.000,'blanco','desc'),
 (27,674182.000,'rojo','desc'),(27,688037.000,'plateado','desc'),(27,642747.000,'blanco','desc');
-
+--vehiculos individuales
+insert into vehiculo(nsVehiculo,idCarModelo) values
+(12341234512345011,1),(12341234512345012,1),(12341234512345013,1),
+(12341234512345021,2),(12341234512345022,2),(12341234512345023,2),
+(12341234512345031,3),(12341234512345032,3),(12341234512345033,3),
+(12341234512345041,4),(12341234512345042,4),(12341234512345043,4),
+(12341234512345051,5),(12341234512345052,5),(12341234512345053,5),
+(12341234512345061,6),(12341234512345062,6),(12341234512345063,6),
+(12341234512345071,7),(12341234512345072,7),(12341234512345073,7),
+(12341234512345081,8),(12341234512345082,8),
+(12341234512345091,9),(12341234512345092,9),
+(12341234512345101,10),(12341234512345102,10),
+(12341234512345111,11),(12341234512345112,11),
+(12341234512345121,12),(12341234512345122,12),
+(12341234512345131,13),(12341234512345132,13),
+(12341234512345141,14),(12341234512345142,14),
+(12341234512345151,15),(12341234512345152,15);
+--actualiza el stock de acuerdo a los vehiculos individuales que haya en la tabla vehiculo
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 1) where idCarModelo = 1;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 2) where idCarModelo = 2;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 3) where idCarModelo = 3;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 4) where idCarModelo = 4;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 5) where idCarModelo = 5;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 6) where idCarModelo = 6;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 7) where idCarModelo = 7;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 8) where idCarModelo = 8;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 9) where idCarModelo = 9;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 10) where idCarModelo = 10;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 11) where idCarModelo = 11;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 12) where idCarModelo = 12;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 13) where idCarModelo = 13;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 14) where idCarModelo = 14;
+update vehiCar set stock = (select count(*) from vehiculo where idCarModelo = 15) where idCarModelo = 15;
 --select idmodelo,nombremodelo from modelo;
 --select min(precio) from vehicarc,vehicare where 
 --vehicarc.idmodeloc=(select idModeloC from modelocombustion where nombremodelo='Mazda 1') 
