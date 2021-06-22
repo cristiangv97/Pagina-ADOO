@@ -26,10 +26,10 @@
   </head>
   <body style="background-color: #c8c7c7">
     <!-- NAVBAR -->
-    <div class="container-fluid">
+    <div class="container-fluid" id="barra-de-navegacion">
       <nav class="navbar navbar-expand-md navbar-dark bg-dark rounded-bottom">
         <div class="container-fluid">
-          <a class="navbar-brand" href="index"> Isurus Ictu </a>
+          <a class="navbar-brand" href="/index"> Isurus Ictu </a>
           <button
             class="navbar-toggler ms-auto"
             type="button"
@@ -45,14 +45,48 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mt-1 text-center">
               <li class="nav-item">
-                <a class="nav-link" href="index">Catálogo completo</a>
+                <a class="nav-link" href="/index">Catálogo completo</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="mas-vendidos">Más vendidos</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="mas-recientes">Más recientes</a>
+                <a class="nav-link" href="/mas-recientes">Más recientes</a>
               </li>
+              <!-- Checamos si la sesion ha sido declarada como iniciada -->
+              <% if (variableSesion) { %>
+              <li class="nav-item">
+                <div class="dropdown">
+                  <button
+                    class="btn btn-primary dropdown-toggle col-12"
+                    type="button"
+                    id="btnDropDown"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <%=variableSesion%>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="btnDropDown">
+                    <li>
+                      <a class="dropdown-item" href="informacion-cuenta"
+                        >Cuenta</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="consultar-compras"
+                        >Compras</a
+                      >
+                    </li>
+                    <li>
+                      <a class="dropdown-item" href="./cerrar-sesion"
+                        >Cerrar sesión</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </li>
+              <!-- En caso contrario mandamos este bloque -->
+              <% } else {%>
               <li class="nav-item">
                 <a
                   class="nav-link bg-secondary btn active btn-nav"
@@ -67,6 +101,8 @@
                   >Registrarse</a
                 >
               </li>
+
+              <% } %>
             </ul>
           </div>
         </div>
@@ -74,140 +110,75 @@
     </div>
 
     <div class="container">
-      <div class="input-group p-2">
-        <input
-          type="search"
-          class="form-control rounded"
-          placeholder="Buscar"
-          aria-label="Buscar"
-          aria-describedby="search-addon"
-        />
-        <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
-        <a href="./buscar-vehiculo" class="btn btn-primary">Buscar</a>
-      </div>
-
+      <form action="buscar" method="POST">
+        <div class="input-group p-2">
+          <input
+            type="text"
+            class="form-control rounded"
+            placeholder="Buscar"
+            aria-label="Buscar"
+            aria-describedby="search-addon"
+            name="busqueda"
+            id="busqueda"
+          />
+          <!-- <button type="button" class="btn btn-primary">Buscar</button> -->
+          <input type="submit" value="Buscar" class="btn btn-primary" />
+        </div>
+      </form>
       <!-- TITULO DE CATALOGOS COMPLETO-->
       <div class="row mt-3">
         <div class="col">
-          <h1>Más recientes</h1>
+          <h1>Más Recientes</h1>
         </div>
       </div>
 
+      <%if(resCatalogo.length.toString()>0){%>
       <!--  Tarjetas de vehiculos-->
       <div id="vehiculos">
         <div class="container-md mt-5">
           <div class="row">
-            <div class="col-sm-12 col-md-6 col-lg-4">
+            <% for (let i = 0; i < resCatalogo.length.toString(); i++){ %>
+
+            <div class="col-lg-4 col-md-6 col-sm-12">
               <div class="card w-100 card mb-5 card-border text-white bg-dark">
                 <div class="imgCatalogo d-flex justify-content-center">
                   <img
                     class="card-img-top"
-                    src="imgs/carro-8.png"
+                    src="imgs/<%=resCatalogo[i]%>.png"
                     alt="Card image cap"
                   />
                 </div>
                 <div class="card-body text-center">
-                  <h5 class="card-title">Modelo X</h5>
-                  <p class="card-text">Desde 18 000 000 pesos</p>
-                  <a href="descripcion" class="btn btn-primary col-12"
-                    >Comprar</a
-                  >
+                  <form action="descripcion" method="post">
+                    <label for="modelo" style="display: none"> </label>
+                    <input
+                      style="display: none"
+                      name="modelo"
+                      id="modelo"
+                      value="<%=resCatalogo[i]%>"
+                    />
+                    <h5 class="card-title"><%=resCatalogo[i]%></h5>
+                    <p class="card-text">Desde <%=resCatalogo[i+1];%> pesos</p>
+
+                    <!--<a href="descripcion" class="btn btn-primary col-12"
+                      >Comprar</a
+                    >-->
+                    <button class="btn btn-primary col-12" type="submit">
+                      Comprar
+                    </button>
+                  </form>
                 </div>
               </div>
             </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card w-100 card mb-5 card-border text-white bg-dark">
-                <div class="imgCatalogo d-flex justify-content-center">
-                  <img
-                    class="card-img-top"
-                    src="imgs/carro-9.png"
-                    alt="Card image cap"
-                  />
-                </div>
-                <div class="card-body text-center">
-                  <h5 class="card-title">Modelo §</h5>
-                  <p class="card-text">Desde 21 000 000 pesos</p>
-                  <a href="descripcion" class="btn btn-primary col-12"
-                    >Comprar</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card w-100 card mb-5 card-border text-white bg-dark">
-                <div class="imgCatalogo d-flex justify-content-center">
-                  <img
-                    class="card-img-top"
-                    src="imgs/carro-7.png"
-                    alt="Card image cap"
-                  />
-                </div>
-                <div class="card-body text-center">
-                  <h5 class="card-title">Modelo S</h5>
-                  <p class="card-text">Desde 25 000 000 pesos</p>
-                  <a href="descripcion" class="btn btn-primary col-12"
-                    >Comprar</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card w-100 card mb-5 card-border text-white bg-dark">
-                <div class="imgCatalogo d-flex justify-content-center">
-                  <img
-                    class="card-img-top"
-                    src="imgs/carro-3.png"
-                    alt="Card image cap"
-                  />
-                </div>
-                <div class="card-body text-center">
-                  <h5 class="card-title">Modelo C</h5>
-                  <p class="card-text">Desde 25 000 pesos</p>
-                  <a href="descripcion" class="btn btn-primary col-12"
-                    >Comprar</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card w-100 card mb-5 card-border text-white bg-dark">
-                <div class="imgCatalogo d-flex justify-content-center">
-                  <img
-                    class="card-img-top"
-                    src="imgs/carro-4.png"
-                    alt="Card image cap"
-                  />
-                </div>
-                <div class="card-body text-center">
-                  <h5 class="card-title">Modelo D</h5>
-                  <p class="card-text">Desde 52 000 pesos</p>
-                  <a href="descripcion" class="btn btn-primary col-12"
-                    >Comprar</a
-                  >
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-12 col-md-6 col-lg-4">
-              <div class="card w-100 card mb-5 card-border text-white bg-dark">
-                <div class="imgCatalogo d-flex justify-content-center">
-                  <img
-                    class="card-img-top"
-                    src="imgs/carro-5.png"
-                    alt="Card image cap"
-                  />
-                </div>
-                <div class="card-body text-center">
-                  <h5 class="card-title">Modelo E</h5>
-                  <p class="card-text">Desde 23 000 pesos</p>
-                  <a href="descripcion" class="btn btn-primary col-12"
-                    >Comprar</a
-                  >
-                </div>
-              </div>
-            </div>
+            <% i=i+1;} %>
           </div>
         </div>
       </div>
+      <%}else{%>
+      <h1 style="text-align: center">
+        No hay vehiculos registrados en el sitema
+      </h1>
+      <%}%>
     </div>
   </body>
 </html>

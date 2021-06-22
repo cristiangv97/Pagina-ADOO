@@ -158,11 +158,6 @@ app.get("/mas-vendidos", (req, res) => {
   res.render("mas-vendidos");
 });
 
-/************************************************ MAS RECIENTES ************************************************/
-app.get("/mas-recientes", (req, res) => {
-  res.render("mas-recientes");
-});
-
 /************************************************ DESCRIPCION ************************************************/
 app.post("/descripcion", async (req, res) => {
   console.log("post descirpcion llamada");
@@ -211,6 +206,13 @@ app.get("/index", async (req, res) => {
   let resCatalogo = [];
   resCatalogo = await getCatalogo();
   res.render("index", { variableSesion, resCatalogo });
+});
+
+app.get("/mas-recientes", async (req, res) => {
+  let resCatalogo = [];
+  resCatalogo = await getCatalogoRecientes();
+  console.log("Ingreso a mas recientes");
+  res.render("mas-recientes", { variableSesion, resCatalogo });
 });
 
 app.post("/buscar", async (req, res) => {
@@ -850,6 +852,36 @@ const getCatalogo = async () => {
   }
 };
 
+const getCatalogoRecientes = async () => {
+  try {
+    let veh = [];
+    const resultVE = await pool.query("select count(*) from modelo;");
+    var cantCatalogoE = JSON.parse(JSON.stringify(resultVE.rows[0]["count"]));
+    console.log("Total de automóviles: " + cantCatalogoE);
+
+    for (let i = 0; i < cantCatalogoE; i++) {
+      const consNom = await pool.query(
+        "select nombreModelo from modelo order by idmodelo desc;"
+      );
+      var nombre = JSON.parse(JSON.stringify(consNom.rows[i]["nombremodelo"]));
+      const preM = await pool.query(
+        "select min(precio) from vehicar where idmodelo=(select idModelo from modelo where nombremodelo='" +
+          nombre +
+          "');"
+      );
+      var precio = JSON.parse(JSON.stringify(preM.rows[0]["min"]));
+      veh.push(nombre, precio);
+    }
+
+    // console.log("La cuenta del catalogo fue de " + cantCatalogo);
+    //console.log("La cuenta del catalogo fue de " + veh.length.toString());
+    //console.log("Nombre: " + veh[0]);
+    return veh;
+  } catch (e) {
+    console.log(e);
+  }
+};
+//011
 const getBusqueda = async (busqueda) => {
   //007
   try {
