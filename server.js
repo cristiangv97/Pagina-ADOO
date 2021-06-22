@@ -181,7 +181,7 @@ app.get("/descripcion", async (req, res) => {
 app.post("/verificar-correo", async (req, res) => {
   let { correo, codigoVerificacion } = req.body;
   const consultaCodigo = await pool.query(
-    "select verificado from usuarioComprador where correo=$1",
+    "select verificado from usuariocomprador where correo=$1",
     [correo]
   );
   var codigo = consultaCodigo.rows[0]["verificado"];
