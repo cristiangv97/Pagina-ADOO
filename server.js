@@ -293,12 +293,12 @@ app.post("/crear-cuenta", async (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "isurusictu@gmail.com",
+          user: "no.reply.isurusictu@gmail.com",
           pass: "12345678Mm*",
         },
       });
       let mailOptions = {
-        from: "isurusictu@gmail.com",
+        from: "no.reply.isurusictu@gmail.com",
         to: correo,
         subject: "Código de verificación",
         text: "Su código de verificación es " + codigoVer,
@@ -385,12 +385,12 @@ app.post("/crear-cuenta", async (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: "isurusictu@gmail.com",
+          user: "no.reply.isurusictu@gmail.com",
           pass: "12345678Mm*",
         },
       });
       let mailOptions = {
-        from: "isurusictu@gmail.com",
+        from: "no.reply.isurusictu@gmail.com",
         to: correoPro,
         subject: "Código de verificación",
         text: "Su código de verificación es " + codigoVer,
